@@ -170,7 +170,7 @@
 .pmfio-row--quiet td { color: var(--pmfio-muted); }
 .pmfio-row--quiet .pmfio-amount,
 .pmfio-row--quiet .pmfio-name { font-weight: 400; }
-.pmfio-row--quiet .pmfio-pill { background: transparent; padding-left: 0; }
+.pmfio-row--quiet .pmfio-pill { background: transparent; padding-left: 0; color: var(--pmfio-muted); }
 .pmfio-table__empty { text-align: center; color: var(--pmfio-muted); padding: 32px 12px !important; }
 
 .pmfio-sub {

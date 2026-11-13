@@ -4,7 +4,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,9 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.6.3 =
+* Payments table: labels of quiet rows (no order, seen, paid earlier) are grey too.
 
 = 1.6.2 =
 * Payments table: quieter rows for payments without an order, one-click “Assign to …” for suggestions, assign form folded away, shorter labels.
