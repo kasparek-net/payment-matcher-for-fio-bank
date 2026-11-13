@@ -1,0 +1,332 @@
+/* Payment Matcher for Fio Bank – admin. Uses WP admin colours so it fits every admin colour scheme. */
+
+.pmfio {
+	--pmfio-ok-bg: #edfaef;
+	--pmfio-ok: #00731c;
+	--pmfio-warn-bg: #fcf6e5;
+	--pmfio-warn: #8a5a00;
+	--pmfio-bad-bg: #fcf0f1;
+	--pmfio-bad: #b32d2e;
+	--pmfio-info-bg: #f0f6fc;
+	--pmfio-info: #135e96;
+	--pmfio-muted-bg: #f0f0f1;
+	--pmfio-muted: #50575e;
+	--pmfio-border: #dcdcde;
+	--pmfio-radius: 8px;
+	max-width: 1280px;
+}
+
+.pmfio-head {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 8px 0 4px;
+}
+
+.pmfio-head h1 {
+	margin: 0;
+	padding: 0;
+}
+
+/* Pills */
+.pmfio-pill {
+	display: inline-block;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: 500;
+	white-space: nowrap;
+	background: var(--pmfio-muted-bg);
+	color: var(--pmfio-muted);
+}
+
+.pmfio-pill--ok { background: var(--pmfio-ok-bg); color: var(--pmfio-ok); }
+.pmfio-pill--warn { background: var(--pmfio-warn-bg); color: var(--pmfio-warn); }
+.pmfio-pill--bad { background: var(--pmfio-bad-bg); color: var(--pmfio-bad); }
+.pmfio-pill--info { background: var(--pmfio-info-bg); color: var(--pmfio-info); }
+.pmfio-pill--lg { font-size: 13px; padding: 3px 12px; }
+
+.pmfio-tabs { margin-bottom: 20px; }
+
+/* Overview cards */
+.pmfio-cards {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 16px;
+	margin: 0 0 20px;
+}
+
+.pmfio-card {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 16px 18px;
+	background: #fff;
+	border: 1px solid var(--pmfio-border);
+	border-radius: var(--pmfio-radius);
+	color: inherit;
+	text-decoration: none;
+}
+
+.pmfio-card--link:hover,
+.pmfio-card--link:focus {
+	border-color: var(--wp-admin-theme-color, #2271b1);
+	color: inherit;
+}
+
+.pmfio-card--alert { background: var(--pmfio-bad-bg); border-color: #f0c4c5; }
+.pmfio-card--alert .pmfio-card__value { color: var(--pmfio-bad); }
+
+.pmfio-card__label {
+	font-size: 12px;
+	color: var(--pmfio-muted);
+}
+
+.pmfio-card__value {
+	font-size: 24px;
+	line-height: 1.2;
+	font-weight: 600;
+	color: #1d2327;
+}
+
+.pmfio-card__sub {
+	font-size: 12px;
+	color: var(--pmfio-muted);
+	min-height: 16px;
+}
+
+.pmfio-card form { margin-top: 6px; }
+
+.pmfio-callout {
+	margin: 0 0 16px;
+	padding: 12px 16px;
+	background: var(--pmfio-info-bg);
+	border-radius: var(--pmfio-radius);
+	color: var(--pmfio-info);
+}
+
+.pmfio-filters { float: none; margin: 0 0 10px; }
+
+/* Table */
+.pmfio-table {
+	border: 1px solid var(--pmfio-border);
+	border-radius: var(--pmfio-radius);
+	overflow: hidden;
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+.pmfio-table th {
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--pmfio-muted);
+	padding: 10px 12px;
+	border-bottom: 1px solid var(--pmfio-border);
+}
+
+.pmfio-table td {
+	padding: 12px;
+	vertical-align: top;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.pmfio-table tbody tr:last-child td { border-bottom: 0; }
+.pmfio-table tbody tr:hover td { background: #f6f7f7; }
+.pmfio-num { text-align: right; white-space: nowrap; }
+.pmfio-table code { background: none; padding: 0; font-size: 12px; }
+.pmfio-table__empty { text-align: center; color: var(--pmfio-muted); padding: 32px 12px !important; }
+
+.pmfio-sub {
+	font-size: 12px;
+	color: var(--pmfio-muted);
+	margin-top: 2px;
+	overflow-wrap: anywhere;
+}
+
+.pmfio-actions { min-width: 210px; }
+.pmfio-act { margin: 0 0 6px; }
+
+.pmfio-act--assign {
+	display: flex;
+	gap: 6px;
+}
+
+.pmfio-act--assign input[type="text"] {
+	width: 110px;
+	min-height: 26px;
+	line-height: 1.5;
+	padding: 0 8px;
+}
+
+.pmfio-suggest {
+	font-size: 12px;
+	margin-bottom: 4px;
+	color: var(--pmfio-ok);
+}
+
+/* Empty state */
+.pmfio-empty {
+	max-width: 560px;
+	margin: 40px auto;
+	padding: 32px;
+	text-align: center;
+	background: #fff;
+	border: 1px solid var(--pmfio-border);
+	border-radius: var(--pmfio-radius);
+}
+
+.pmfio-empty h2 { margin-top: 0; }
+
+/* Settings panels */
+.pmfio-form { max-width: 900px; }
+
+.pmfio-panel {
+	background: #fff;
+	border: 1px solid var(--pmfio-border);
+	border-radius: var(--pmfio-radius);
+	padding: 4px 24px 12px;
+	margin: 0 0 20px;
+}
+
+.pmfio-panel h2 {
+	font-size: 15px;
+	margin: 16px 0 8px;
+}
+
+.pmfio-lead { color: var(--pmfio-muted); margin: 0 0 8px; }
+
+.pmfio-field {
+	display: grid;
+	grid-template-columns: 220px minmax(0, 1fr);
+	gap: 16px;
+	padding: 16px 0;
+	border-top: 1px solid #f0f0f1;
+}
+
+.pmfio-panel h2 + .pmfio-field,
+.pmfio-lead + .pmfio-field { border-top: 0; }
+
+.pmfio-field__label {
+	font-weight: 600;
+	padding-top: 5px;
+}
+
+.pmfio-help {
+	margin: 6px 0 0;
+	font-size: 13px;
+	color: var(--pmfio-muted);
+}
+
+.pmfio-ok { color: var(--pmfio-ok); margin: 6px 0 0; }
+.pmfio-warn { color: var(--pmfio-bad); }
+
+.pmfio-choice {
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+	padding: 10px 12px;
+	margin-bottom: 8px;
+	border: 1px solid var(--pmfio-border);
+	border-radius: 6px;
+}
+
+.pmfio-choice input { margin-top: 3px; }
+.pmfio-choice:has(input:checked) { border-color: var(--wp-admin-theme-color, #2271b1); background: var(--pmfio-info-bg); }
+
+.pmfio-check { display: block; margin: 4px 0 8px; }
+
+.pmfio-qr-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 260px;
+	gap: 20px;
+	max-width: 1100px;
+	align-items: start;
+}
+
+.pmfio-qr-layout + p.submit { max-width: 1100px; }
+.pmfio-preview { text-align: center; }
+.pmfio-preview__amount { margin: 10px 0 0; font-weight: 600; }
+
+.pmfio-preview__code {
+	display: inline-block;
+	padding: 8px;
+	background: #fff;
+	border: 1px solid var(--pmfio-border);
+	border-radius: var(--pmfio-radius);
+	line-height: 0;
+}
+
+/* Order meta box */
+.pmfio-box__list { margin: 0; }
+.pmfio-box__list li { margin: 0 0 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f1; }
+.pmfio-box__list li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.pmfio-box__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+}
+
+.pmfio-box__meta { font-size: 12px; color: #50575e; margin-top: 2px; }
+.pmfio-box__empty { margin: 0; color: #50575e; }
+
+.pmfio-box__wait {
+	margin: 10px 0 0;
+	padding: 8px 10px;
+	background: #fcf6e5;
+	color: #8a5a00;
+	border-radius: 6px;
+}
+
+.pmfio-box .pmfio-pill {
+	display: inline-block;
+	padding: 1px 8px;
+	border-radius: 999px;
+	font-size: 11px;
+	background: #f0f0f1;
+	color: #50575e;
+}
+
+.pmfio-box .pmfio-pill--ok { background: #edfaef; color: #00731c; }
+.pmfio-box .pmfio-pill--warn { background: #fcf6e5; color: #8a5a00; }
+.pmfio-box .pmfio-pill--bad { background: #fcf0f1; color: #b32d2e; }
+.pmfio-box .pmfio-pill--info { background: #f0f6fc; color: #135e96; }
+
+@media (max-width: 1100px) {
+	.pmfio-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.pmfio-qr-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 782px) {
+	.pmfio-field { grid-template-columns: 1fr; gap: 6px; }
+	.pmfio-field__label { padding-top: 0; }
+	.pmfio-panel { padding: 4px 16px 8px; }
+
+	.pmfio-table thead { display: none; }
+	.pmfio-table,
+	.pmfio-table tbody,
+	.pmfio-table tr,
+	.pmfio-table td { display: block; width: auto; }
+	.pmfio-table tr { padding: 12px; border-bottom: 1px solid var(--pmfio-border); }
+	.pmfio-table td { border: 0; padding: 3px 0; text-align: left; }
+	.pmfio-table td[data-label]::before {
+		content: attr(data-label);
+		display: inline-block;
+		min-width: 90px;
+		font-size: 12px;
+		color: var(--pmfio-muted);
+	}
+	.pmfio-actions { min-width: 0; padding-top: 8px !important; }
+}
+
+@media (max-width: 782px) {
+	.pmfio-cards { gap: 10px; }
+	.pmfio-card { padding: 12px 14px; }
+	.pmfio-card__value { font-size: 20px; }
+}
+
+@media (max-width: 340px) {
+	.pmfio-cards { grid-template-columns: 1fr; }
+}

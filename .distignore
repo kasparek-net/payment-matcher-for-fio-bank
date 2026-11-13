@@ -1,0 +1,12 @@
+/.distignore
+/.editorconfig
+/.git
+/.github
+/.gitignore
+/.gitattributes
+/.wordpress-org
+/.DS_Store
+/README.md
+/tests
+/languages/build-cs.py
+/.claude

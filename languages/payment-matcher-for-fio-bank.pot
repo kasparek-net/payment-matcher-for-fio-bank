@@ -1,0 +1,967 @@
+# Copyright (C) 2026 Jakub Kašpárek
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Payment Matcher for Fio Bank and WooCommerce 1.5.0\n"
+"Report-Msgid-Bugs-To: https://github.com/kasparek-net/payment-matcher-for-fio-bank/issues\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-13T08:55:08+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: payment-matcher-for-fio-bank\n"
+
+#. Plugin Name of the plugin
+#: payment-matcher-for-fio-bank.php
+#: includes/class-pmfio-privacy.php:38
+msgid "Payment Matcher for Fio Bank and WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: payment-matcher-for-fio-bank.php
+msgid "https://github.com/kasparek-net/payment-matcher-for-fio-bank"
+msgstr ""
+
+#. Description of the plugin
+#: payment-matcher-for-fio-bank.php
+msgid "Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts and an optional QR payment code (Czech QR Platba)."
+msgstr ""
+
+#. Author of the plugin
+#: payment-matcher-for-fio-bank.php
+msgid "Jakub Kašpárek"
+msgstr ""
+
+#. Author URI of the plugin
+#: payment-matcher-for-fio-bank.php
+msgid "https://github.com/kasparek-net"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:50
+#: includes/class-pmfio-admin.php:243
+#: includes/class-pmfio-admin.php:347
+msgid "Fio payments"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:67
+#: includes/class-pmfio-admin.php:433
+msgid "Paid"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:68
+msgid "Paid, overpayment"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:69
+msgid "Underpayment"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:70
+#: includes/class-pmfio-admin.php:413
+#: includes/class-pmfio-admin.php:432
+#: includes/class-pmfio-runner.php:221
+msgid "To review"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:71
+#: includes/class-pmfio-admin.php:434
+msgid "No order"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:72
+msgid "Would mark paid"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:73
+msgid "Would mark paid (overpayment)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:74
+msgid "Underpayment (observing)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:75
+msgid "To review (observing)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:76
+msgid "No order (observing)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:77
+msgid "Seen while observing"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:78
+msgid "Refunded"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:79
+msgid "Refund (observing)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:113
+msgid "You do not have permission to do this."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:151
+msgid "The IBAN is not valid, nothing was saved."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:160
+#: includes/class-pmfio-admin.php:196
+msgid "Saved."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:210
+msgid "Enter an order number."
+msgstr ""
+
+#. translators: %s: date
+#: includes/class-pmfio-admin.php:231
+#, php-format
+msgid "The Fio API token expired on %s."
+msgstr ""
+
+#. translators: %s: date
+#: includes/class-pmfio-admin.php:231
+#, php-format
+msgid "The Fio API token expires on %s."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:232
+msgid "Log in to Fio internet banking to extend it (automatic renewal), or create a new token, then update the date."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:232
+#: includes/class-pmfio-admin.php:385
+#: includes/class-pmfio-runner.php:178
+msgid "Open settings"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:238
+msgid "Fio payment matching is not working:"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:238
+#: includes/class-pmfio-runner.php:133
+#: includes/class-pmfio-runner.php:235
+msgid "Open Fio payments"
+msgstr ""
+
+#. translators: %d: number of days
+#: includes/class-pmfio-admin.php:248
+#: includes/class-pmfio-runner.php:231
+#, php-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-pmfio-admin.php:266
+msgid "No Fio payment yet."
+msgstr ""
+
+#. translators: %s: number of days
+#: includes/class-pmfio-admin.php:271
+#, php-format
+msgid "Waiting for payment: %s"
+msgstr ""
+
+#. translators: %s: date
+#: includes/class-pmfio-admin.php:274
+#, php-format
+msgid "Reminder sent %s"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:302
+msgid "Restore and mark paid"
+msgstr ""
+
+#. translators: %s: order link
+#: includes/class-pmfio-admin.php:311
+#, php-format
+msgid "Suggested: %s"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:316
+msgid "order no."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:316
+msgid "Order number"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:317
+msgid "Assign"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:334
+msgid "Payments"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:335
+#: payment-matcher-for-fio-bank.php:82
+msgid "Settings"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:336
+#: includes/class-pmfio-qr-payment.php:166
+msgid "QR payment"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:348
+#: includes/class-pmfio-admin.php:510
+msgid "Live"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:348
+#: includes/class-pmfio-admin.php:509
+msgid "Observing only"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:385
+msgid "Connect your Fio account"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:385
+msgid "Create a read-only token in Fio internet banking (Settings → API → Add token, type “Account monitoring”, with automatic renewal) and paste it in Settings."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:391
+msgid "Last check"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:392
+msgid "not yet"
+msgstr ""
+
+#. translators: %s: time
+#: includes/class-pmfio-admin.php:397
+#, php-format
+msgid "next at %s"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:404
+msgid "Check now"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:408
+msgid "Paid in the last 7 days"
+msgstr ""
+
+#. translators: %d: number of payments
+#: includes/class-pmfio-admin.php:410
+#, php-format
+msgid "%d payment"
+msgid_plural "%d payments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-pmfio-admin.php:415
+msgid "last 30 days"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:418
+msgid "Waiting > 3 days"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:420
+msgid "unpaid bank transfers"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:425
+msgid "Observing only: payments are downloaded and listed below, but orders are not changed automatically and nothing is sent. Manual “Assign” always applies for real."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:431
+msgid "All"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:446
+#: includes/class-pmfio-admin.php:460
+#: includes/class-pmfio-privacy.php:79
+msgid "Date"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:447
+#: includes/class-pmfio-admin.php:461
+#: includes/class-pmfio-privacy.php:80
+msgid "Amount"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:448
+#: includes/class-pmfio-admin.php:462
+msgid "VS"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:449
+#: includes/class-pmfio-admin.php:463
+msgid "From"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:450
+#: includes/class-pmfio-admin.php:468
+#: includes/class-pmfio-privacy.php:81
+msgid "Order"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:451
+#: includes/class-pmfio-admin.php:469
+msgid "Result"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:452
+msgid "Actions"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:456
+msgid "No incoming payments yet."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:498
+msgid "Connection"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:501
+#: includes/class-pmfio-admin.php:507
+msgid "Fio API token"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:501
+msgid "Set in wp-config.php (constant PMFIO_FIO_TOKEN)."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:503
+msgid "saved – paste a new one to replace it"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:503
+msgid "paste the token"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:505
+msgid "Token saved."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:505
+msgid "delete"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:507
+msgid "Fio internet banking → Settings → API → Add token, type “Account monitoring”, with automatic renewal. Each website needs its own token."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:509
+msgid "Downloads and lists payments, changes nothing."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:510
+msgid "Paid orders move to “Processing” and the customer gets the usual e-mail."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:511
+msgid "Mode"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:512
+msgid "Token valid until"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:512
+msgid "Shown in Fio internet banking next to the token. Filled in as +180 days when you save a new token. You get an e-mail and an admin notice 14 days before it expires."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:517
+msgid "Matching"
+msgstr ""
+
+#. translators: %s: list of payment method IDs
+#: includes/class-pmfio-admin.php:520
+msgid "Payment methods"
+msgstr ""
+
+#. translators: %s: list of payment method IDs
+#: includes/class-pmfio-admin.php:520
+#, php-format
+msgid "Comma-separated payment method IDs. Active: %s"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:521
+msgid "Order statuses"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:521
+msgid "Only orders in these statuses are marked as paid (without “wc-”)."
+msgstr ""
+
+#. translators: %s: meta key
+#: includes/class-pmfio-admin.php:523
+msgid "Order number meta key"
+msgstr ""
+
+#. translators: %s: meta key
+#: includes/class-pmfio-admin.php:523
+#, php-format
+msgid "For sequential order number plugins (usually %s). If nothing is found, the order ID is tried."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:524
+msgid "Days to look back"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:529
+msgid "Notifications"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:531
+msgid "Notification e-mail"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:531
+msgid "Gets underpayments, overpayments, payments to review and an alert when matching stops working."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:532
+msgid "Daily summary"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:532
+msgid "Every morning at 7:00 send payments from the last 24 hours and orders waiting for payment for more than 3 days"
+msgstr ""
+
+#. translators: %s: link to e-mail settings
+#: includes/class-pmfio-admin.php:534
+#: includes/class-pmfio-email-reminder.php:21
+msgid "Payment reminder"
+msgstr ""
+
+#. translators: %s: link to e-mail settings
+#: includes/class-pmfio-admin.php:534
+msgid "days after the order"
+msgstr ""
+
+#. translators: %s: link to e-mail settings
+#: includes/class-pmfio-admin.php:534
+#, php-format
+msgid "Live mode only, and only for orders created after switching to live. Turn on and edit the text in %s."
+msgstr ""
+
+#. translators: %s: link to e-mail settings
+#: includes/class-pmfio-admin.php:534
+msgid "WooCommerce → Settings → Emails → Payment reminder"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:539
+msgid "Personal data"
+msgstr ""
+
+#. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
+#: includes/class-pmfio-admin.php:542
+#, php-format
+msgid "Payer name, account and message are stored with each payment. 0 = keep forever, otherwise at least 3 months. Customers’ requests are handled in %1$s and %2$s, a suggested text for the privacy policy is in %3$s."
+msgstr ""
+
+#. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
+#: includes/class-pmfio-admin.php:542
+msgid "Export Personal Data"
+msgstr ""
+
+#. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
+#: includes/class-pmfio-admin.php:542
+msgid "Erase Personal Data"
+msgstr ""
+
+#. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
+#: includes/class-pmfio-admin.php:542
+msgid "Privacy Policy Guide"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:543
+msgid "Keep payments for"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:543
+msgid "months"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:547
+msgid "Save settings"
+msgstr ""
+
+#. translators: %s: order number placeholder
+#. translators: %s: placeholder
+#. translators: %s: order number
+#: includes/class-pmfio-admin.php:557
+#: includes/class-pmfio-admin.php:576
+#: includes/class-pmfio-qr-payment.php:114
+#, php-format
+msgid "Order %s"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:565
+msgid "QR payment (QR Platba)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:566
+msgid "A QR code with the account, amount and variable symbol for unpaid bank-transfer orders. Czech and Slovak banking apps fill in the payment automatically. Generated on your server, no external service."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:568
+msgid "Thank-you page after the order"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:569
+msgid "Order e-mails to the customer (including the payment reminder)"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:570
+msgid "Show QR code"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:570
+msgid "Turn off if another plugin or your theme already shows a QR code, so customers do not see two."
+msgstr ""
+
+#. translators: %s: IBAN
+#: includes/class-pmfio-admin.php:573
+#, php-format
+msgid "Empty = taken from the bank-transfer account in WooCommerce: %s"
+msgstr ""
+
+#. translators: %s: IBAN
+#: includes/class-pmfio-admin.php:573
+msgid "Empty = taken from the bank-transfer account in WooCommerce (Settings → Payments → Direct bank transfer)."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:574
+msgid "IBAN"
+msgstr ""
+
+#. translators: %s: placeholder
+#: includes/class-pmfio-admin.php:576
+msgid "Message for recipient"
+msgstr ""
+
+#. translators: %s: placeholder
+#: includes/class-pmfio-admin.php:576
+#, php-format
+msgid "Up to 60 characters, without diacritics in the bank. You can use %s."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:580
+msgid "Preview"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:584
+msgid "Sample order. Try scanning it in your banking app, but do not confirm the payment."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:586
+msgid "No valid account. Fill in the IBAN or the bank-transfer account in WooCommerce."
+msgstr ""
+
+#: includes/class-pmfio-admin.php:590
+msgid "Save QR settings"
+msgstr ""
+
+#: includes/class-pmfio-api.php:22
+msgid "The Fio API token is missing."
+msgstr ""
+
+#: includes/class-pmfio-api.php:25
+msgid "Fio allows one request per 30 seconds, please try again in a moment."
+msgstr ""
+
+#. translators: %s: error message
+#: includes/class-pmfio-api.php:34
+#, php-format
+msgid "Connection to Fio failed: %s"
+msgstr ""
+
+#: includes/class-pmfio-api.php:44
+msgid "Fio returned an unexpected response."
+msgstr ""
+
+#: includes/class-pmfio-api.php:54
+msgid "Fio: requests too frequent (limit is one request per 30 seconds per token)."
+msgstr ""
+
+#: includes/class-pmfio-api.php:56
+msgid "Fio: the token does not exist or has expired. Extend it or create a new one in Fio internet banking (Settings → API)."
+msgstr ""
+
+#: includes/class-pmfio-api.php:58
+msgid "Fio: data older than 90 days requires authorisation in internet banking."
+msgstr ""
+
+#: includes/class-pmfio-api.php:60
+msgid "Fio: too many movements, reduce the number of days to look back."
+msgstr ""
+
+#: includes/class-pmfio-api.php:62
+msgid "Fio: malformed request (404)."
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: includes/class-pmfio-api.php:65
+#, php-format
+msgid "Fio: unexpected HTTP status %d."
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:22
+msgid "Sent to the customer when no payment arrives for a bank-transfer order within the set number of days (Payment Matcher for Fio Bank). The number of days is set in WooCommerce → Fio payments."
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:32
+msgid "Payment reminder for order {order_number}"
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:36
+msgid "Waiting for your payment"
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:44
+msgid "Hello, we have not received the payment for your order {order_number} yet. If you have already paid, it may simply not have arrived yet – in that case please ignore this e-mail. Otherwise you will find the payment details below."
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:82
+#: includes/class-pmfio-matcher.php:450
+msgid "Order:"
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:83
+msgid "Amount:"
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:94
+msgid "Introduction"
+msgstr ""
+
+#: includes/class-pmfio-email-reminder.php:98
+msgid "The order and payment details are always shown below this text. You can use {order_number}."
+msgstr ""
+
+#. translators: 1: amount, 2: Fio movement ID, 3: date, 4: recipient
+#: includes/class-pmfio-matcher.php:227
+#, php-format
+msgid "Refunded by bank transfer: %1$s (Fio movement %2$s from %3$s, to %4$s)."
+msgstr ""
+
+#. translators: 1: amount, 2: Fio movement ID, 3: date, 4: recipient
+#: includes/class-pmfio-matcher.php:227
+msgid "unknown recipient"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:266
+msgid "Payment not found."
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:269
+msgid "This payment is already assigned to an order."
+msgstr ""
+
+#. translators: %s: order number
+#: includes/class-pmfio-matcher.php:274
+#, php-format
+msgid "Order %s does not exist."
+msgstr ""
+
+#. translators: %s: order number
+#: includes/class-pmfio-matcher.php:282
+#, php-format
+msgid "Order %s is cancelled. Use “Restore and mark paid”."
+msgstr ""
+
+#. translators: 1: order number, 2: order status, 3: payment method, 4: currency
+#: includes/class-pmfio-matcher.php:285
+#, php-format
+msgid "Order %1$s cannot be marked as paid (status “%2$s”, payment method %3$s, currency %4$s)."
+msgstr ""
+
+#. translators: %s: user name
+#: includes/class-pmfio-matcher.php:289
+#, php-format
+msgid "(assigned manually by %s)"
+msgstr ""
+
+#. translators: 1: order number, 2: result label
+#: includes/class-pmfio-matcher.php:291
+#, php-format
+msgid "Payment assigned to order %1$s: %2$s."
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:307
+msgid "This order cannot be restored."
+msgstr ""
+
+#. translators: %s: user name
+#: includes/class-pmfio-matcher.php:311
+#, php-format
+msgid "Restored, the payment arrived after the order was cancelled (%s)."
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:318
+msgid "paid"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:319
+msgid "paid with overpayment"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:320
+msgid "partial payment"
+msgstr ""
+
+#. translators: 1: Fio movement ID, 2: date, 3: sender
+#: includes/class-pmfio-matcher.php:409
+#, php-format
+msgid "Fio movement %1$s from %2$s, %3$s."
+msgstr ""
+
+#. translators: 1: Fio movement ID, 2: date, 3: sender
+#: includes/class-pmfio-matcher.php:409
+#: includes/class-pmfio-runner.php:217
+msgid "unknown sender"
+msgstr ""
+
+#. translators: 1: amount, 2: movement detail
+#: includes/class-pmfio-matcher.php:415
+#, php-format
+msgid "Bank transfer received: %1$s. %2$s"
+msgstr ""
+
+#. translators: 1: overpaid amount, 2: amount, 3: movement detail
+#: includes/class-pmfio-matcher.php:421
+#, php-format
+msgid "Bank transfer received with an overpayment of %1$s: %2$s. %3$s"
+msgstr ""
+
+#. translators: %s: overpaid amount
+#: includes/class-pmfio-matcher.php:424
+msgid "Overpayment on order"
+msgstr ""
+
+#. translators: %s: overpaid amount
+#: includes/class-pmfio-matcher.php:424
+#, php-format
+msgid "%s more than the order total was received. The order is marked as paid."
+msgstr ""
+
+#. translators: 1: amount, 2: received so far, 3: order total, 4: movement detail
+#: includes/class-pmfio-matcher.php:430
+#, php-format
+msgid "Partial payment received: %1$s (%2$s of %3$s in total). %4$s"
+msgstr ""
+
+#. translators: 1: received so far, 2: order total
+#: includes/class-pmfio-matcher.php:432
+msgid "Underpayment on order"
+msgstr ""
+
+#. translators: 1: received so far, 2: order total
+#: includes/class-pmfio-matcher.php:432
+#, php-format
+msgid "So far %1$s of %2$s has been received. The order status has not changed."
+msgstr ""
+
+#. translators: 1: amount, 2: order status, 3: movement detail
+#: includes/class-pmfio-matcher.php:436
+#, php-format
+msgid "A payment of %1$s arrived, but the order is “%2$s” or uses another payment method or currency, so nothing was changed. %3$s"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:437
+msgid "You can restore the order with “Restore and mark paid” on the Fio payments page."
+msgstr ""
+
+#. translators: 1: order status, 2: payment method
+#: includes/class-pmfio-matcher.php:439
+msgid "Payment to review"
+msgstr ""
+
+#. translators: 1: order status, 2: payment method
+#: includes/class-pmfio-matcher.php:439
+#, php-format
+msgid "A payment arrived for an order that cannot be marked as paid automatically (status “%1$s”, payment method %2$s). Please check it manually."
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:451
+msgid "Payment:"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:452
+msgid "From:"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:453
+msgid "Message:"
+msgstr ""
+
+#: includes/class-pmfio-matcher.php:454
+msgid "All Fio payments"
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:29
+msgid "Suggested text for your privacy policy. Adjust it to how you actually use the data."
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:30
+msgid "Suggested text:"
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:31
+msgid "When you pay by bank transfer, we receive from our bank (Fio banka, a.s.) the details of your payment: the amount, date, variable symbol, the sender’s name and account number and the message for recipient. We use them only to match the payment to your order and to deal with underpayments, overpayments and refunds."
+msgstr ""
+
+#. translators: %d: number of months
+#: includes/class-pmfio-privacy.php:35
+#, php-format
+msgid "We keep these details for %d month and then delete them automatically."
+msgid_plural "We keep these details for %d months and then delete them automatically."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-pmfio-privacy.php:43
+#: includes/class-pmfio-privacy.php:51
+#: includes/class-pmfio-privacy.php:76
+msgid "Bank transfers (Fio)"
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:82
+msgid "Sender"
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:83
+msgid "Account"
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:84
+msgid "Message"
+msgstr ""
+
+#: includes/class-pmfio-privacy.php:107
+msgid "Payer name, account and message were removed from Fio payments. Amounts and dates are kept for bookkeeping."
+msgstr ""
+
+#: includes/class-pmfio-qr-payment.php:151
+#: includes/class-pmfio-qr-payment.php:167
+msgid "Pay by QR code"
+msgstr ""
+
+#: includes/class-pmfio-qr-payment.php:152
+#: includes/class-pmfio-qr-payment.php:167
+msgid "Scan the code in your banking app, the amount and variable symbol will fill in automatically."
+msgstr ""
+
+#. translators: 1: amount, 2: variable symbol
+#: includes/class-pmfio-qr-payment.php:154
+#, php-format
+msgid "%1$s · variable symbol %2$s"
+msgstr ""
+
+#. translators: 1: downloaded movements, 2: new movements
+#: includes/class-pmfio-runner.php:89
+#, php-format
+msgid "Downloaded %1$d movements, %2$d new."
+msgstr ""
+
+#. translators: %d: number of reminders
+#: includes/class-pmfio-runner.php:92
+#, php-format
+msgid "Reminders sent: %d."
+msgstr ""
+
+#. translators: %s: date and time
+#: includes/class-pmfio-runner.php:113
+#, php-format
+msgid "No payment check has run since %s. The task scheduler (WP-Cron / Action Scheduler) is probably not running."
+msgstr ""
+
+#: includes/class-pmfio-runner.php:116
+msgid "No payment check has run yet."
+msgstr ""
+
+#. translators: %s: site URL
+#: includes/class-pmfio-runner.php:130
+#, php-format
+msgid "Automatic Fio payment matching on %s is not working right now:"
+msgstr ""
+
+#: includes/class-pmfio-runner.php:132
+msgid "Until this is fixed, paid orders will not be marked automatically. If the token expired: Fio internet banking → Settings → API → extend the token (or create a new one and paste it on the Fio payments page)."
+msgstr ""
+
+#: includes/class-pmfio-runner.php:134
+msgid "Fio payment matching is not working"
+msgstr ""
+
+#. translators: 1: site URL, 2: date
+#: includes/class-pmfio-runner.php:176
+#, php-format
+msgid "The Fio API token used on %1$s expires on %2$s. After that, payments will no longer be matched automatically."
+msgstr ""
+
+#: includes/class-pmfio-runner.php:177
+msgid "If the token has automatic renewal, simply log in to Fio internet banking and it will be extended by 180 days. Otherwise extend it or create a new one in Settings → API. Then update the expiry date on the Fio payments settings page."
+msgstr ""
+
+#. translators: %s: date
+#: includes/class-pmfio-runner.php:180
+#, php-format
+msgid "Fio API token expires on %s"
+msgstr ""
+
+#. translators: %s: order number
+#: includes/class-pmfio-runner.php:216
+#, php-format
+msgid "order %s"
+msgstr ""
+
+#. translators: %s: order number
+#: includes/class-pmfio-runner.php:216
+#, php-format
+msgid "suggestion: order %s"
+msgstr ""
+
+#. translators: %s: order number
+#: includes/class-pmfio-runner.php:216
+msgid "no order"
+msgstr ""
+
+#: includes/class-pmfio-runner.php:220
+msgid "Fio payments in the last 24 hours:"
+msgstr ""
+
+#: includes/class-pmfio-runner.php:221
+msgid "Matched and paid"
+msgstr ""
+
+#: includes/class-pmfio-runner.php:221
+msgid "Other incoming payments"
+msgstr ""
+
+#: includes/class-pmfio-runner.php:227
+msgid "Waiting for payment for more than 3 days"
+msgstr ""
+
+#. translators: %s: date
+#: includes/class-pmfio-runner.php:238
+#, php-format
+msgid "Fio payments – summary %s"
+msgstr ""
+
+#: includes/class-pmfio-runner.php:288
+msgid "Payment reminder sent to the customer."
+msgstr ""
+
+#: includes/class-pmfio-status.php:46
+msgid "Payment received, thank you! We are processing your order."
+msgstr ""
+
+#: includes/class-pmfio-status.php:51
+msgid "Waiting for your bank transfer. This page updates by itself when the payment arrives."
+msgstr ""

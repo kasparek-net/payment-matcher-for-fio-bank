@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["7.4", "8.1", "8.3", "8.4"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: gd, mbstring
+          coverage: none
+      - name: Lint
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: Unit tests
+        run: php tests/harness.php
+
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build release folder (respects .distignore)
+        run: |
+          mkdir -p build/payment-matcher-for-fio-bank
+          rsync -a --exclude-from=<(sed 's#^/##' .distignore) ./ build/payment-matcher-for-fio-bank/
+      - uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: ./build/payment-matcher-for-fio-bank
