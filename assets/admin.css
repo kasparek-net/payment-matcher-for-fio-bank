@@ -177,6 +177,7 @@
 }
 
 .pmfio-empty h2 { margin-top: 0; }
+.pmfio-empty .pmfio-guide { text-align: left; margin-bottom: 16px; }
 
 /* Settings panels */
 .pmfio-form { max-width: 900px; }
@@ -218,6 +219,10 @@
 	color: var(--pmfio-muted);
 }
 
+.pmfio-guide { margin: 10px 0 0; }
+.pmfio-guide summary { cursor: pointer; color: var(--wp-admin-theme-color, #2271b1); }
+.pmfio-guide ol { margin: 8px 0 0 20px; }
+.pmfio-guide li { margin-bottom: 4px; }
 .pmfio-ok { color: var(--pmfio-ok); margin: 6px 0 0; }
 .pmfio-warn { color: var(--pmfio-bad); }
 

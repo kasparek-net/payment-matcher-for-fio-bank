@@ -43,6 +43,10 @@ class PMFIO_Admin {
 			'a'      => array_merge( $common, array( 'href' => true, 'aria-current' => true ) ),
 			'li'     => $common,
 			'bdi'    => array(),
+			'details' => array_merge( $common, array( 'open' => true ) ),
+			'summary' => $common,
+			'ol'      => $common,
+			'em'      => array(),
 		) + PMFIO_QR_Code::allowed_svg();
 	}
 
@@ -382,7 +386,7 @@ class PMFIO_Admin {
 		$rows    = PMFIO_Store::latest( 100, $filter );
 
 		if ( ! $has_tok ) {
-			echo '<div class="pmfio-empty"><h2>' . esc_html__( 'Connect your Fio account', 'payment-matcher-for-fio-bank' ) . '</h2><p>' . esc_html__( 'Create a read-only token in Fio internet banking (Settings → API → Add token, type “Account monitoring”, with automatic renewal) and paste it in Settings.', 'payment-matcher-for-fio-bank' ) . '</p><a class="button button-primary" href="' . esc_url( self::page_url( array( 'tab' => 'settings' ) ) ) . '">' . esc_html__( 'Open settings', 'payment-matcher-for-fio-bank' ) . '</a></div>';
+			echo '<div class="pmfio-empty"><h2>' . esc_html__( 'Connect your Fio account', 'payment-matcher-for-fio-bank' ) . '</h2>' . wp_kses( self::token_guide( true ), self::allowed_html() ) . '<a class="button button-primary" href="' . esc_url( self::page_url( array( 'tab' => 'settings' ) ) ) . '">' . esc_html__( 'Open settings', 'payment-matcher-for-fio-bank' ) . '</a></div>';
 			return;
 		}
 		?>
@@ -483,6 +487,25 @@ class PMFIO_Admin {
 		echo '</div></div>';
 	}
 
+	/** Step-by-step guide for creating the read-only Fio API token. */
+	private static function token_guide( $open = false ) {
+		$steps = array(
+			__( 'Log in to Fio internet banking (ib.fio.cz).', 'payment-matcher-for-fio-bank' ),
+			__( 'Open Settings → API.', 'payment-matcher-for-fio-bank' ),
+			__( 'Click “Add token”, choose the account that receives payments for orders and enter a name, e.g. the website address.', 'payment-matcher-for-fio-bank' ),
+			__( 'Choose the read-only permission (account monitoring only). The plugin never needs to send payments.', 'payment-matcher-for-fio-bank' ),
+			__( 'Set the validity to the maximum (180 days) and turn on automatic renewal – every login to internet banking then extends it.', 'payment-matcher-for-fio-bank' ),
+			__( 'Confirm with SMS or the Smartbanking app. The token works about 5 minutes after confirmation.', 'payment-matcher-for-fio-bank' ),
+			__( 'Copy the token (64 characters), paste it in the plugin settings and save. Each website needs its own token.', 'payment-matcher-for-fio-bank' ),
+		);
+		$out = '<details class="pmfio-guide"' . ( $open ? ' open' : '' ) . '><summary>' . esc_html__( 'How to get the token', 'payment-matcher-for-fio-bank' ) . '</summary><ol>';
+		foreach ( $steps as $step ) {
+			$out .= '<li>' . esc_html( $step ) . '</li>';
+		}
+		$out .= '</ol><p class="pmfio-help">' . esc_html__( 'Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time.', 'payment-matcher-for-fio-bank' ) . '</p></details>';
+		return $out;
+	}
+
 	private static function render_settings() {
 		$s       = PMFIO_Settings::all();
 		$has_tok = '' !== PMFIO_Settings::token();
@@ -504,6 +527,7 @@ class PMFIO_Admin {
 					if ( $has_tok ) {
 						$control .= '<p class="pmfio-ok">✓ ' . esc_html__( 'Token saved.', 'payment-matcher-for-fio-bank' ) . ' <label><input type="checkbox" name="token_delete" value="1"> ' . esc_html__( 'delete', 'payment-matcher-for-fio-bank' ) . '</label></p>';
 					}
+					$control .= self::token_guide();
 					self::field( __( 'Fio API token', 'payment-matcher-for-fio-bank' ), 'pmfio-token', $control, __( 'Fio internet banking → Settings → API → Add token, type “Account monitoring”, with automatic renewal. Each website needs its own token.', 'payment-matcher-for-fio-bank' ) );
 				}
 				$mode = '<label class="pmfio-choice"><input type="radio" name="mode" value="observe" ' . checked( 'live' !== $s['mode'], true, false ) . '> <span><strong>' . esc_html__( 'Observing only', 'payment-matcher-for-fio-bank' ) . '</strong><br>' . esc_html__( 'Downloads and lists payments, changes nothing.', 'payment-matcher-for-fio-bank' ) . '</span></label>'

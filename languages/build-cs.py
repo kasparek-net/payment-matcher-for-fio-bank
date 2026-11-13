@@ -214,6 +214,15 @@ T = {
     'unknown recipient': 'neznámý příjemce',
     'Payment received, thank you! We are processing your order.': 'Platba dorazila, děkujeme! Objednávku zpracováváme.',
     'Waiting for your bank transfer. This page updates by itself when the payment arrives.': 'Čekáme na Vaši platbu převodem. Jakmile dorazí, stránka se sama aktualizuje.',
+    'Log in to Fio internet banking (ib.fio.cz).': 'Přihlaste se do internetového bankovnictví Fio (ib.fio.cz).',
+    'Open Settings → API.': 'Otevřete Nastavení → API.',
+    'Click “Add token”, choose the account that receives payments for orders and enter a name, e.g. the website address.': 'Klikněte na „Přidat token“, vyberte účet, na který chodí platby za objednávky, a zadejte název, třeba adresu webu.',
+    'Choose the read-only permission (account monitoring only). The plugin never needs to send payments.': 'Zvolte oprávnění jen pro čtení („Sledování účtu“). Plugin nikdy nepotřebuje platby odesílat.',
+    'Set the validity to the maximum (180 days) and turn on automatic renewal – every login to internet banking then extends it.': 'Nastavte platnost na maximum (180 dní) a zapněte automatické prodlužování – každé přihlášení do bankovnictví ji pak prodlouží.',
+    'Confirm with SMS or the Smartbanking app. The token works about 5 minutes after confirmation.': 'Potvrďte SMS nebo v aplikaci Smartbanking. Token začne fungovat asi 5 minut po potvrzení.',
+    'Copy the token (64 characters), paste it in the plugin settings and save. Each website needs its own token.': 'Token (64 znaků) zkopírujte, vložte do nastavení pluginu a uložte. Každý web potřebuje vlastní token.',
+    'How to get the token': 'Jak získat token',
+    'Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time.': 'Token nikomu neposílejte: kdo ho má, vidí pohyby na účtu. V internetovém bankovnictví ho můžete kdykoli smazat.',
 }
 
 NBSP = '\u00a0'

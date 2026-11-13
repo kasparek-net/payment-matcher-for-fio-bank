@@ -56,7 +56,8 @@ class PMFIO_Runner {
 
 		$list = PMFIO_Api::fetch_period( $token, $from, $to );
 		if ( is_wp_error( $list ) ) {
-			if ( 'pmfio_locked' !== $list->get_error_code() ) {
+			// 409 = another client (e.g. a second plugin sharing the token) asked within 30 s. Transient, not an outage.
+			if ( ! in_array( $list->get_error_code(), array( 'pmfio_locked', 'pmfio_http_409' ), true ) ) {
 				update_option( 'pmfio_last_error', array( 'time' => current_time( 'mysql' ), 'message' => $list->get_error_message() ), false );
 				self::log( 'error', $list->get_error_message() );
 				self::maybe_alert( $list->get_error_message() );

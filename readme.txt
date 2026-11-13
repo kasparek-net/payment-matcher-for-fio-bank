@@ -58,9 +58,20 @@ You can also define the token in `wp-config.php`: `define( 'PMFIO_FIO_TOKEN', '�
 
 == Frequently Asked Questions ==
 
-= Can I use the same token on two websites? =
+= How do I get the Fio API token? =
 
-No. Fio allows one request per 30 seconds per token, so each website needs its own token.
+1. Log in to Fio internet banking (ib.fio.cz) and open Settings → API.
+2. Click “Add token”, choose the account that receives payments for orders and name the token, e.g. after the website.
+3. Choose the read-only permission (account monitoring only).
+4. Set the validity to 180 days and turn on automatic renewal – every login to internet banking then extends it.
+5. Confirm with SMS or Smartbanking. The token works about 5 minutes later.
+6. Copy the 64-character token to WooCommerce → Fio payments → Settings.
+
+The same guide is shown in the plugin settings under “How to get the token”.
+
+= Can I share the token with another Fio plugin? =
+
+It works, because both only read the account, but Fio allows one request per 30 seconds per token. When they collide, one check is skipped and the next one catches up; the plugin does not raise an alert for that. A separate token per plugin and per website is cleaner.
 
 = What happens to payments seen in observing mode when I switch to live? =
 
