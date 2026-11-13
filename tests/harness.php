@@ -101,6 +101,7 @@ require __DIR__ . '/../includes/class-pmfio-qr-code.php';
 require __DIR__ . '/../includes/class-pmfio-qr-payment.php';
 require __DIR__ . '/../includes/class-pmfio-runner.php';
 require __DIR__ . '/../includes/class-pmfio-privacy.php';
+require __DIR__ . '/../includes/class-pmfio-cron.php';
 
 function tx( $id, $amount, $vs = null, $msg = null, $cur = 'CZK', $date = '2026-11-12+0100' ) {
 	$c = function ( $v ) { return null === $v ? null : array( 'value' => $v, 'name' => '', 'id' => 0 ); };
@@ -219,6 +220,12 @@ check( 'expiry soon (14 days)', 'soon' === PMFIO_Runner::expiry_state( '2026-11-
 check( 'expiry today = soon', 'soon' === PMFIO_Runner::expiry_state( '2026-11-13', '2026-11-13' )['state'] );
 check( 'expired yesterday', 'expired' === PMFIO_Runner::expiry_state( '2026-11-12', '2026-11-13' )['state'] );
 check( 'expiry unknown', 'unknown' === PMFIO_Runner::expiry_state( '', '2026-11-13' )['state'] && 'unknown' === PMFIO_Runner::expiry_state( '13. 11. 2026', '2026-11-13' )['state'] );
+
+// Daily summary timing
+check( 'daily due at 7:00', PMFIO_Cron::daily_due( '2026-11-12', '2026-11-13', 7 ) );
+check( 'daily not before 7:00', ! PMFIO_Cron::daily_due( '2026-11-12', '2026-11-13', 6 ) );
+check( 'daily only once a day', ! PMFIO_Cron::daily_due( '2026-11-13', '2026-11-13', 15 ) );
+check( 'daily first run ever', PMFIO_Cron::daily_due( false, '2026-11-13', 9 ) );
 
 // Retention cutoff
 check( 'retention 12 months', '2025-11-13' === PMFIO_Privacy::cutoff( 12, '2026-11-13' ) );

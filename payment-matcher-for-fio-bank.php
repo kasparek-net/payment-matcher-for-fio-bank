@@ -3,7 +3,7 @@
  * Plugin Name: Payment Matcher for Fio Bank and WooCommerce
  * Plugin URI: https://github.com/kasparek-net/payment-matcher-for-fio-bank
  * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts and an optional QR payment code (Czech QR Platba).
- * Version: 1.5.2
+ * Version: 1.6.0
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PMFIO_VERSION', '1.5.2' );
+define( 'PMFIO_VERSION', '1.6.0' );
 define( 'PMFIO_PLUGIN_FILE', __FILE__ );
 define( 'PMFIO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PMFIO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -37,6 +37,7 @@ require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-qr-code.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-qr-payment.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-privacy.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-status.php';
+require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-cron.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-admin.php';
 
 register_activation_hook( __FILE__, array( 'PMFIO_Store', 'install' ) );
@@ -67,6 +68,7 @@ add_action( 'plugins_loaded', function () {
 	PMFIO_QR_Payment::init();
 	PMFIO_Privacy::init();
 	PMFIO_Status::init();
+	PMFIO_Cron::init();
 	if ( is_admin() ) {
 		PMFIO_Admin::init();
 	}

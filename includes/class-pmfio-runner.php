@@ -20,7 +20,7 @@ class PMFIO_Runner {
 
 	public static function init() {
 		add_action( self::HOOK, array( __CLASS__, 'run' ) );
-		add_action( self::DAILY, array( __CLASS__, 'daily_summary' ) );
+		add_action( self::DAILY, array( 'PMFIO_Cron', 'maybe_daily' ) );
 		add_action( 'init', array( __CLASS__, 'schedule' ) );
 	}
 

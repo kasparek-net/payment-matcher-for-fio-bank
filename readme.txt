@@ -4,7 +4,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.2
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ Payment Matcher for Fio Bank downloads incoming payments from your Fio banka acc
 * **Manual assignment** – assign any payment to an order with one click, with a suggestion when the variable symbol is missing (same amount and sender name).
 * **Restore and mark paid** – when money arrives for an order that was already cancelled.
 * **Payment box in the order** – all payments for the order and how long it has been waiting.
+* **Server cron address** – a secret URL your hosting’s cron can open every 15 minutes, so checks run even when WP-Cron does not. Plus `wp pmfio check` for WP-CLI.
 * **Token health alerts** – an e-mail and an admin notice when the Fio token expires or checks stop running.
 * **Daily summary** e-mail at 7:00.
 * **Payment reminder** – a standard WooCommerce e-mail sent to the customer after a set number of days without payment.
@@ -69,6 +70,10 @@ You can also define the token in `wp-config.php`: `define( 'PMFIO_FIO_TOKEN', '�
 
 The same guide is shown in the plugin settings under “How to get the token”. Fio’s official guide with a screenshot of the API settings is on pages 4–5 of https://www.fio.cz/docs/cz/API_Bankovnictvi.pdf (in Czech).
 
+= Checks do not run on time. What can I do? =
+
+WordPress runs scheduled tasks only when someone visits the site. Copy the address from Settings → Automatic checks and let your hosting’s cron open it every 15 minutes. The settings page shows when cron last called it.
+
 = Can I share the token with another Fio plugin? =
 
 It works, because both only read the account, but Fio allows one request per 30 seconds per token. When they collide, one check is skipped and the next one catches up; the plugin does not raise an alert for that. A separate token per plugin and per website is cleaner.
@@ -97,6 +102,9 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.6.0 =
+* New: server cron address with a secret key (throttled to once a minute), daily summary included. WP-CLI command `wp pmfio check`.
 
 = 1.5.2 =
 * Settings: payment methods and order statuses are chosen with checkboxes by their names; technical options moved to “Advanced settings”.

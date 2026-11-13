@@ -244,6 +244,12 @@ T = {
     'Look for payments from the last': 'Hledat platby za posledních',
     'days': 'dní',
     '3 days are enough for everyday use. More only when comparing with older payments.': 'Pro běžný provoz stačí 3 dny. Víc jen při porovnávání se staršími platbami.',
+    'A new cron address was created. Update it in your hosting’s cron.': 'Vznikla nová adresa pro cron. Upravte ji v cronu hostingu.',
+    'Last called by cron: %s': 'Cron naposledy zavolal: %s',
+    'Not called by cron yet. Until then the WordPress scheduler runs the checks.': 'Cron zatím nevolal. Do té doby kontroly spouští plánovač WordPressu.',
+    'Create a new address': 'Vytvořit novou adresu',
+    'Automatic checks': 'Automatická kontrola',
+    'Most reliable: let your hosting’s cron open this address every 15 minutes (e.g. Blueboard → Cron). The daily summary runs through it too. Without it, the WordPress scheduler is used, which runs only when someone visits the site. Keep the address private.': 'Nejspolehlivější je nechat cron hostingu otevírat tuto adresu každých 15 minut (např. Blueboard → Cron). Spouští i denní přehled. Bez něj se použije plánovač WordPressu, který běží jen při návštěvě webu. Adresu nikomu neposílejte.',
 }
 
 NBSP = '\u00a0'

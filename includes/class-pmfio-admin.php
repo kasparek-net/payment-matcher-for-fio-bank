@@ -32,8 +32,8 @@ class PMFIO_Admin {
 		$common = array( 'class' => true, 'id' => true );
 		return array(
 			'form'   => array_merge( $common, array( 'method' => true, 'action' => true ) ),
-			'input'  => array_merge( $common, array( 'type' => true, 'name' => true, 'value' => true, 'placeholder' => true, 'inputmode' => true, 'aria-label' => true, 'autocomplete' => true, 'checked' => true, 'min' => true, 'max' => true, 'maxlength' => true ) ),
-			'button' => array_merge( $common, array( 'type' => true ) ),
+			'input'  => array_merge( $common, array( 'type' => true, 'name' => true, 'value' => true, 'placeholder' => true, 'inputmode' => true, 'aria-label' => true, 'autocomplete' => true, 'checked' => true, 'min' => true, 'max' => true, 'maxlength' => true, 'readonly' => true ) ),
+			'button' => array_merge( $common, array( 'type' => true, 'name' => true, 'value' => true ) ),
 			'label'  => array_merge( $common, array( 'for' => true ) ),
 			'span'   => $common,
 			'div'    => $common,
@@ -194,6 +194,11 @@ class PMFIO_Admin {
 		}
 		update_option( PMFIO_Settings::OPTION, $new, false );
 
+		if ( self::post_flag( 'regen_cron_key' ) ) {
+			PMFIO_Cron::regenerate();
+			update_option( PMFIO_Settings::OPTION, $new, false );
+			self::back( __( 'A new cron address was created. Update it in your hosting’s cron.', 'payment-matcher-for-fio-bank' ), 'settings', 'success' );
+		}
 		$token = preg_replace( '/[^A-Za-z0-9]/', '', self::post_text( 'token' ) );
 		if ( '' !== $token ) {
 			if ( '' === $new['token_expires'] || $new['token_expires'] === $curr['token_expires'] ) {
@@ -604,6 +609,14 @@ class PMFIO_Admin {
 					. '<label class="pmfio-choice"><input type="radio" name="mode" value="live" ' . checked( 'live', $s['mode'], false ) . '> <span><strong>' . esc_html__( 'Live', 'payment-matcher-for-fio-bank' ) . '</strong><br>' . esc_html__( 'Paid orders move to “Processing” and the customer gets the usual e-mail.', 'payment-matcher-for-fio-bank' ) . '</span></label>';
 				self::field( __( 'Mode', 'payment-matcher-for-fio-bank' ), '', $mode );
 				self::field( __( 'Token valid until', 'payment-matcher-for-fio-bank' ), 'pmfio-exp', '<input type="date" id="pmfio-exp" name="token_expires" value="' . esc_attr( $s['token_expires'] ) . '">', __( 'Shown in Fio internet banking next to the token. Filled in as +180 days when you save a new token. You get an e-mail and an admin notice 14 days before it expires.', 'payment-matcher-for-fio-bank' ) );
+				$last_cron = (int) get_option( PMFIO_Cron::LAST, 0 );
+				$cron_info = $last_cron
+					/* translators: %s: date and time */
+					? '<p class="pmfio-ok">✓ ' . esc_html( sprintf( __( 'Last called by cron: %s', 'payment-matcher-for-fio-bank' ), wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $last_cron ) ) ) . '</p>'
+					: '<p class="pmfio-help">' . esc_html__( 'Not called by cron yet. Until then the WordPress scheduler runs the checks.', 'payment-matcher-for-fio-bank' ) . '</p>';
+				$cron_ctrl = '<input type="text" id="pmfio-cron" class="large-text code" readonly value="' . esc_attr( PMFIO_Cron::url() ) . '">' . $cron_info
+					. '<p><button type="submit" name="regen_cron_key" value="1" class="button button-small">' . esc_html__( 'Create a new address', 'payment-matcher-for-fio-bank' ) . '</button></p>';
+				self::field( __( 'Automatic checks', 'payment-matcher-for-fio-bank' ), 'pmfio-cron', $cron_ctrl, __( 'Most reliable: let your hosting’s cron open this address every 15 minutes (e.g. Blueboard → Cron). The daily summary runs through it too. Without it, the WordPress scheduler is used, which runs only when someone visits the site. Keep the address private.', 'payment-matcher-for-fio-bank' ) );
 				?>
 			</section>
 
