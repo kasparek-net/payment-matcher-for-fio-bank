@@ -70,7 +70,7 @@ class PMFIO_Privacy {
 	public static function export( $email, $page = 1 ) {
 		$items = array();
 		foreach ( PMFIO_Store::for_orders( self::order_ids_for( $email ) ) as $r ) {
-			$order   = wc_get_order( (int) ( $r->order_id ?: $r->suggested_order_id ) );
+			$order   = wc_get_order( (int) $r->order_id );
 			$items[] = array(
 				'group_id'    => self::GROUP,
 				'group_label' => __( 'Bank transfers (Fio)', 'payment-matcher-for-fio-bank' ),

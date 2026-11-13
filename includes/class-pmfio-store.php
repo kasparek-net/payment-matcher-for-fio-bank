@@ -152,7 +152,10 @@ class PMFIO_Store {
 		return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE created >= %s ORDER BY moved_on ASC", $table, $mysql_datetime ) );
 	}
 
-	/** Movements assigned to any of the given orders (for the privacy exporter / eraser). */
+	/**
+	 * Movements assigned to any of the given orders (privacy exporter / eraser).
+	 * Suggestions are only guesses and may belong to someone else, so they are never included.
+	 */
 	public static function for_orders( array $order_ids ) {
 		global $wpdb;
 		$order_ids = array_values( array_filter( array_map( 'absint', $order_ids ) ) );
@@ -160,7 +163,7 @@ class PMFIO_Store {
 			return array();
 		}
 		$in = implode( ',', array_fill( 0, count( $order_ids ), '%d' ) );
-		return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE order_id IN ({$in}) OR suggested_order_id IN ({$in}) ORDER BY moved_on ASC", array_merge( array( self::table() ), $order_ids, $order_ids ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- $in is a list of %d placeholders, values are passed as one array.
+		return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE order_id IN ({$in}) ORDER BY moved_on ASC", array_merge( array( self::table() ), $order_ids ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- $in is a list of %d placeholders, values are passed as one array.
 	}
 
 	/** Removes the payer's personal data, keeps amounts and dates for bookkeeping. */
