@@ -95,6 +95,10 @@ class PMFIO_Admin {
 
 	private static function pill( $result ) {
 		$meta = self::result_meta();
+		$base = 0 === strpos( $result, 'obs_' ) ? substr( $result, 4 ) : '';
+		if ( '' !== $base && ! in_array( $result, array( 'obs_matched', 'obs_overpaid' ), true ) && isset( $meta[ $base ] ) ) {
+			$result = $base; // The header already says “Observing only”.
+		}
 		list( $label, $tone ) = $meta[ $result ] ?? array( $result, 'muted' );
 		return '<span class="pmfio-pill pmfio-pill--' . esc_attr( $tone ) . '">' . esc_html( $label ) . '</span>';
 	}
@@ -334,19 +338,17 @@ class PMFIO_Admin {
 				. '<button class="button button-small">' . esc_html__( 'Restore and mark paid', 'payment-matcher-for-fio-bank' ) . '</button></form>';
 		}
 
-		$prefill = '';
-		if ( $r->suggested_order_id ) {
-			$sug = wc_get_order( (int) $r->suggested_order_id );
-			if ( $sug ) {
-				$prefill = $sug->get_order_number();
-				/* translators: %s: order link */
-				$out .= '<div class="pmfio-suggest">' . sprintf( esc_html__( 'Suggested: %s', 'payment-matcher-for-fio-bank' ), self::order_link( $sug->get_id() ) ) . '</div>';
-			}
+		$hidden = wp_nonce_field( 'pmfio_assign', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="pmfio_assign"><input type="hidden" name="movement_id" value="' . $id . '">';
+		$sug    = $r->suggested_order_id ? wc_get_order( (int) $r->suggested_order_id ) : null;
+		if ( $sug ) {
+			/* translators: %s: order number */
+			$out .= '<form method="post" action="' . $post . '" class="pmfio-act">' . $hidden . '<input type="hidden" name="order_number" value="' . esc_attr( $sug->get_order_number() ) . '">'
+				. '<button class="button button-small button-primary">' . esc_html( sprintf( __( 'Assign to %s', 'payment-matcher-for-fio-bank' ), $sug->get_order_number() ) ) . '</button></form>';
 		}
-		$out .= '<form method="post" action="' . $post . '" class="pmfio-act pmfio-act--assign">' . wp_nonce_field( 'pmfio_assign', '_wpnonce', true, false )
-			. '<input type="hidden" name="action" value="pmfio_assign"><input type="hidden" name="movement_id" value="' . $id . '">'
-			. '<input type="text" name="order_number" value="' . esc_attr( $prefill ) . '" placeholder="' . esc_attr__( 'order no.', 'payment-matcher-for-fio-bank' ) . '" inputmode="numeric" aria-label="' . esc_attr__( 'Order number', 'payment-matcher-for-fio-bank' ) . '">'
-			. '<button class="button button-small' . ( $prefill ? ' button-primary' : '' ) . '">' . esc_html__( 'Assign', 'payment-matcher-for-fio-bank' ) . '</button></form>';
+		$out .= '<details class="pmfio-assign"><summary>' . esc_html( $sug ? __( 'Another order…', 'payment-matcher-for-fio-bank' ) : __( 'Assign…', 'payment-matcher-for-fio-bank' ) ) . '</summary>'
+			. '<form method="post" action="' . $post . '" class="pmfio-act pmfio-act--assign">' . $hidden
+			. '<input type="text" name="order_number" value="" placeholder="' . esc_attr__( 'order no.', 'payment-matcher-for-fio-bank' ) . '" inputmode="numeric" aria-label="' . esc_attr__( 'Order number', 'payment-matcher-for-fio-bank' ) . '">'
+			. '<button class="button button-small">' . esc_html__( 'Assign', 'payment-matcher-for-fio-bank' ) . '</button></form></details>';
 		return $out;
 	}
 
@@ -472,7 +474,6 @@ class PMFIO_Admin {
 				<div class="pmfio-card__sub"><?php esc_html_e( 'unpaid bank transfers', 'payment-matcher-for-fio-bank' ); ?></div>
 			</div>
 		</div>
-		</div>
 
 		<?php if ( ! PMFIO_Settings::is_live() ) : ?>
 			<div class="pmfio-callout"><?php esc_html_e( 'Observing only: payments are downloaded and listed below, but orders are not changed automatically and nothing is sent. Manual “Assign” always applies for real.', 'payment-matcher-for-fio-bank' ); ?></div>
@@ -509,12 +510,12 @@ class PMFIO_Admin {
 				<tr><td colspan="7" class="pmfio-table__empty"><?php esc_html_e( 'No incoming payments yet.', 'payment-matcher-for-fio-bank' ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $rows as $r ) : ?>
-				<tr>
+				<tr<?php echo in_array( $r->result, array( 'no_order', 'obs_no_order', 'seen', 'already_paid', 'obs_already_paid' ), true ) ? ' class="pmfio-row--quiet"' : ''; ?>>
 					<td data-label="<?php esc_attr_e( 'Date', 'payment-matcher-for-fio-bank' ); ?>"><?php echo esc_html( $r->moved_on ? wp_date( get_option( 'date_format' ), strtotime( $r->moved_on ) ) : '' ); ?></td>
-					<td class="pmfio-num" data-label="<?php esc_attr_e( 'Amount', 'payment-matcher-for-fio-bank' ); ?>"><strong><?php echo wp_kses_post( wc_price( $r->amount, array( 'currency' => $r->currency ?: get_woocommerce_currency() ) ) ); ?></strong></td>
-					<td data-label="<?php esc_attr_e( 'VS', 'payment-matcher-for-fio-bank' ); ?>"><code><?php echo esc_html( $r->vs ?: '–' ); ?></code></td>
+					<td class="pmfio-num" data-label="<?php esc_attr_e( 'Amount', 'payment-matcher-for-fio-bank' ); ?>"><span class="pmfio-amount"><?php echo wp_kses_post( wc_price( $r->amount, array( 'currency' => $r->currency ?: get_woocommerce_currency() ) ) ); ?></span></td>
+					<td data-label="<?php esc_attr_e( 'VS', 'payment-matcher-for-fio-bank' ); ?>"><span class="pmfio-vs"><?php echo esc_html( $r->vs ?: '–' ); ?></span></td>
 					<td data-label="<?php esc_attr_e( 'From', 'payment-matcher-for-fio-bank' ); ?>">
-						<?php echo esc_html( trim( $r->counter_name ) ?: '–' ); ?>
+						<span class="pmfio-name"><?php echo esc_html( trim( $r->counter_name ) ?: '–' ); ?></span>
 						<?php if ( $r->counter_account ) : ?><div class="pmfio-sub"><?php echo esc_html( $r->counter_account ); ?></div><?php endif; ?>
 						<?php if ( $r->message ) : ?><div class="pmfio-sub">„<?php echo esc_html( $r->message ); ?>“</div><?php endif; ?>
 					</td>

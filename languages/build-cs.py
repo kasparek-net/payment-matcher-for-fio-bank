@@ -255,6 +255,9 @@ T = {
     'none yet': 'zatím žádné',
     'last 30 days – open the list': 'za 30 dní – otevřít seznam',
     'all fine': 'vše v pořádku',
+    'Assign to %s': 'Přiřadit k %s',
+    'Another order…': 'Jiná objednávka…',
+    'Assign…': 'Přiřadit…',
 }
 
 NBSP = '\u00a0'

@@ -156,7 +156,7 @@
 }
 
 .pmfio-table td {
-	padding: 12px;
+	padding: 10px 12px;
 	vertical-align: top;
 	border-bottom: 1px solid #f0f0f1;
 }
@@ -164,17 +164,28 @@
 .pmfio-table tbody tr:last-child td { border-bottom: 0; }
 .pmfio-table tbody tr:hover td { background: #f6f7f7; }
 .pmfio-num { text-align: right; white-space: nowrap; }
-.pmfio-table code { background: none; padding: 0; font-size: 12px; }
+.pmfio-vs { font-variant-numeric: tabular-nums; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.pmfio-amount { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pmfio-name { font-weight: 500; }
+.pmfio-row--quiet td { color: var(--pmfio-muted); }
+.pmfio-row--quiet .pmfio-amount,
+.pmfio-row--quiet .pmfio-name { font-weight: 400; }
+.pmfio-row--quiet .pmfio-pill { background: transparent; padding-left: 0; }
 .pmfio-table__empty { text-align: center; color: var(--pmfio-muted); padding: 32px 12px !important; }
 
 .pmfio-sub {
-	font-size: 12px;
+	font-size: 11px;
+	line-height: 1.4;
 	color: var(--pmfio-muted);
 	margin-top: 2px;
 	overflow-wrap: anywhere;
 }
 
-.pmfio-actions { min-width: 210px; }
+.pmfio-actions { min-width: 170px; }
+.pmfio-assign > summary { cursor: pointer; color: var(--wp-admin-theme-color, #2271b1); font-size: 12px; list-style: none; display: inline-block; padding: 2px 0; }
+.pmfio-assign > summary::-webkit-details-marker { display: none; }
+.pmfio-assign > summary:hover { text-decoration: underline; }
+.pmfio-assign[open] > summary { margin-bottom: 6px; }
 .pmfio-act { margin: 0 0 6px; }
 
 .pmfio-act--assign {

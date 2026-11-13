@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Payment Matcher for Fio Bank and WooCommerce 1.6.0\n"
+"Project-Id-Version: Payment Matcher for Fio Bank and WooCommerce 1.6.1\n"
 "Report-Msgid-Bugs-To: https://github.com/kasparek-net/payment-matcher-for-fio-bank/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-13T11:10:13+00:00\n"
+"POT-Creation-Date: 2026-11-13T11:20:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: payment-matcher-for-fio-bank\n"
@@ -41,13 +41,13 @@ msgid "https://github.com/kasparek-net"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:55
-#: includes/class-pmfio-admin.php:275
-#: includes/class-pmfio-admin.php:379
+#: includes/class-pmfio-admin.php:279
+#: includes/class-pmfio-admin.php:381
 msgid "Fio payments"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:72
-#: includes/class-pmfio-admin.php:486
+#: includes/class-pmfio-admin.php:488
 msgid "Paid"
 msgstr ""
 
@@ -60,14 +60,14 @@ msgid "Underpayment"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:75
-#: includes/class-pmfio-admin.php:465
-#: includes/class-pmfio-admin.php:485
+#: includes/class-pmfio-admin.php:467
+#: includes/class-pmfio-admin.php:487
 #: includes/class-pmfio-runner.php:222
 msgid "To review"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:76
-#: includes/class-pmfio-admin.php:487
+#: includes/class-pmfio-admin.php:489
 msgid "No order"
 msgstr ""
 
@@ -111,69 +111,69 @@ msgstr ""
 msgid "Refund (observing)"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:120
+#: includes/class-pmfio-admin.php:124
 msgid "You do not have permission to do this."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:164
+#: includes/class-pmfio-admin.php:168
 msgid "The IBAN is not valid, nothing was saved."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:173
-#: includes/class-pmfio-admin.php:217
+#: includes/class-pmfio-admin.php:177
+#: includes/class-pmfio-admin.php:221
 msgid "Saved."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:189
+#: includes/class-pmfio-admin.php:193
 msgid "Choose at least one payment method and one order status, nothing was saved."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:200
+#: includes/class-pmfio-admin.php:204
 msgid "A new cron address was created. Update it in your hosting’s cron."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:229
+#: includes/class-pmfio-admin.php:233
 msgid "Re-evaluation is only available while observing."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:242
+#: includes/class-pmfio-admin.php:246
 msgid "Enter an order number."
 msgstr ""
 
 #. translators: %s: date
-#: includes/class-pmfio-admin.php:263
+#: includes/class-pmfio-admin.php:267
 #, php-format
 msgid "The Fio API token expired on %s."
 msgstr ""
 
 #. translators: %s: date
-#: includes/class-pmfio-admin.php:263
+#: includes/class-pmfio-admin.php:267
 #, php-format
 msgid "The Fio API token expires on %s."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:264
+#: includes/class-pmfio-admin.php:268
 msgid "Log in to Fio internet banking to extend it (automatic renewal), or create a new token, then update the date."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:264
-#: includes/class-pmfio-admin.php:433
+#: includes/class-pmfio-admin.php:268
+#: includes/class-pmfio-admin.php:435
 #: includes/class-pmfio-runner.php:179
 msgid "Open settings"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:270
+#: includes/class-pmfio-admin.php:274
 msgid "Fio payment matching is not working:"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:270
+#: includes/class-pmfio-admin.php:274
 #: includes/class-pmfio-runner.php:134
 #: includes/class-pmfio-runner.php:236
 msgid "Open Fio payments"
 msgstr ""
 
 #. translators: %d: number of days
-#: includes/class-pmfio-admin.php:280
+#: includes/class-pmfio-admin.php:284
 #: includes/class-pmfio-runner.php:232
 #, php-format
 msgid "%d day"
@@ -181,108 +181,115 @@ msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-pmfio-admin.php:298
+#: includes/class-pmfio-admin.php:302
 msgid "No Fio payment yet."
 msgstr ""
 
 #. translators: %s: number of days
-#: includes/class-pmfio-admin.php:303
+#: includes/class-pmfio-admin.php:307
 #, php-format
 msgid "Waiting for payment: %s"
 msgstr ""
 
 #. translators: %s: date
-#: includes/class-pmfio-admin.php:306
+#: includes/class-pmfio-admin.php:310
 #, php-format
 msgid "Reminder sent %s"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:334
+#: includes/class-pmfio-admin.php:338
 msgid "Restore and mark paid"
 msgstr ""
 
-#. translators: %s: order link
-#: includes/class-pmfio-admin.php:343
+#: includes/class-pmfio-admin.php:346
 #, php-format
-msgid "Suggested: %s"
+msgid "Assign to %s"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:348
+msgid "Another order…"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:348
+msgid "Assign…"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:350
 msgid "order no."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:348
+#: includes/class-pmfio-admin.php:350
 msgid "Order number"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:349
+#: includes/class-pmfio-admin.php:351
 msgid "Assign"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:366
+#: includes/class-pmfio-admin.php:368
 msgid "Payments"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:367
+#: includes/class-pmfio-admin.php:369
 #: payment-matcher-for-fio-bank.php:84
 msgid "Settings"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:368
+#: includes/class-pmfio-admin.php:370
 #: includes/class-pmfio-qr-payment.php:166
 msgid "QR payment"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:380
-#: includes/class-pmfio-admin.php:623
+#: includes/class-pmfio-admin.php:382
+#: includes/class-pmfio-admin.php:625
 msgid "Live"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:380
-#: includes/class-pmfio-admin.php:622
+#: includes/class-pmfio-admin.php:382
+#: includes/class-pmfio-admin.php:624
 msgid "Observing only"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:387
+#: includes/class-pmfio-admin.php:389
 msgid "Evaluate again"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:393
+#: includes/class-pmfio-admin.php:395
 msgid "Check now"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:433
+#: includes/class-pmfio-admin.php:435
 msgid "Connect your Fio account"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:444
+#: includes/class-pmfio-admin.php:446
 msgid "Last check"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:445
+#: includes/class-pmfio-admin.php:447
 msgid "not yet"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:449
+#: includes/class-pmfio-admin.php:451
 msgid "Automatic checks are not running – set up cron"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:451
+#: includes/class-pmfio-admin.php:453
 msgid "runs from the server cron"
 msgstr ""
 
 #. translators: %s: time
-#: includes/class-pmfio-admin.php:454
+#: includes/class-pmfio-admin.php:456
 #, php-format
 msgid "next at %s"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:460
+#: includes/class-pmfio-admin.php:462
 msgid "Paid in the last 7 days"
 msgstr ""
 
 #. translators: %d: number of payments
-#: includes/class-pmfio-admin.php:461
+#: includes/class-pmfio-admin.php:463
 #, php-format
 msgid "%d payment"
 msgid_plural "%d payments"
@@ -290,405 +297,405 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of payments
-#: includes/class-pmfio-admin.php:462
+#: includes/class-pmfio-admin.php:464
 msgid "none yet"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:467
+#: includes/class-pmfio-admin.php:469
 msgid "last 30 days – open the list"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:467
+#: includes/class-pmfio-admin.php:469
 msgid "all fine"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:470
+#: includes/class-pmfio-admin.php:472
 msgid "Waiting > 3 days"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:472
+#: includes/class-pmfio-admin.php:474
 msgid "unpaid bank transfers"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:478
+#: includes/class-pmfio-admin.php:480
 msgid "Observing only: payments are downloaded and listed below, but orders are not changed automatically and nothing is sent. Manual “Assign” always applies for real."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:484
+#: includes/class-pmfio-admin.php:486
 msgid "All"
-msgstr ""
-
-#: includes/class-pmfio-admin.php:499
-#: includes/class-pmfio-admin.php:513
-#: includes/class-pmfio-privacy.php:79
-msgid "Date"
-msgstr ""
-
-#: includes/class-pmfio-admin.php:500
-#: includes/class-pmfio-admin.php:514
-#: includes/class-pmfio-privacy.php:80
-msgid "Amount"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:501
 #: includes/class-pmfio-admin.php:515
-msgid "VS"
+#: includes/class-pmfio-privacy.php:79
+msgid "Date"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:502
 #: includes/class-pmfio-admin.php:516
-msgid "From"
+#: includes/class-pmfio-privacy.php:80
+msgid "Amount"
 msgstr ""
 
 #: includes/class-pmfio-admin.php:503
-#: includes/class-pmfio-admin.php:521
+#: includes/class-pmfio-admin.php:517
+msgid "VS"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:504
+#: includes/class-pmfio-admin.php:518
+msgid "From"
+msgstr ""
+
+#: includes/class-pmfio-admin.php:505
+#: includes/class-pmfio-admin.php:523
 #: includes/class-pmfio-privacy.php:81
 msgid "Order"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:504
-#: includes/class-pmfio-admin.php:522
+#: includes/class-pmfio-admin.php:506
+#: includes/class-pmfio-admin.php:524
 msgid "Result"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:505
+#: includes/class-pmfio-admin.php:507
 msgid "Actions"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:509
+#: includes/class-pmfio-admin.php:511
 msgid "No incoming payments yet."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:542
+#: includes/class-pmfio-admin.php:544
 msgid "Log in to Fio internet banking (ib.fio.cz)."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:543
+#: includes/class-pmfio-admin.php:545
 msgid "Open Settings → API."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:544
+#: includes/class-pmfio-admin.php:546
 msgid "Choose the account that receives payments for orders and click “Add new token”. Enter a name, e.g. the website address."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:545
+#: includes/class-pmfio-admin.php:547
 msgid "Choose the type “Account monitoring only” (read-only). The plugin never needs to send payments."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:546
+#: includes/class-pmfio-admin.php:548
 msgid "Set the validity to the maximum (180 days) and turn on automatic renewal – every login to internet banking then extends it."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:547
+#: includes/class-pmfio-admin.php:549
 msgid "Confirm with SMS or the Smartbanking app. The token works about 5 minutes after confirmation."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:548
+#: includes/class-pmfio-admin.php:550
 msgid "Click “Show full token”, copy all 64 characters, paste them in the plugin settings and save."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:550
+#: includes/class-pmfio-admin.php:552
 msgid "How to get the token"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:554
+#: includes/class-pmfio-admin.php:556
 msgid "Official Fio guide with a screenshot (PDF, in Czech, pages 4–5)"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:554
+#: includes/class-pmfio-admin.php:556
 msgid "Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:571
+#: includes/class-pmfio-admin.php:573
 msgid "turned off in WooCommerce"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:575
+#: includes/class-pmfio-admin.php:577
 msgid "not installed"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:610
+#: includes/class-pmfio-admin.php:612
 msgid "Connection"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:613
-#: includes/class-pmfio-admin.php:620
+#: includes/class-pmfio-admin.php:615
+#: includes/class-pmfio-admin.php:622
 msgid "Fio API token"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:613
+#: includes/class-pmfio-admin.php:615
 msgid "Set in wp-config.php (constant PMFIO_FIO_TOKEN)."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:615
+#: includes/class-pmfio-admin.php:617
 msgid "saved – paste a new one to replace it"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:615
+#: includes/class-pmfio-admin.php:617
 msgid "paste the token"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:617
+#: includes/class-pmfio-admin.php:619
 msgid "Token saved."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:617
+#: includes/class-pmfio-admin.php:619
 msgid "delete"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:620
+#: includes/class-pmfio-admin.php:622
 msgid "Each website needs its own token."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:622
+#: includes/class-pmfio-admin.php:624
 msgid "Downloads and lists payments, changes nothing."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:623
+#: includes/class-pmfio-admin.php:625
 msgid "Paid orders move to “Processing” and the customer gets the usual e-mail."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:624
+#: includes/class-pmfio-admin.php:626
 msgid "Mode"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:625
+#: includes/class-pmfio-admin.php:627
 msgid "Token valid until"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:625
+#: includes/class-pmfio-admin.php:627
 msgid "Shown in Fio internet banking next to the token. Filled in as +180 days when you save a new token. You get an e-mail and an admin notice 14 days before it expires."
 msgstr ""
 
 #. translators: %s: date and time
-#: includes/class-pmfio-admin.php:629
+#: includes/class-pmfio-admin.php:631
 #, php-format
 msgid "Last called by cron: %s"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:630
+#: includes/class-pmfio-admin.php:632
 msgid "Not called by cron yet. Until then the WordPress scheduler runs the checks."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:632
+#: includes/class-pmfio-admin.php:634
 msgid "Create a new address"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:633
+#: includes/class-pmfio-admin.php:635
 msgid "Automatic checks"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:633
+#: includes/class-pmfio-admin.php:635
 msgid "Most reliable: let your hosting’s cron open this address every 15 minutes (e.g. Blueboard → Cron). The daily summary runs through it too. Without it, the WordPress scheduler is used, which runs only when someone visits the site. Keep the address private."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:638
+#: includes/class-pmfio-admin.php:640
 msgid "Which orders to match"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:640
+#: includes/class-pmfio-admin.php:642
 msgid "Payment methods"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:640
+#: includes/class-pmfio-admin.php:642
 msgid "Usually only bank transfer. The plugin marks an order as paid only if the customer chose one of these."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:641
+#: includes/class-pmfio-admin.php:643
 msgid "Order status"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:641
+#: includes/class-pmfio-admin.php:643
 msgid "Orders in these statuses are waiting for the money."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:644
+#: includes/class-pmfio-admin.php:646
 msgid "Advanced settings"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:648
+#: includes/class-pmfio-admin.php:650
 msgid "Other statuses"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:648
+#: includes/class-pmfio-admin.php:650
 msgid "Only if your shop uses its own status for orders waiting for payment."
 msgstr ""
 
 #. translators: %s: meta key
-#: includes/class-pmfio-admin.php:651
+#: includes/class-pmfio-admin.php:653
 msgid "Where the order number is stored"
 msgstr ""
 
 #. translators: %s: meta key
-#: includes/class-pmfio-admin.php:651
+#: includes/class-pmfio-admin.php:653
 #, php-format
 msgid "Leave as it is. Only for plugins that give orders their own numbers (usually %s). The variable symbol is also compared with the order ID."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:652
+#: includes/class-pmfio-admin.php:654
 msgid "Look for payments from the last"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:652
+#: includes/class-pmfio-admin.php:654
 msgid "days"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:652
+#: includes/class-pmfio-admin.php:654
 msgid "3 days are enough for everyday use. More only when comparing with older payments."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:658
+#: includes/class-pmfio-admin.php:660
 msgid "Notifications"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:660
+#: includes/class-pmfio-admin.php:662
 msgid "Notification e-mail"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:660
+#: includes/class-pmfio-admin.php:662
 msgid "Gets underpayments, overpayments, payments to review and an alert when matching stops working."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:661
+#: includes/class-pmfio-admin.php:663
 msgid "Daily summary"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:661
+#: includes/class-pmfio-admin.php:663
 msgid "Every morning at 7:00 send payments from the last 24 hours and orders waiting for payment for more than 3 days"
 msgstr ""
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:663
+#: includes/class-pmfio-admin.php:665
 #: includes/class-pmfio-email-reminder.php:21
 msgid "Payment reminder"
 msgstr ""
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:663
+#: includes/class-pmfio-admin.php:665
 msgid "days after the order"
 msgstr ""
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:663
+#: includes/class-pmfio-admin.php:665
 #, php-format
 msgid "Live mode only, and only for orders created after switching to live. Turn on and edit the text in %s."
 msgstr ""
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:663
+#: includes/class-pmfio-admin.php:665
 msgid "WooCommerce → Settings → Emails → Payment reminder"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:668
+#: includes/class-pmfio-admin.php:670
 msgid "Personal data"
 msgstr ""
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:671
+#: includes/class-pmfio-admin.php:673
 #, php-format
 msgid "Payer name, account and message are stored with each payment. 0 = keep forever, otherwise at least 3 months. Customers’ requests are handled in %1$s and %2$s, a suggested text for the privacy policy is in %3$s."
 msgstr ""
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:671
+#: includes/class-pmfio-admin.php:673
 msgid "Export Personal Data"
 msgstr ""
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:671
+#: includes/class-pmfio-admin.php:673
 msgid "Erase Personal Data"
 msgstr ""
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:671
+#: includes/class-pmfio-admin.php:673
 msgid "Privacy Policy Guide"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:672
+#: includes/class-pmfio-admin.php:674
 msgid "Keep payments for"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:672
+#: includes/class-pmfio-admin.php:674
 msgid "months"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:676
+#: includes/class-pmfio-admin.php:678
 msgid "Save settings"
 msgstr ""
 
 #. translators: %s: order number placeholder
 #. translators: %s: placeholder
 #. translators: %s: order number
-#: includes/class-pmfio-admin.php:686
-#: includes/class-pmfio-admin.php:705
+#: includes/class-pmfio-admin.php:688
+#: includes/class-pmfio-admin.php:707
 #: includes/class-pmfio-qr-payment.php:114
 #, php-format
 msgid "Order %s"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:694
+#: includes/class-pmfio-admin.php:696
 msgid "QR payment (QR Platba)"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:695
+#: includes/class-pmfio-admin.php:697
 msgid "A QR code with the account, amount and variable symbol for unpaid bank-transfer orders. Czech and Slovak banking apps fill in the payment automatically. Generated on your server, no external service."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:697
+#: includes/class-pmfio-admin.php:699
 msgid "Thank-you page after the order"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:698
+#: includes/class-pmfio-admin.php:700
 msgid "Order e-mails to the customer (including the payment reminder)"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:699
+#: includes/class-pmfio-admin.php:701
 msgid "Show QR code"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:699
+#: includes/class-pmfio-admin.php:701
 msgid "Turn off if another plugin or your theme already shows a QR code, so customers do not see two."
 msgstr ""
 
 #. translators: %s: IBAN
-#: includes/class-pmfio-admin.php:702
+#: includes/class-pmfio-admin.php:704
 #, php-format
 msgid "Empty = taken from the bank-transfer account in WooCommerce: %s"
 msgstr ""
 
 #. translators: %s: IBAN
-#: includes/class-pmfio-admin.php:702
+#: includes/class-pmfio-admin.php:704
 msgid "Empty = taken from the bank-transfer account in WooCommerce (Settings → Payments → Direct bank transfer)."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:703
+#: includes/class-pmfio-admin.php:705
 msgid "IBAN"
 msgstr ""
 
 #. translators: %s: placeholder
-#: includes/class-pmfio-admin.php:705
+#: includes/class-pmfio-admin.php:707
 msgid "Message for recipient"
 msgstr ""
 
 #. translators: %s: placeholder
-#: includes/class-pmfio-admin.php:705
+#: includes/class-pmfio-admin.php:707
 #, php-format
 msgid "Up to 60 characters, without diacritics in the bank. You can use %s."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:709
+#: includes/class-pmfio-admin.php:711
 msgid "Preview"
 msgstr ""
 
-#: includes/class-pmfio-admin.php:713
+#: includes/class-pmfio-admin.php:715
 msgid "Sample order. Try scanning it in your banking app, but do not confirm the payment."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:715
+#: includes/class-pmfio-admin.php:717
 msgid "No valid account. Fill in the IBAN or the bank-transfer account in WooCommerce."
 msgstr ""
 
-#: includes/class-pmfio-admin.php:719
+#: includes/class-pmfio-admin.php:721
 msgid "Save QR settings"
 msgstr ""
 

@@ -4,7 +4,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,10 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.6.2 =
+* Payments table: quieter rows for payments without an order, one-click “Assign to …” for suggestions, assign form folded away, shorter labels.
+* Fix: an extra closing tag left the table outside the styled wrapper, so result labels lost their colours.
 
 = 1.6.1 =
 * Payments page: actions in the header, icons, a warning when automatic checks are not running. `wp pmfio check` waits for the Fio rate limit instead of failing.
