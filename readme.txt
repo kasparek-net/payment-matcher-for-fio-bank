@@ -67,7 +67,7 @@ You can also define the token in `wp-config.php`: `define( 'PMFIO_FIO_TOKEN', '�
 5. Confirm with SMS or Smartbanking. The token works about 5 minutes later.
 6. Click “Show full token” and copy all 64 characters to WooCommerce → Fio payments → Settings.
 
-The same guide is shown in the plugin settings under “How to get the token”.
+The same guide is shown in the plugin settings under “How to get the token”. Fio’s official guide with a screenshot of the API settings is on pages 4–5 of https://www.fio.cz/docs/cz/API_Bankovnictvi.pdf (in Czech).
 
 = Can I share the token with another Fio plugin? =
 

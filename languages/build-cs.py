@@ -224,6 +224,7 @@ T = {
     'How to get the token': 'Jak získat token',
     'Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time.': 'Token nikomu neposílejte: kdo ho má, vidí pohyby na účtu. V internetovém bankovnictví ho můžete kdykoli smazat.',
     'Each website needs its own token.': 'Každý web potřebuje vlastní token.',
+    'Official Fio guide with a screenshot (PDF, in Czech, pages 4–5)': 'Oficiální návod Fio se screenshotem (PDF, strany 4–5)',
 }
 
 NBSP = '\u00a0'

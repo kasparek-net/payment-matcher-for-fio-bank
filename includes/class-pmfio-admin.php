@@ -40,7 +40,7 @@ class PMFIO_Admin {
 			'strong' => array(),
 			'br'     => array(),
 			'code'   => array(),
-			'a'      => array_merge( $common, array( 'href' => true, 'aria-current' => true ) ),
+			'a'      => array_merge( $common, array( 'href' => true, 'aria-current' => true, 'target' => true, 'rel' => true ) ),
 			'li'     => $common,
 			'bdi'    => array(),
 			'details' => array_merge( $common, array( 'open' => true ) ),
@@ -502,7 +502,7 @@ class PMFIO_Admin {
 		foreach ( $steps as $step ) {
 			$out .= '<li>' . esc_html( $step ) . '</li>';
 		}
-		$out .= '</ol><p class="pmfio-help">' . esc_html__( 'Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time.', 'payment-matcher-for-fio-bank' ) . '</p></details>';
+		$out .= '</ol><p class="pmfio-help"><a href="' . esc_url( 'https://www.fio.cz/docs/cz/API_Bankovnictvi.pdf' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Official Fio guide with a screenshot (PDF, in Czech, pages 4–5)', 'payment-matcher-for-fio-bank' ) . '</a></p><p class="pmfio-help">' . esc_html__( 'Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time.', 'payment-matcher-for-fio-bank' ) . '</p></details>';
 		return $out;
 	}
 

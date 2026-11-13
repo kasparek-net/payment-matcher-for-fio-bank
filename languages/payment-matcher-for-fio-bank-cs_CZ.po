@@ -326,6 +326,10 @@ msgid "How to get the token"
 msgstr "Jak získat token"
 
 #: includes/class-pmfio-admin.php:505
+msgid "Official Fio guide with a screenshot (PDF, in Czech, pages 4–5)"
+msgstr "Oficiální návod Fio se screenshotem (PDF, strany 4–5)"
+
+#: includes/class-pmfio-admin.php:505
 msgid "Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time."
 msgstr "Token nikomu neposílejte: kdo ho má, vidí pohyby na účtu. V internetovém bankovnictví ho můžete kdykoli smazat."
 
