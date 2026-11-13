@@ -302,12 +302,12 @@ msgid "Open Settings → API."
 msgstr "Otevřete Nastavení → API."
 
 #: includes/class-pmfio-admin.php:495
-msgid "Click “Add token”, choose the account that receives payments for orders and enter a name, e.g. the website address."
-msgstr "Klikněte na „Přidat token“, vyberte účet, na který chodí platby za objednávky, a zadejte název, třeba adresu webu."
+msgid "Choose the account that receives payments for orders and click “Add new token”. Enter a name, e.g. the website address."
+msgstr "Vyberte účet, na který chodí platby za objednávky, a klikněte na „Přidat nový token“. Zadejte název, třeba adresu webu."
 
 #: includes/class-pmfio-admin.php:496
-msgid "Choose the read-only permission (account monitoring only). The plugin never needs to send payments."
-msgstr "Zvolte oprávnění jen pro čtení („Sledování účtu“). Plugin nikdy nepotřebuje platby odesílat."
+msgid "Choose the type “Account monitoring only” (read-only). The plugin never needs to send payments."
+msgstr "Zvolte typ „Pouze sledovat účet“ (jen pro čtení). Plugin nikdy nepotřebuje platby odesílat."
 
 #: includes/class-pmfio-admin.php:497
 msgid "Set the validity to the maximum (180 days) and turn on automatic renewal – every login to internet banking then extends it."
@@ -318,8 +318,8 @@ msgid "Confirm with SMS or the Smartbanking app. The token works about 5 minutes
 msgstr "Potvrďte SMS nebo v aplikaci Smartbanking. Token začne fungovat asi 5 minut po potvrzení."
 
 #: includes/class-pmfio-admin.php:499
-msgid "Copy the token (64 characters), paste it in the plugin settings and save. Each website needs its own token."
-msgstr "Token (64 znaků) zkopírujte, vložte do nastavení pluginu a uložte. Každý web potřebuje vlastní token."
+msgid "Click “Show full token”, copy all 64 characters, paste them in the plugin settings and save."
+msgstr "Klikněte na „Zobrazit celý token“, zkopírujte všech 64 znaků, vložte je do nastavení pluginu a uložte."
 
 #: includes/class-pmfio-admin.php:501
 msgid "How to get the token"
@@ -359,8 +359,8 @@ msgid "delete"
 msgstr "smazat"
 
 #: includes/class-pmfio-admin.php:531
-msgid "Fio internet banking → Settings → API → Add token, type “Account monitoring”, with automatic renewal. Each website needs its own token."
-msgstr "Internetové bankovnictví Fio → Nastavení → API → Přidat token, typ „Sledování účtu“, se zapnutým automatickým prodlužováním. Každý web potřebuje vlastní token."
+msgid "Each website needs its own token."
+msgstr "Každý web potřebuje vlastní token."
 
 #: includes/class-pmfio-admin.php:533
 msgid "Downloads and lists payments, changes nothing."

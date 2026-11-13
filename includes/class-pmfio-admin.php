@@ -492,11 +492,11 @@ class PMFIO_Admin {
 		$steps = array(
 			__( 'Log in to Fio internet banking (ib.fio.cz).', 'payment-matcher-for-fio-bank' ),
 			__( 'Open Settings → API.', 'payment-matcher-for-fio-bank' ),
-			__( 'Click “Add token”, choose the account that receives payments for orders and enter a name, e.g. the website address.', 'payment-matcher-for-fio-bank' ),
-			__( 'Choose the read-only permission (account monitoring only). The plugin never needs to send payments.', 'payment-matcher-for-fio-bank' ),
+			__( 'Choose the account that receives payments for orders and click “Add new token”. Enter a name, e.g. the website address.', 'payment-matcher-for-fio-bank' ),
+			__( 'Choose the type “Account monitoring only” (read-only). The plugin never needs to send payments.', 'payment-matcher-for-fio-bank' ),
 			__( 'Set the validity to the maximum (180 days) and turn on automatic renewal – every login to internet banking then extends it.', 'payment-matcher-for-fio-bank' ),
 			__( 'Confirm with SMS or the Smartbanking app. The token works about 5 minutes after confirmation.', 'payment-matcher-for-fio-bank' ),
-			__( 'Copy the token (64 characters), paste it in the plugin settings and save. Each website needs its own token.', 'payment-matcher-for-fio-bank' ),
+			__( 'Click “Show full token”, copy all 64 characters, paste them in the plugin settings and save.', 'payment-matcher-for-fio-bank' ),
 		);
 		$out = '<details class="pmfio-guide"' . ( $open ? ' open' : '' ) . '><summary>' . esc_html__( 'How to get the token', 'payment-matcher-for-fio-bank' ) . '</summary><ol>';
 		foreach ( $steps as $step ) {
@@ -528,7 +528,7 @@ class PMFIO_Admin {
 						$control .= '<p class="pmfio-ok">✓ ' . esc_html__( 'Token saved.', 'payment-matcher-for-fio-bank' ) . ' <label><input type="checkbox" name="token_delete" value="1"> ' . esc_html__( 'delete', 'payment-matcher-for-fio-bank' ) . '</label></p>';
 					}
 					$control .= self::token_guide();
-					self::field( __( 'Fio API token', 'payment-matcher-for-fio-bank' ), 'pmfio-token', $control, __( 'Fio internet banking → Settings → API → Add token, type “Account monitoring”, with automatic renewal. Each website needs its own token.', 'payment-matcher-for-fio-bank' ) );
+					self::field( __( 'Fio API token', 'payment-matcher-for-fio-bank' ), 'pmfio-token', $control, __( 'Each website needs its own token.', 'payment-matcher-for-fio-bank' ) );
 				}
 				$mode = '<label class="pmfio-choice"><input type="radio" name="mode" value="observe" ' . checked( 'live' !== $s['mode'], true, false ) . '> <span><strong>' . esc_html__( 'Observing only', 'payment-matcher-for-fio-bank' ) . '</strong><br>' . esc_html__( 'Downloads and lists payments, changes nothing.', 'payment-matcher-for-fio-bank' ) . '</span></label>'
 					. '<label class="pmfio-choice"><input type="radio" name="mode" value="live" ' . checked( 'live', $s['mode'], false ) . '> <span><strong>' . esc_html__( 'Live', 'payment-matcher-for-fio-bank' ) . '</strong><br>' . esc_html__( 'Paid orders move to “Processing” and the customer gets the usual e-mail.', 'payment-matcher-for-fio-bank' ) . '</span></label>';

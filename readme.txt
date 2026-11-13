@@ -61,11 +61,11 @@ You can also define the token in `wp-config.php`: `define( 'PMFIO_FIO_TOKEN', '�
 = How do I get the Fio API token? =
 
 1. Log in to Fio internet banking (ib.fio.cz) and open Settings → API.
-2. Click “Add token”, choose the account that receives payments for orders and name the token, e.g. after the website.
-3. Choose the read-only permission (account monitoring only).
+2. Choose the account that receives payments for orders and click “Add new token”. Name it, e.g. after the website.
+3. Choose the type “Account monitoring only” (read-only).
 4. Set the validity to 180 days and turn on automatic renewal – every login to internet banking then extends it.
 5. Confirm with SMS or Smartbanking. The token works about 5 minutes later.
-6. Copy the 64-character token to WooCommerce → Fio payments → Settings.
+6. Click “Show full token” and copy all 64 characters to WooCommerce → Fio payments → Settings.
 
 The same guide is shown in the plugin settings under “How to get the token”.
 
