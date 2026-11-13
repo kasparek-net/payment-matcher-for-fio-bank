@@ -14,17 +14,38 @@ class PMFIO_Api {
 	const BASE = 'https://fioapi.fio.cz/v1/rest/';
 	const LOCK = 'pmfio_api_lock';
 
+	/** Fio's rate limit applies per token, so each token has its own lock. */
+	public static function lock_key( $token ) {
+		return self::LOCK . '_' . PMFIO_Settings::token_id( $token );
+	}
+
+	public static function is_locked( $token ) {
+		return (bool) get_transient( self::lock_key( $token ) );
+	}
+
+	public static function unlock( $token ) {
+		delete_transient( self::lock_key( $token ) );
+	}
+
 	/**
 	 * @return array|WP_Error List of raw transaction arrays.
 	 */
 	public static function fetch_period( $token, $from, $to ) {
+		$res = self::fetch_statement( $token, $from, $to );
+		return is_wp_error( $res ) ? $res : $res['transactions'];
+	}
+
+	/**
+	 * @return array{info:array,transactions:array}|WP_Error
+	 */
+	public static function fetch_statement( $token, $from, $to ) {
 		if ( '' === $token ) {
 			return new WP_Error( 'pmfio_no_token', __( 'The Fio API token is missing.', 'payment-matcher-for-fio-bank' ) );
 		}
-		if ( get_transient( self::LOCK ) ) {
+		if ( self::is_locked( $token ) ) {
 			return new WP_Error( 'pmfio_locked', __( 'Fio allows one request per 30 seconds, please try again in a moment.', 'payment-matcher-for-fio-bank' ) );
 		}
-		set_transient( self::LOCK, 1, 35 );
+		set_transient( self::lock_key( $token ), 1, (int) apply_filters( 'pmfio_api_lock_seconds', 35 ) );
 
 		$url      = self::BASE . 'periods/' . rawurlencode( $token ) . '/' . $from . '/' . $to . '/transactions.json';
 		$response = wp_remote_get( $url, array( 'timeout' => 20 ) );
@@ -45,7 +66,11 @@ class PMFIO_Api {
 		}
 
 		$list = $data['accountStatement']['transactionList']['transaction'] ?? array();
-		return is_array( $list ) ? $list : array();
+		$info = $data['accountStatement']['info'] ?? array();
+		return array(
+			'info'         => is_array( $info ) ? $info : array(),
+			'transactions' => is_array( $list ) ? $list : array(),
+		);
 	}
 
 	public static function error_message( $code ) {

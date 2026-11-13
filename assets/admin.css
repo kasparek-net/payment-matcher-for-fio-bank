@@ -383,3 +383,10 @@
 @media (max-width: 340px) {
 	.pmfio-cards { grid-template-columns: 1fr; }
 }
+
+/* Additional Fio accounts */
+.pmfio-account { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f0f0f1; }
+.pmfio-account strong { min-width: 180px; }
+.pmfio-add-account { border-top: 0; padding-top: 4px; }
+.pmfio-add-account input { margin-top: 4px; }
+.pmfio-plain { display: block; padding-top: 6px; }

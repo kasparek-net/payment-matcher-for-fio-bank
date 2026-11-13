@@ -216,9 +216,52 @@ class PMFIO_Admin {
 		}
 		if ( self::post_flag( 'token_delete' ) ) {
 			delete_option( PMFIO_Settings::TOKEN_OPTION );
+		}
+		self::save_extra_accounts();
+		if ( ! PMFIO_Settings::accounts() ) {
 			PMFIO_Runner::unschedule();
 		}
 		self::back( __( 'Saved.', 'payment-matcher-for-fio-bank' ), 'settings', 'success' );
+	}
+
+	/** Additional accounts: expiry dates, deletions and one new token per save. */
+	private static function save_extra_accounts() {
+		$expires = isset( $_POST['extra_expires'] ) ? (array) wp_unslash( $_POST['extra_expires'] ) : array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce checked in guard(), validated by valid_date().
+		$delete  = isset( $_POST['extra_delete'] ) ? array_map( 'absint', (array) wp_unslash( $_POST['extra_delete'] ) ) : array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce checked in guard(), cast to int.
+		$list    = array();
+		foreach ( PMFIO_Settings::extra_accounts() as $i => $acc ) {
+			if ( in_array( $i, $delete, true ) ) {
+				continue;
+			}
+			$acc['expires'] = isset( $expires[ $i ] ) ? self::valid_date( sanitize_text_field( (string) $expires[ $i ] ) ) : $acc['expires'];
+			$list[]         = $acc;
+		}
+		$token = preg_replace( '/[^A-Za-z0-9]/', '', self::post_text( 'extra_token' ) );
+		$known = wp_list_pluck( PMFIO_Settings::accounts(), 'token' );
+		if ( '' !== $token && ! in_array( $token, $known, true ) && count( $list ) < PMFIO_Settings::MAX_EXTRA ) {
+			$list[] = array( 'token' => $token, 'expires' => wp_date( 'Y-m-d', time() + 180 * DAY_IN_SECONDS ) );
+			update_option( 'pmfio_token_saved', time(), false );
+			delete_option( 'pmfio_last_error' );
+			delete_option( 'pmfio_alert_sent' );
+		}
+		update_option( PMFIO_Settings::EXTRA_OPTION, $list, false );
+	}
+
+	/** Extra accounts block in the Connection panel. */
+	private static function extra_accounts_control() {
+		$out = '';
+		foreach ( PMFIO_Settings::extra_accounts() as $i => $acc ) {
+			$label = PMFIO_Settings::account_label( $acc['token'] );
+			$out  .= '<div class="pmfio-account"><strong>' . esc_html( '' !== $label ? $label : __( 'Not downloaded yet', 'payment-matcher-for-fio-bank' ) ) . '</strong>'
+				. '<label>' . esc_html__( 'valid until', 'payment-matcher-for-fio-bank' ) . ' <input type="date" name="extra_expires[' . (int) $i . ']" value="' . esc_attr( $acc['expires'] ) . '"></label>'
+				. '<label><input type="checkbox" name="extra_delete[]" value="' . (int) $i . '"> ' . esc_html__( 'delete', 'payment-matcher-for-fio-bank' ) . '</label></div>';
+		}
+		if ( count( PMFIO_Settings::extra_accounts() ) < PMFIO_Settings::MAX_EXTRA ) {
+			$out .= '<details class="pmfio-advanced pmfio-add-account"><summary>' . esc_html__( 'Add another Fio account', 'payment-matcher-for-fio-bank' ) . '</summary>'
+				. '<input type="password" id="pmfio-extra-token" name="extra_token" class="regular-text" autocomplete="new-password" placeholder="' . esc_attr__( 'paste the token', 'payment-matcher-for-fio-bank' ) . '">'
+				. '<p class="pmfio-help">' . esc_html__( 'For example a EUR account next to the CZK one. Create a separate read-only token for that account the same way. Payments from all accounts are matched together.', 'payment-matcher-for-fio-bank' ) . '</p></details>';
+		}
+		return $out;
 	}
 
 	public static function run_now() {
@@ -233,7 +276,9 @@ class PMFIO_Admin {
 			self::back( __( 'Re-evaluation is only available while observing.', 'payment-matcher-for-fio-bank' ), '', 'error' );
 		}
 		PMFIO_Store::delete_observed();
-		delete_transient( PMFIO_Api::LOCK );
+		foreach ( PMFIO_Settings::accounts() as $acc ) {
+			PMFIO_Api::unlock( $acc['token'] );
+		}
 		$res = PMFIO_Runner::run();
 		self::back( $res['message'], '', $res['ok'] ? 'success' : 'error' );
 	}
@@ -262,7 +307,7 @@ class PMFIO_Admin {
 		}
 		$exp = PMFIO_Runner::token_expiry();
 		if ( in_array( $exp['state'], array( 'soon', 'expired' ), true ) ) {
-			$date = wp_date( get_option( 'date_format' ), strtotime( PMFIO_Settings::get( 'token_expires' ) . ' 12:00:00' ) );
+			$date = wp_date( get_option( 'date_format' ), strtotime( $exp['date'] . ' 12:00:00' ) );
 			/* translators: %s: date */
 			$text = 'expired' === $exp['state'] ? sprintf( __( 'The Fio API token expired on %s.', 'payment-matcher-for-fio-bank' ), $date ) : sprintf( __( 'The Fio API token expires on %s.', 'payment-matcher-for-fio-bank' ), $date );
 			echo '<div class="notice notice-' . ( 'expired' === $exp['state'] ? 'error' : 'warning' ) . '"><p><strong>' . esc_html( $text ) . '</strong> ' . esc_html__( 'Log in to Fio internet banking to extend it (automatic renewal), or create a new token, then update the date.', 'payment-matcher-for-fio-bank' ) . ' <a href="' . esc_url( self::page_url( array( 'tab' => 'settings' ) ) ) . '">' . esc_html__( 'Open settings', 'payment-matcher-for-fio-bank' ) . '</a></p></div>';
@@ -381,7 +426,7 @@ class PMFIO_Admin {
 			<div class="pmfio-head">
 				<h1><?php esc_html_e( 'Fio payments', 'payment-matcher-for-fio-bank' ); ?></h1>
 				<span class="pmfio-pill pmfio-pill--<?php echo $live ? 'ok' : 'info'; ?> pmfio-pill--lg"><?php echo $live ? esc_html__( 'Live', 'payment-matcher-for-fio-bank' ) : esc_html__( 'Observing only', 'payment-matcher-for-fio-bank' ); ?></span>
-				<?php if ( 'payments' === $tab && '' !== PMFIO_Settings::token() ) : ?>
+				<?php if ( 'payments' === $tab && '' !== (bool) PMFIO_Settings::accounts() ) : ?>
 					<div class="pmfio-head__actions">
 						<?php if ( ! $live ) : ?>
 							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -421,7 +466,7 @@ class PMFIO_Admin {
 	}
 
 	private static function render_payments() {
-		$has_tok = '' !== PMFIO_Settings::token();
+		$has_tok = (bool) PMFIO_Settings::accounts();
 		$last    = get_option( 'pmfio_last_run' );
 		$next    = function_exists( 'as_next_scheduled_action' ) ? as_next_scheduled_action( PMFIO_Runner::HOOK, array(), PMFIO_Runner::GROUP ) : false;
 		$week    = wp_date( 'Y-m-d', time() - 7 * DAY_IN_SECONDS );
@@ -616,7 +661,8 @@ class PMFIO_Admin {
 				} else {
 					$control = '<input type="password" id="pmfio-token" name="token" class="regular-text" autocomplete="new-password" placeholder="' . esc_attr( $has_tok ? __( 'saved – paste a new one to replace it', 'payment-matcher-for-fio-bank' ) : __( 'paste the token', 'payment-matcher-for-fio-bank' ) ) . '">';
 					if ( $has_tok ) {
-						$control .= '<p class="pmfio-ok">✓ ' . esc_html__( 'Token saved.', 'payment-matcher-for-fio-bank' ) . ' <label><input type="checkbox" name="token_delete" value="1"> ' . esc_html__( 'delete', 'payment-matcher-for-fio-bank' ) . '</label></p>';
+						$main_label = PMFIO_Settings::account_label( PMFIO_Settings::token() );
+						$control   .= '<p class="pmfio-ok">✓ ' . esc_html__( 'Token saved.', 'payment-matcher-for-fio-bank' ) . ( '' !== $main_label ? ' ' . esc_html( $main_label ) : '' ) . ' <label><input type="checkbox" name="token_delete" value="1"> ' . esc_html__( 'delete', 'payment-matcher-for-fio-bank' ) . '</label></p>';
 					}
 					$control .= self::token_guide();
 					self::field( __( 'Fio API token', 'payment-matcher-for-fio-bank' ), 'pmfio-token', $control, __( 'Each website needs its own token.', 'payment-matcher-for-fio-bank' ) );
@@ -625,6 +671,9 @@ class PMFIO_Admin {
 					. '<label class="pmfio-choice"><input type="radio" name="mode" value="live" ' . checked( 'live', $s['mode'], false ) . '> <span><strong>' . esc_html__( 'Live', 'payment-matcher-for-fio-bank' ) . '</strong><br>' . esc_html__( 'Paid orders move to “Processing” and the customer gets the usual e-mail.', 'payment-matcher-for-fio-bank' ) . '</span></label>';
 				self::field( __( 'Mode', 'payment-matcher-for-fio-bank' ), '', $mode );
 				self::field( __( 'Token valid until', 'payment-matcher-for-fio-bank' ), 'pmfio-exp', '<input type="date" id="pmfio-exp" name="token_expires" value="' . esc_attr( $s['token_expires'] ) . '">', __( 'Shown in Fio internet banking next to the token. Filled in as +180 days when you save a new token. You get an e-mail and an admin notice 14 days before it expires.', 'payment-matcher-for-fio-bank' ) );
+				if ( $has_tok || PMFIO_Settings::extra_accounts() ) {
+					self::field( __( 'Other Fio accounts', 'payment-matcher-for-fio-bank' ), 'pmfio-extra-token', self::extra_accounts_control() );
+				}
 				$last_cron = (int) get_option( PMFIO_Cron::LAST, 0 );
 				$cron_info = $last_cron
 					/* translators: %s: date and time */
@@ -684,8 +733,17 @@ class PMFIO_Admin {
 		$s       = PMFIO_Settings::all();
 		$iban    = PMFIO_QR_Payment::iban();
 		$own     = '' !== (string) $s['qr_iban'];
+		$cur     = get_woocommerce_currency();
+		$p_iban  = PMFIO_QR_Payment::iban_for( $cur );
 		/* translators: %s: order number placeholder */
-		$preview = '' !== $iban ? PMFIO_QR_Code::svg( PMFIO_QR_Payment::spd( $iban, 1290, get_woocommerce_currency(), '12345', str_replace( '{order_number}', '12345', $s['qr_message'] ?: sprintf( __( 'Order %s', 'payment-matcher-for-fio-bank' ), '{order_number}' ) ) ), 180 ) : '';
+		$preview = '' !== $p_iban ? PMFIO_QR_Code::svg( PMFIO_QR_Payment::payload( $p_iban, 1290, $cur, '12345', str_replace( '{order_number}', '12345', $s['qr_message'] ?: sprintf( __( 'Order %s', 'payment-matcher-for-fio-bank' ), '{order_number}' ) ) ), 180 ) : '';
+		$fio_accounts = array();
+		foreach ( PMFIO_Settings::accounts() as $acc ) {
+			$info = PMFIO_Settings::account_info( $acc['token'] );
+			if ( ! empty( $info['iban'] ) && ! empty( $info['currency'] ) ) {
+				$fio_accounts[] = '<code>' . esc_html( trim( chunk_split( $info['iban'], 4, ' ' ) ) ) . '</code> (' . esc_html( $info['currency'] ) . ')';
+			}
+		}
 		?>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="pmfio-form">
 			<?php wp_nonce_field( 'pmfio_save' ); ?>
@@ -702,7 +760,12 @@ class PMFIO_Admin {
 
 					/* translators: %s: IBAN */
 					$auto = '' !== $iban && ! $own ? sprintf( __( 'Empty = taken from the bank-transfer account in WooCommerce: %s', 'payment-matcher-for-fio-bank' ), '<code>' . esc_html( trim( chunk_split( $iban, 4, ' ' ) ) ) . '</code>' ) : __( 'Empty = taken from the bank-transfer account in WooCommerce (Settings → Payments → Direct bank transfer).', 'payment-matcher-for-fio-bank' );
+					if ( $fio_accounts ) {
+						/* translators: %s: list of IBANs with currencies */
+						$auto = sprintf( __( 'Orders are paid to the connected Fio account in the order’s currency: %s. This field is used only for other currencies.', 'payment-matcher-for-fio-bank' ), implode( ', ', $fio_accounts ) );
+					}
 					self::field( __( 'IBAN', 'payment-matcher-for-fio-bank' ), 'pmfio-iban', '<input type="text" id="pmfio-iban" name="qr_iban" class="regular-text" value="' . esc_attr( $s['qr_iban'] ) . '" placeholder="CZ65 0800 0000 1920 0014 5399" autocomplete="off">', $auto );
+					self::field( __( 'QR standard', 'payment-matcher-for-fio-bank' ), '', '<span class="pmfio-plain">' . esc_html__( 'CZK orders: QR Platba (Czech banks). EUR orders: PAY by square (Slovak banks). Chosen automatically by the order currency.', 'payment-matcher-for-fio-bank' ) . '</span>' );
 					/* translators: %s: placeholder */
 					self::field( __( 'Message for recipient', 'payment-matcher-for-fio-bank' ), 'pmfio-qmsg', '<input type="text" id="pmfio-qmsg" name="qr_message" class="regular-text" maxlength="60" value="' . esc_attr( $s['qr_message'] ) . '" placeholder="' . esc_attr( sprintf( __( 'Order %s', 'payment-matcher-for-fio-bank' ), '{order_number}' ) ) . '">', sprintf( __( 'Up to 60 characters, without diacritics in the bank. You can use %s.', 'payment-matcher-for-fio-bank' ), '<code>{order_number}</code>' ) );
 					?>
@@ -711,7 +774,7 @@ class PMFIO_Admin {
 					<h2><?php esc_html_e( 'Preview', 'payment-matcher-for-fio-bank' ); ?></h2>
 					<?php if ( $preview ) : ?>
 						<div class="pmfio-preview__code"><?php echo wp_kses( $preview, self::allowed_html() ); ?></div>
-						<p class="pmfio-preview__amount"><?php echo wp_kses_post( wc_price( 1290 ) ); ?> · VS 12345</p>
+						<p class="pmfio-preview__amount"><?php echo wp_kses_post( wc_price( 1290 ) ); ?> · VS 12345 · <?php echo 'pbs' === PMFIO_QR_Payment::format_for( $cur ) ? 'PAY by square' : 'QR Platba'; ?></p>
 						<p class="pmfio-help"><?php esc_html_e( 'Sample order. Try scanning it in your banking app, but do not confirm the payment.', 'payment-matcher-for-fio-bank' ); ?></p>
 					<?php else : ?>
 						<p class="pmfio-warn"><?php esc_html_e( 'No valid account. Fill in the IBAN or the bank-transfer account in WooCommerce.', 'payment-matcher-for-fio-bank' ); ?></p>

@@ -1,6 +1,7 @@
 <?php
 /**
- * Czech "QR Platba" (Short Payment Descriptor) on the thank-you page and in order e-mails.
+ * Payment QR code on the thank-you page and in order e-mails:
+ * Czech "QR Platba" (SPD) for CZK, Slovak "PAY by square" for EUR.
  *
  * @package PaymentMatcherForFioBank
  */
@@ -68,7 +69,29 @@ class PMFIO_QR_Payment {
 	}
 
 	/**
-	 * IBAN used for QR codes: explicit setting first, then the first WooCommerce bank-transfer account.
+	 * IBAN for a currency: the connected Fio account in that currency (payments to it are matched),
+	 * then the IBAN from the QR settings, then the first WooCommerce bank-transfer account.
+	 */
+	public static function iban_for( $currency ) {
+		$fio = self::fio_account( $currency );
+		return '' !== $fio['iban'] ? $fio['iban'] : self::iban();
+	}
+
+	/**
+	 * @return array{iban:string,bic:string}
+	 */
+	public static function fio_account( $currency ) {
+		foreach ( PMFIO_Settings::accounts() as $acc ) {
+			$info = PMFIO_Settings::account_info( $acc['token'] );
+			if ( ! empty( $info['iban'] ) && strtoupper( (string) $currency ) === ( $info['currency'] ?? '' ) && self::valid_iban( $info['iban'] ) ) {
+				return array( 'iban' => $info['iban'], 'bic' => (string) ( $info['bic'] ?? '' ) );
+			}
+		}
+		return array( 'iban' => '', 'bic' => '' );
+	}
+
+	/**
+	 * IBAN from the QR settings, otherwise the first WooCommerce bank-transfer account.
 	 */
 	public static function iban() {
 		$own = strtoupper( preg_replace( '/\s+/', '', (string) PMFIO_Settings::get( 'qr_iban' ) ) );
@@ -116,12 +139,32 @@ class PMFIO_QR_Payment {
 		return str_replace( '{order_number}', $order->get_order_number(), $template );
 	}
 
-	public static function spd_for( WC_Order $order ) {
-		$iban = self::iban();
+	/** Pure: which QR standard to use for a currency. */
+	public static function format_for( $currency ) {
+		return 'EUR' === strtoupper( (string) $currency ) ? 'pbs' : 'spd';
+	}
+
+	/**
+	 * QR payload for any payment: PAY by square for EUR, QR Platba otherwise.
+	 */
+	public static function payload( $iban, $amount, $currency, $vs, $message ) {
 		if ( '' === $iban ) {
 			return '';
 		}
-		return self::spd( $iban, $order->get_total(), $order->get_currency(), $order->get_order_number(), self::message_for( $order ) );
+		if ( 'pbs' === self::format_for( $currency ) ) {
+			$fio = self::fio_account( $currency );
+			return PMFIO_Pay_By_Square::payload( $iban, $amount, $currency, $vs, $message, $fio['iban'] === $iban ? $fio['bic'] : '' );
+		}
+		return self::spd( $iban, $amount, $currency, $vs, $message );
+	}
+
+	public static function payload_for( WC_Order $order ) {
+		return self::payload( self::iban_for( $order->get_currency() ), $order->get_total(), $order->get_currency(), $order->get_order_number(), self::message_for( $order ) );
+	}
+
+	/** Back-compat alias. */
+	public static function spd_for( WC_Order $order ) {
+		return self::payload_for( $order );
 	}
 
 	public static function applies( $order ) {
@@ -141,7 +184,7 @@ class PMFIO_QR_Payment {
 		if ( ! self::applies( $order ) ) {
 			return;
 		}
-		$spd = self::spd_for( $order );
+		$spd = self::payload_for( $order );
 		$svg = '' !== $spd ? PMFIO_QR_Code::svg( $spd, 200 ) : '';
 		if ( '' === $svg ) {
 			return;
@@ -156,7 +199,7 @@ class PMFIO_QR_Payment {
 	}
 
 	public static function email( $order, $sent_to_admin = false, $plain_text = false, $email = null ) {
-		if ( $sent_to_admin || ! self::applies( $order ) || '' === self::spd_for( $order ) ) {
+		if ( $sent_to_admin || ! self::applies( $order ) || '' === self::payload_for( $order ) ) {
 			return;
 		}
 		if ( $plain_text ) {
@@ -181,7 +224,7 @@ class PMFIO_QR_Payment {
 			status_header( 404 );
 			exit;
 		}
-		$png = PMFIO_QR_Code::png( self::spd_for( $order ), 6 );
+		$png = PMFIO_QR_Code::png( self::payload_for( $order ), 6 );
 		if ( '' === $png ) {
 			status_header( 404 );
 			exit;

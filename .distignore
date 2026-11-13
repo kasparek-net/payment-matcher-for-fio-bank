@@ -10,3 +10,4 @@
 /tests
 /languages/build-cs.py
 /.claude
+/languages/build-sk.py

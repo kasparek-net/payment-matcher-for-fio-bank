@@ -6,8 +6,8 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 T = {
-    'Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts and an optional QR payment code (Czech QR Platba).':
-        'Stahuje příchozí platby přes API Fio banky a podle variabilního symbolu označí objednávky na převod jako zaplacené. Ruční přiřazení, připomínky platby, denní přehled, hlídání tokenu a volitelná QR platba.',
+    'Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).':
+        'Stahuje příchozí platby přes API Fio banky a podle variabilního symbolu označí objednávky na převod jako zaplacené. Ruční přiřazení, připomínky platby, denní přehled, hlídání tokenu, více účtů a volitelná QR platba (QR Platba, PAY by square).',
     'Settings': 'Nastavení',
     'Fio payments': 'Fio platby',
     'Paid': 'Zaplaceno',
@@ -258,6 +258,18 @@ T = {
     'Assign to %s': 'Přiřadit k %s',
     'Another order…': 'Jiná objednávka…',
     'Assign…': 'Přiřadit…',
+    'Not downloaded yet': 'Zatím nestaženo',
+    'valid until': 'platný do',
+    'Add another Fio account': 'Přidat další účet Fio',
+    'For example a EUR account next to the CZK one. Create a separate read-only token for that account the same way. Payments from all accounts are matched together.':
+        'Například eurový účet vedle korunového. Pro ten účet vytvořte stejným postupem samostatný token jen pro čtení. Platby ze všech účtů se párují dohromady.',
+    'Other Fio accounts': 'Další účty Fio',
+    'Orders are paid to the connected Fio account in the order’s currency: %s. This field is used only for other currencies.':
+        'Objednávky se platí na připojený účet Fio v měně objednávky: %s. Toto pole se použije jen pro ostatní měny.',
+    'QR standard': 'Formát QR kódu',
+    'CZK orders: QR Platba (Czech banks). EUR orders: PAY by square (Slovak banks). Chosen automatically by the order currency.':
+        'Objednávky v Kč: QR Platba (české banky). Objednávky v eurech: PAY by square (slovenské banky). Vybírá se automaticky podle měny objednávky.',
+    'Fio account': 'Účet Fio',
 }
 
 NBSP = '\u00a0'

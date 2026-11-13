@@ -4,7 +4,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.3
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,7 +30,9 @@ Payment Matcher for Fio Bank downloads incoming payments from your Fio banka acc
 * **Payment reminder** – a standard WooCommerce e-mail sent to the customer after a set number of days without payment.
 * **Token expiry reminder** – set the token’s expiry date and get an e-mail and an admin notice 14 days before.
 * **Personal data** – privacy policy text, WordPress personal data export and erasure, automatic deletion of old payments (12 months by default).
-* **QR payment (QR Platba)** – optional QR code on the thank-you page and in order e-mails. Generated on your server, no external service.
+* **Multiple Fio accounts** – connect e.g. a CZK and a EUR account, each with its own read-only token. Payments from all of them are matched together, each with its own expiry reminder.
+* **QR payment** – optional QR code on the thank-you page and in order e-mails: QR Platba for CZK orders (Czech banks), PAY by square for EUR orders (Slovak banks). The account in the order’s currency is used automatically. Generated on your server, no external service.
+* **Translations** – English, Czech and Slovak.
 
 = Requirements =
 
@@ -74,6 +76,14 @@ The same guide is shown in the plugin settings under “How to get the token”.
 
 WordPress runs scheduled tasks only when someone visits the site. Copy the address from Settings → Automatic checks and let your hosting’s cron open it every 15 minutes. The settings page shows when cron last called it.
 
+= I have a CZK and a EUR account. Does it work? =
+
+Yes. Create a read-only token for each account and add the second one under Settings → Other Fio accounts. EUR orders are matched with payments in EUR, and their QR code (PAY by square) points to the EUR account.
+
+= Does it work with Fio banka in Slovakia? =
+
+It uses the same Fio API, so it should. The PAY by square QR code and the Slovak translation are included. Feedback from Slovak shops is welcome.
+
 = Can I share the token with another Fio plugin? =
 
 It works, because both only read the account, but Fio allows one request per 30 seconds per token. When they collide, one check is skipped and the next one catches up; the plugin does not raise an alert for that. A separate token per plugin and per website is cleaner.
@@ -102,6 +112,12 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.7.0 =
+* New: multiple Fio accounts (e.g. CZK and EUR), each with its own token and expiry date.
+* New: PAY by square QR code for EUR orders; the QR code uses the connected Fio account in the order’s currency.
+* New: Slovak translation.
+* Fio's 30-second limit is now tracked per token.
 
 = 1.6.3 =
 * Payments table: labels of quiet rows (no order, seen, paid earlier) are grey too.

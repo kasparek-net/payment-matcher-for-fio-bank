@@ -7,6 +7,7 @@ $GLOBALS['mails']  = array();
 $GLOBALS['orders'] = array();
 
 function get_option( $k, $d = false ) { return $GLOBALS['opts'][ $k ] ?? $d; }
+function update_option( $k, $v ) { $GLOBALS['opts'][ $k ] = $v; return true; }
 function apply_filters( $h, $v ) { return $v; }
 function __( $s ) { return $s; }
 function esc_html__( $s ) { return $s; }
@@ -98,6 +99,8 @@ class PMFIO_Store {
 require __DIR__ . '/../includes/class-pmfio-settings.php';
 require __DIR__ . '/../includes/class-pmfio-matcher.php';
 require __DIR__ . '/../includes/class-pmfio-qr-code.php';
+require __DIR__ . '/../includes/class-pmfio-pay-by-square.php';
+require __DIR__ . '/../includes/class-pmfio-api.php';
 require __DIR__ . '/../includes/class-pmfio-qr-payment.php';
 require __DIR__ . '/../includes/class-pmfio-runner.php';
 require __DIR__ . '/../includes/class-pmfio-privacy.php';
@@ -231,6 +234,28 @@ check( 'daily first run ever', PMFIO_Cron::daily_due( false, '2026-11-13', 9 ) )
 check( 'retention 12 months', '2025-11-13' === PMFIO_Privacy::cutoff( 12, '2026-11-13' ) );
 check( 'retention 0 = keep', '' === PMFIO_Privacy::cutoff( 0, '2026-11-13' ) );
 check( 'retention min 3 months', '2026-08-13' === PMFIO_Privacy::cutoff( 1, '2026-11-13' ) );
+
+// Multiple accounts
+$GLOBALS['opts']['pmfio_token']          = 'MAIN';
+$GLOBALS['opts']['pmfio_settings']       = array( 'token_expires' => '2027-03-01' );
+$GLOBALS['opts']['pmfio_extra_accounts'] = array( array( 'token' => 'EUR1', 'expires' => '2026-12-24' ), array( 'token' => '' ), 'junk' );
+$acc = PMFIO_Settings::accounts();
+check( 'accounts: main first, invalid extras skipped', 2 === count( $acc ) && 'MAIN' === $acc[0]['token'] && 'EUR1' === $acc[1]['token'] );
+check( 'soonest expiry across accounts', '2026-12-24' === PMFIO_Runner::soonest_expiry( $acc ) );
+check( 'soonest expiry ignores unknown', '' === PMFIO_Runner::soonest_expiry( array( array( 'expires' => '' ) ) ) );
+check( 'per-token API lock', PMFIO_Api::lock_key( 'MAIN' ) !== PMFIO_Api::lock_key( 'EUR1' ) );
+$GLOBALS['opts']['pmfio_account_info'] = array( PMFIO_Settings::token_id( 'EUR1' ) => array( 'iban' => 'SK3112000000198742637541', 'bic' => 'TATRSKBX', 'currency' => 'EUR', 'account' => '2100000000/2010' ) );
+check( 'account label', '2100000000/2010 · EUR' === PMFIO_Settings::account_label( 'EUR1' ) && '' === PMFIO_Settings::account_label( 'MAIN' ) );
+check( 'IBAN by currency from Fio', 'SK3112000000198742637541' === PMFIO_QR_Payment::iban_for( 'EUR' ) );
+check( 'QR format by currency', 'pbs' === PMFIO_QR_Payment::format_for( 'eur' ) && 'spd' === PMFIO_QR_Payment::format_for( 'CZK' ) );
+
+// PAY by square
+$pbs = PMFIO_Pay_By_Square::payload( 'SK3112000000198742637541', 1290.5, 'EUR', '12345', 'Objednávka 12345' );
+check( 'PBS alphabet and header', (bool) preg_match( '/^000[0-9A-V]+$/', $pbs ), $pbs );
+check( 'PBS deterministic', $pbs === PMFIO_Pay_By_Square::payload( 'SK3112000000198742637541', 1290.5, 'EUR', '12345', 'Objednávka 12345' ) );
+check( 'PBS fits QR', is_array( PMFIO_QR_Code::matrix( PMFIO_Pay_By_Square::payload( 'SK3112000000198742637541', 99999.99, 'EUR', '1234567890', str_repeat( 'x', 140 ), 'TATRSKBX' ) ) ) );
+check( 'PBS via QR payment for EUR', 0 === strpos( PMFIO_QR_Payment::payload( 'SK3112000000198742637541', 10, 'EUR', '1', '' ), '000' ) );
+check( 'LZMA empty stream', '0083fffbffffc0000000' === bin2hex( PMFIO_Pay_By_Square::lzma( '' ) ) );
 
 echo $fails ? "\n$fails FAILED\n" : "\nALL PASSED\n";
 exit( $fails ? 1 : 0 );

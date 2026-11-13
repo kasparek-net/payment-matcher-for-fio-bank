@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Payment Matcher for Fio Bank and WooCommerce
  * Plugin URI: https://github.com/kasparek-net/payment-matcher-for-fio-bank
- * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts and an optional QR payment code (Czech QR Platba).
- * Version: 1.6.3
+ * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).
+ * Version: 1.7.0
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PMFIO_VERSION', '1.6.3' );
+define( 'PMFIO_VERSION', '1.7.0' );
 define( 'PMFIO_PLUGIN_FILE', __FILE__ );
 define( 'PMFIO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PMFIO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -34,6 +34,7 @@ require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-store.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-matcher.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-runner.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-qr-code.php';
+require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-pay-by-square.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-qr-payment.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-privacy.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-status.php';

@@ -21,7 +21,7 @@ class PMFIO_Status {
 
 	public static function enabled_for( $order ) {
 		return PMFIO_Settings::is_live()
-			&& '' !== PMFIO_Settings::token()
+			&& PMFIO_Settings::accounts()
 			&& $order instanceof WC_Order
 			&& ! $order->is_paid()
 			&& in_array( $order->get_payment_method(), PMFIO_Settings::list_of( 'gateways' ), true )

@@ -25,7 +25,7 @@ class PMFIO_Runner {
 	}
 
 	public static function schedule() {
-		if ( ! function_exists( 'as_has_scheduled_action' ) || '' === PMFIO_Settings::token() ) {
+		if ( ! function_exists( 'as_has_scheduled_action' ) || ! PMFIO_Settings::accounts() ) {
 			return;
 		}
 		if ( ! as_has_scheduled_action( self::HOOK, array(), self::GROUP ) ) {
@@ -48,21 +48,44 @@ class PMFIO_Runner {
 	 * @return array{ok:bool,message:string,counts:array}
 	 */
 	public static function run() {
-		$token = PMFIO_Settings::token();
-		$days  = max( 1, min( 89, (int) PMFIO_Settings::get( 'days_back' ) ) );
-		$tz    = new DateTimeZone( 'Europe/Prague' );
-		$to    = ( new DateTimeImmutable( 'now', $tz ) )->format( 'Y-m-d' );
-		$from  = ( new DateTimeImmutable( 'now', $tz ) )->modify( '-' . $days . ' days' )->format( 'Y-m-d' );
+		$accounts = PMFIO_Settings::accounts();
+		if ( ! $accounts ) {
+			$err = PMFIO_Api::fetch_statement( '', '', '' );
+			return array( 'ok' => false, 'message' => $err->get_error_message(), 'counts' => array() );
+		}
+		$days   = max( 1, min( 89, (int) PMFIO_Settings::get( 'days_back' ) ) );
+		$tz     = new DateTimeZone( 'Europe/Prague' );
+		$to     = ( new DateTimeImmutable( 'now', $tz ) )->format( 'Y-m-d' );
+		$from   = ( new DateTimeImmutable( 'now', $tz ) )->modify( '-' . $days . ' days' )->format( 'Y-m-d' );
+		$multi  = count( $accounts ) > 1;
+		$list   = array();
+		$errors = array();
+		$busy   = array();
 
-		$list = PMFIO_Api::fetch_period( $token, $from, $to );
-		if ( is_wp_error( $list ) ) {
-			// 409 = another client (e.g. a second plugin sharing the token) asked within 30 s. Transient, not an outage.
-			if ( ! in_array( $list->get_error_code(), array( 'pmfio_locked', 'pmfio_http_409' ), true ) ) {
-				update_option( 'pmfio_last_error', array( 'time' => current_time( 'mysql' ), 'message' => $list->get_error_message() ), false );
-				self::log( 'error', $list->get_error_message() );
-				self::maybe_alert( $list->get_error_message() );
+		foreach ( $accounts as $acc ) {
+			$res   = PMFIO_Api::fetch_statement( $acc['token'], $from, $to );
+			$label = $multi ? ( PMFIO_Settings::account_label( $acc['token'] ) ?: __( 'Fio account', 'payment-matcher-for-fio-bank' ) ) . ': ' : '';
+			if ( is_wp_error( $res ) ) {
+				// 409 = another client (e.g. a second plugin sharing the token) asked within 30 s. Transient, not an outage.
+				if ( in_array( $res->get_error_code(), array( 'pmfio_locked', 'pmfio_http_409' ), true ) ) {
+					$busy[] = $label . $res->get_error_message();
+				} else {
+					$errors[] = $label . $res->get_error_message();
+				}
+				continue;
 			}
-			return array( 'ok' => false, 'message' => $list->get_error_message(), 'counts' => array() );
+			PMFIO_Settings::save_account_info( $acc['token'], $res['info'] );
+			$list = array_merge( $list, $res['transactions'] );
+		}
+
+		if ( $errors ) {
+			$message = implode( ' ', $errors );
+			update_option( 'pmfio_last_error', array( 'time' => current_time( 'mysql' ), 'message' => $message ), false );
+			self::log( 'error', $message );
+			self::maybe_alert( $message );
+		}
+		if ( count( $errors ) + count( $busy ) === count( $accounts ) ) {
+			return array( 'ok' => false, 'message' => implode( ' ', array_merge( $errors, $busy ) ), 'counts' => array() );
 		}
 
 		$live   = PMFIO_Settings::is_live();
@@ -78,8 +101,10 @@ class PMFIO_Runner {
 		}
 
 		update_option( 'pmfio_last_run', array( 'time' => current_time( 'mysql' ), 'ts' => time(), 'movements' => count( $list ), 'counts' => $counts ), false );
-		delete_option( 'pmfio_last_error' );
-		delete_option( 'pmfio_alert_sent' );
+		if ( ! $errors ) {
+			delete_option( 'pmfio_last_error' );
+			delete_option( 'pmfio_alert_sent' );
+		}
 		if ( $counts ) {
 			self::log( 'info', 'Processed: ' . wp_json_encode( $counts ) );
 		}
@@ -88,18 +113,21 @@ class PMFIO_Runner {
 
 		/* translators: 1: downloaded movements, 2: new movements */
 		$msg = sprintf( __( 'Downloaded %1$d movements, %2$d new.', 'payment-matcher-for-fio-bank' ), count( $list ), array_sum( $counts ) );
+		if ( $errors || $busy ) {
+			$msg .= ' ' . implode( ' ', array_merge( $errors, $busy ) );
+		}
 		if ( $reminded ) {
 			/* translators: %d: number of reminders */
 			$msg .= ' ' . sprintf( __( 'Reminders sent: %d.', 'payment-matcher-for-fio-bank' ), $reminded );
 		}
-		return array( 'ok' => true, 'message' => $msg, 'counts' => $counts );
+		return array( 'ok' => ! $errors, 'message' => $msg, 'counts' => $counts );
 	}
 
 	/**
 	 * Problem the shop owner must know about: API error, or no successful run for a long time.
 	 */
 	public static function health_problem() {
-		if ( '' === PMFIO_Settings::token() ) {
+		if ( ! PMFIO_Settings::accounts() ) {
 			return '';
 		}
 		$error = get_option( 'pmfio_last_error' );
@@ -154,17 +182,32 @@ class PMFIO_Runner {
 		return array( 'state' => $days <= $warn_days ? 'soon' : 'ok', 'days' => $days );
 	}
 
-	public static function token_expiry() {
-		if ( '' === PMFIO_Settings::token() ) {
-			return array( 'state' => 'unknown', 'days' => 0 );
+	/**
+	 * Pure: the expiry date that comes first among the accounts ('' when none is known).
+	 */
+	public static function soonest_expiry( array $accounts ) {
+		$dates = array();
+		foreach ( $accounts as $a ) {
+			if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', (string) ( $a['expires'] ?? '' ) ) ) {
+				$dates[] = $a['expires'];
+			}
 		}
-		return self::expiry_state( (string) PMFIO_Settings::get( 'token_expires' ), wp_date( 'Y-m-d' ) );
+		sort( $dates );
+		return $dates ? $dates[0] : '';
 	}
 
-	/** One e-mail per expiry date when the token expires within EXPIRY_WARN_DAYS days. */
+	/**
+	 * @return array{state:string,days:int,date:string}
+	 */
+	public static function token_expiry() {
+		$date = self::soonest_expiry( PMFIO_Settings::accounts() );
+		return array_merge( self::expiry_state( $date, wp_date( 'Y-m-d' ) ), array( 'date' => $date ) );
+	}
+
+	/** One e-mail per expiry date when a token expires within EXPIRY_WARN_DAYS days. */
 	public static function maybe_expiry_alert() {
-		$expires = (string) PMFIO_Settings::get( 'token_expires' );
 		$exp     = self::token_expiry();
+		$expires = $exp['date'];
 		if ( 'soon' !== $exp['state'] || get_option( 'pmfio_expiry_alert' ) === $expires ) {
 			return;
 		}
@@ -294,7 +337,10 @@ class PMFIO_Runner {
 
 	private static function log( $level, $message ) {
 		if ( function_exists( 'wc_get_logger' ) ) {
-			wc_get_logger()->log( $level, PMFIO_Api::mask( $message, PMFIO_Settings::token() ), array( 'source' => 'payment-matcher-for-fio-bank' ) );
+			foreach ( PMFIO_Settings::accounts() as $acc ) {
+				$message = PMFIO_Api::mask( $message, $acc['token'] );
+			}
+			wc_get_logger()->log( $level, $message, array( 'source' => 'payment-matcher-for-fio-bank' ) );
 		}
 	}
 }
