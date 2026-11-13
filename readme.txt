@@ -4,7 +4,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,6 +97,9 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.5.2 =
+* Settings: payment methods and order statuses are chosen with checkboxes by their names; technical options moved to “Advanced settings”.
 
 = 1.5.1 =
 * New: “Paid earlier” result for bank-transfer orders already marked paid by another plugin or by hand (no alert). Transfers to card-paid orders and second payments still need review.

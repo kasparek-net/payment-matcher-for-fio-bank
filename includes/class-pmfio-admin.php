@@ -134,6 +134,12 @@ class PMFIO_Admin {
 		return isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked in guard().
 	}
 
+	/** Sanitized list of keys from a checkbox group. */
+	private static function post_list( $key ) {
+		$raw = isset( $_POST[ $key ] ) ? (array) wp_unslash( $_POST[ $key ] ) : array(); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce checked in guard(), sanitized below.
+		return array_values( array_filter( array_map( 'sanitize_key', $raw ) ) );
+	}
+
 	private static function post_flag( $key ) {
 		return ! empty( $_POST[ $key ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce checked in guard().
 	}
@@ -169,8 +175,8 @@ class PMFIO_Admin {
 
 		$new = array_merge( $curr, array(
 			'mode'          => 'live' === self::post_text( 'mode' ) ? 'live' : 'observe',
-			'gateways'      => self::post_text( 'gateways' ),
-			'statuses'      => self::post_text( 'statuses' ),
+			'gateways'      => implode( ',', self::post_list( 'gateways' ) ),
+			'statuses'      => implode( ',', self::post_list( 'statuses' ) ),
 			'number_meta'   => sanitize_key( self::post_text( 'number_meta' ) ),
 			'days_back'     => self::post_int( 'days_back', 3, 1, 89 ),
 			'notify_email'  => sanitize_email( self::post_text( 'notify_email' ) ),
@@ -179,6 +185,9 @@ class PMFIO_Admin {
 			'token_expires' => self::valid_date( self::post_text( 'token_expires' ) ),
 			'retention'     => self::post_int( 'retention', 12, 0, 120 ),
 		) );
+		if ( '' === $new['gateways'] || '' === $new['statuses'] ) {
+			self::back( __( 'Choose at least one payment method and one order status, nothing was saved.', 'payment-matcher-for-fio-bank' ), 'settings', 'error' );
+		}
 		if ( 'live' === $new['mode'] && ! PMFIO_Settings::is_live() ) {
 			PMFIO_Store::mark_observed_seen();
 			update_option( 'pmfio_live_since', time(), false );
@@ -527,6 +536,46 @@ class PMFIO_Admin {
 		return $out;
 	}
 
+	/** Checkbox per payment method, with the name customers see. */
+	private static function gateway_checkboxes( array $s ) {
+		$chosen   = PMFIO_Settings::list_of( 'gateways' );
+		$gateways = WC()->payment_gateways()->payment_gateways();
+		$out      = '';
+		$shown    = array();
+		foreach ( $gateways as $id => $gw ) {
+			$enabled = 'yes' === $gw->enabled;
+			if ( ! $enabled && ! in_array( $id, $chosen, true ) ) {
+				continue;
+			}
+			$shown[] = $id;
+			$title   = wp_strip_all_tags( $gw->get_title() ?: $gw->get_method_title() );
+			$note    = $enabled ? '' : ' <span class="pmfio-muted">(' . esc_html__( 'turned off in WooCommerce', 'payment-matcher-for-fio-bank' ) . ')</span>';
+			$out    .= '<label class="pmfio-check" title="' . esc_attr( $id ) . '"><input type="checkbox" name="gateways[]" value="' . esc_attr( $id ) . '" ' . checked( in_array( $id, $chosen, true ), true, false ) . '> ' . esc_html( $title ) . $note . '</label>';
+		}
+		foreach ( array_diff( $chosen, $shown ) as $id ) {
+			$out .= '<label class="pmfio-check"><input type="checkbox" name="gateways[]" value="' . esc_attr( $id ) . '" checked> ' . esc_html( $id ) . ' <span class="pmfio-muted">(' . esc_html__( 'not installed', 'payment-matcher-for-fio-bank' ) . ')</span></label>';
+		}
+		return $out;
+	}
+
+	/**
+	 * Status checkboxes. $main = the two usual “waiting for payment” statuses, otherwise the remaining non-final ones.
+	 */
+	private static function status_checkboxes( array $s, $main ) {
+		$chosen = PMFIO_Settings::list_of( 'statuses' );
+		$final  = array( 'processing', 'completed', 'cancelled', 'refunded', 'failed', 'checkout-draft' );
+		$out    = '';
+		foreach ( wc_get_order_statuses() as $key => $label ) {
+			$slug    = 'wc-' === substr( $key, 0, 3 ) ? substr( $key, 3 ) : $key;
+			$is_main = in_array( $slug, array( 'pending', 'on-hold' ), true );
+			if ( $main !== $is_main || ( ! $is_main && in_array( $slug, $final, true ) ) ) {
+				continue;
+			}
+			$out .= '<label class="pmfio-check"><input type="checkbox" name="statuses[]" value="' . esc_attr( $slug ) . '" ' . checked( in_array( $slug, $chosen, true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
+		}
+		return $out;
+	}
+
 	private static function render_settings() {
 		$s       = PMFIO_Settings::all();
 		$has_tok = '' !== PMFIO_Settings::token();
@@ -559,15 +608,23 @@ class PMFIO_Admin {
 			</section>
 
 			<section class="pmfio-panel">
-				<h2><?php esc_html_e( 'Matching', 'payment-matcher-for-fio-bank' ); ?></h2>
+				<h2><?php esc_html_e( 'Which orders to match', 'payment-matcher-for-fio-bank' ); ?></h2>
 				<?php
-				/* translators: %s: list of payment method IDs */
-				self::field( __( 'Payment methods', 'payment-matcher-for-fio-bank' ), 'pmfio-gw', '<input type="text" id="pmfio-gw" name="gateways" class="regular-text" value="' . esc_attr( $s['gateways'] ) . '">', sprintf( __( 'Comma-separated payment method IDs. Active: %s', 'payment-matcher-for-fio-bank' ), '<code>' . esc_html( implode( ', ', $active ) ) . '</code>' ) );
-				self::field( __( 'Order statuses', 'payment-matcher-for-fio-bank' ), 'pmfio-st', '<input type="text" id="pmfio-st" name="statuses" class="regular-text" value="' . esc_attr( $s['statuses'] ) . '">', __( 'Only orders in these statuses are marked as paid (without “wc-”).', 'payment-matcher-for-fio-bank' ) );
-				/* translators: %s: meta key */
-				self::field( __( 'Order number meta key', 'payment-matcher-for-fio-bank' ), 'pmfio-meta', '<input type="text" id="pmfio-meta" name="number_meta" class="regular-text" value="' . esc_attr( $s['number_meta'] ) . '">', sprintf( __( 'For sequential order number plugins (usually %s). If nothing is found, the order ID is tried.', 'payment-matcher-for-fio-bank' ), '<code>_order_number</code>' ) );
-				self::field( __( 'Days to look back', 'payment-matcher-for-fio-bank' ), 'pmfio-days', '<input type="number" id="pmfio-days" name="days_back" min="1" max="89" class="small-text" value="' . esc_attr( $s['days_back'] ) . '">' );
+				self::field( __( 'Payment methods', 'payment-matcher-for-fio-bank' ), '', self::gateway_checkboxes( $s ), __( 'Usually only bank transfer. The plugin marks an order as paid only if the customer chose one of these.', 'payment-matcher-for-fio-bank' ) );
+				self::field( __( 'Order status', 'payment-matcher-for-fio-bank' ), '', self::status_checkboxes( $s, true ), __( 'Orders in these statuses are waiting for the money.', 'payment-matcher-for-fio-bank' ) );
 				?>
+				<details class="pmfio-advanced">
+					<summary><?php esc_html_e( 'Advanced settings', 'payment-matcher-for-fio-bank' ); ?></summary>
+					<?php
+					$more = self::status_checkboxes( $s, false );
+					if ( '' !== $more ) {
+						self::field( __( 'Other statuses', 'payment-matcher-for-fio-bank' ), '', $more, __( 'Only if your shop uses its own status for orders waiting for payment.', 'payment-matcher-for-fio-bank' ) );
+					}
+					/* translators: %s: meta key */
+					self::field( __( 'Where the order number is stored', 'payment-matcher-for-fio-bank' ), 'pmfio-meta', '<input type="text" id="pmfio-meta" name="number_meta" class="regular-text" value="' . esc_attr( $s['number_meta'] ) . '">', sprintf( __( 'Leave as it is. Only for plugins that give orders their own numbers (usually %s). The variable symbol is also compared with the order ID.', 'payment-matcher-for-fio-bank' ), '<code>_order_number</code>' ) );
+					self::field( __( 'Look for payments from the last', 'payment-matcher-for-fio-bank' ), 'pmfio-days', '<input type="number" id="pmfio-days" name="days_back" min="1" max="89" class="small-text" value="' . esc_attr( $s['days_back'] ) . '"> ' . esc_html__( 'days', 'payment-matcher-for-fio-bank' ), __( '3 days are enough for everyday use. More only when comparing with older payments.', 'payment-matcher-for-fio-bank' ) );
+					?>
+				</details>
 			</section>
 
 			<section class="pmfio-panel">

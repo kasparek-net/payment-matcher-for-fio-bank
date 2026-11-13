@@ -229,6 +229,21 @@ T = {
     'Paid earlier (observing)': 'Zaplaceno dříve (jen sleduje)',
     'Re-evaluation is only available while observing.': 'Znovu vyhodnotit jde jen v režimu jen sleduje.',
     'Evaluate again': 'Vyhodnotit znovu',
+    'Choose at least one payment method and one order status, nothing was saved.': 'Vyberte aspoň jednu platební metodu a jeden stav objednávky, nic se neuložilo.',
+    'turned off in WooCommerce': 've WooCommerce vypnutá',
+    'not installed': 'není nainstalovaná',
+    'Which orders to match': 'Které objednávky párovat',
+    'Usually only bank transfer. The plugin marks an order as paid only if the customer chose one of these.': 'Obvykle jen platba převodem. Plugin označí objednávku jako zaplacenou, jen pokud zákazník zvolil jednu z vybraných metod.',
+    'Order status': 'Stav objednávky',
+    'Orders in these statuses are waiting for the money.': 'Objednávky v těchto stavech čekají na peníze.',
+    'Advanced settings': 'Pokročilé nastavení',
+    'Other statuses': 'Další stavy',
+    'Only if your shop uses its own status for orders waiting for payment.': 'Jen pokud e-shop používá pro objednávky čekající na platbu vlastní stav.',
+    'Where the order number is stored': 'Kde je uložené číslo objednávky',
+    'Leave as it is. Only for plugins that give orders their own numbers (usually %s). The variable symbol is also compared with the order ID.': 'Nechte, jak je. Týká se jen pluginů, které objednávkám dávají vlastní čísla (obvykle %s). Variabilní symbol se porovnává i s ID objednávky.',
+    'Look for payments from the last': 'Hledat platby za posledních',
+    'days': 'dní',
+    '3 days are enough for everyday use. More only when comparing with older payments.': 'Pro běžný provoz stačí 3 dny. Víc jen při porovnávání se staršími platbami.',
 }
 
 NBSP = '\u00a0'

@@ -240,6 +240,11 @@
 .pmfio-choice:has(input:checked) { border-color: var(--wp-admin-theme-color, #2271b1); background: var(--pmfio-info-bg); }
 
 .pmfio-check { display: block; margin: 4px 0 8px; }
+.pmfio-muted { color: var(--pmfio-muted); }
+.pmfio-advanced { margin: 4px 0 8px; border-top: 1px solid #f0f0f1; padding-top: 12px; }
+.pmfio-advanced > summary { cursor: pointer; color: var(--wp-admin-theme-color, #2271b1); font-weight: 600; padding: 4px 0; }
+.pmfio-advanced[open] > summary { margin-bottom: 4px; }
+.pmfio-advanced .pmfio-field:first-of-type { border-top: 0; }
 
 .pmfio-qr-layout {
 	display: grid;
