@@ -23,6 +23,22 @@
 	margin: 8px 0 4px;
 }
 
+.pmfio-head__actions {
+	margin-left: auto;
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.pmfio-head__actions form { margin: 0; }
+
+.pmfio-head__actions .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	vertical-align: -3px;
+}
+
 .pmfio-head h1 {
 	margin: 0;
 	padding: 0;
@@ -79,9 +95,24 @@
 .pmfio-card--alert .pmfio-card__value { color: var(--pmfio-bad); }
 
 .pmfio-card__label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
 	font-size: 12px;
 	color: var(--pmfio-muted);
 }
+
+.pmfio-card__label .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: var(--wp-admin-theme-color, #2271b1);
+}
+
+.pmfio-card--alert .pmfio-card__label .dashicons { color: var(--pmfio-bad); }
+.pmfio-card--warn { background: var(--pmfio-warn-bg); border-color: #f0dca8; }
+.pmfio-card--warn .pmfio-card__label .dashicons,
+.pmfio-card--warn .pmfio-card__sub a { color: var(--pmfio-warn); }
 
 .pmfio-card__value {
 	font-size: 24px;
@@ -96,7 +127,6 @@
 	min-height: 16px;
 }
 
-.pmfio-card form { margin-top: 6px; }
 
 .pmfio-callout {
 	margin: 0 0 16px;
@@ -332,6 +362,8 @@
 }
 
 @media (max-width: 782px) {
+	.pmfio-head { flex-wrap: wrap; }
+	.pmfio-head__actions { margin-left: 0; width: 100%; }
 	.pmfio-cards { gap: 10px; }
 	.pmfio-card { padding: 12px 14px; }
 	.pmfio-card__value { font-size: 20px; }

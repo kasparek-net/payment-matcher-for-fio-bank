@@ -250,6 +250,11 @@ T = {
     'Create a new address': 'Vytvořit novou adresu',
     'Automatic checks': 'Automatická kontrola',
     'Most reliable: let your hosting’s cron open this address every 15 minutes (e.g. Blueboard → Cron). The daily summary runs through it too. Without it, the WordPress scheduler is used, which runs only when someone visits the site. Keep the address private.': 'Nejspolehlivější je nechat cron hostingu otevírat tuto adresu každých 15 minut (např. Blueboard → Cron). Spouští i denní přehled. Bez něj se použije plánovač WordPressu, který běží jen při návštěvě webu. Adresu nikomu neposílejte.',
+    'Automatic checks are not running – set up cron': 'Automatická kontrola neběží – nastavte cron',
+    'runs from the server cron': 'běží přes cron serveru',
+    'none yet': 'zatím žádné',
+    'last 30 days – open the list': 'za 30 dní – otevřít seznam',
+    'all fine': 'vše v pořádku',
 }
 
 NBSP = '\u00a0'

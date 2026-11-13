@@ -378,6 +378,22 @@ class PMFIO_Admin {
 			<div class="pmfio-head">
 				<h1><?php esc_html_e( 'Fio payments', 'payment-matcher-for-fio-bank' ); ?></h1>
 				<span class="pmfio-pill pmfio-pill--<?php echo $live ? 'ok' : 'info'; ?> pmfio-pill--lg"><?php echo $live ? esc_html__( 'Live', 'payment-matcher-for-fio-bank' ) : esc_html__( 'Observing only', 'payment-matcher-for-fio-bank' ); ?></span>
+				<?php if ( 'payments' === $tab && '' !== PMFIO_Settings::token() ) : ?>
+					<div class="pmfio-head__actions">
+						<?php if ( ! $live ) : ?>
+							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+								<?php wp_nonce_field( 'pmfio_reevaluate' ); ?>
+								<input type="hidden" name="action" value="pmfio_reevaluate">
+								<button class="button" id="pmfio-reevaluate"><?php esc_html_e( 'Evaluate again', 'payment-matcher-for-fio-bank' ); ?></button>
+							</form>
+						<?php endif; ?>
+						<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+							<?php wp_nonce_field( 'pmfio_run' ); ?>
+							<input type="hidden" name="action" value="pmfio_run">
+							<button class="button button-primary" id="pmfio-run"><span class="dashicons dashicons-update" aria-hidden="true"></span> <?php esc_html_e( 'Check now', 'payment-matcher-for-fio-bank' ); ?></button>
+						</form>
+					</div>
+				<?php endif; ?>
 			</div>
 			<hr class="wp-header-end">
 			<?php if ( $msg ) : ?>
@@ -418,46 +434,44 @@ class PMFIO_Admin {
 			return;
 		}
 		?>
+		<?php
+		$last_ts   = is_array( $last ) ? (int) ( $last['ts'] ?? 0 ) : 0;
+		$last_cron = (int) get_option( PMFIO_Cron::LAST, 0 );
+		$stalled   = ( ! $next || $next < time() - 10 * MINUTE_IN_SECONDS ) && $last_cron < time() - 30 * MINUTE_IN_SECONDS;
+		?>
 		<div class="pmfio-cards">
-			<div class="pmfio-card">
-				<div class="pmfio-card__label"><?php esc_html_e( 'Last check', 'payment-matcher-for-fio-bank' ); ?></div>
-				<div class="pmfio-card__value"><?php echo $last ? esc_html( self::when( $last['time'] ) ) : esc_html__( 'not yet', 'payment-matcher-for-fio-bank' ); ?></div>
+			<div class="pmfio-card<?php echo $stalled ? ' pmfio-card--warn' : ''; ?>">
+				<div class="pmfio-card__label"><span class="dashicons dashicons-clock" aria-hidden="true"></span><?php esc_html_e( 'Last check', 'payment-matcher-for-fio-bank' ); ?></div>
+				<div class="pmfio-card__value"><?php echo $last_ts ? esc_html( self::when( $last['time'] ) ) : esc_html__( 'not yet', 'payment-matcher-for-fio-bank' ); ?></div>
 				<div class="pmfio-card__sub">
 					<?php
-					if ( $next ) {
+					if ( $stalled ) {
+						echo '<a href="' . esc_url( self::page_url( array( 'tab' => 'settings' ) ) . '#pmfio-cron' ) . '">' . esc_html__( 'Automatic checks are not running – set up cron', 'payment-matcher-for-fio-bank' ) . '</a>';
+					} elseif ( $last_cron > time() - 30 * MINUTE_IN_SECONDS ) {
+						esc_html_e( 'runs from the server cron', 'payment-matcher-for-fio-bank' );
+					} elseif ( $next ) {
 						/* translators: %s: time */
 						echo esc_html( sprintf( __( 'next at %s', 'payment-matcher-for-fio-bank' ), wp_date( get_option( 'time_format' ), $next ) ) );
 					}
 					?>
 				</div>
-				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-					<?php wp_nonce_field( 'pmfio_run' ); ?>
-					<input type="hidden" name="action" value="pmfio_run">
-					<button class="button button-small" id="pmfio-run"><?php esc_html_e( 'Check now', 'payment-matcher-for-fio-bank' ); ?></button>
-				</form>
-				<?php if ( ! PMFIO_Settings::is_live() ) : ?>
-					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-						<?php wp_nonce_field( 'pmfio_reevaluate' ); ?>
-						<input type="hidden" name="action" value="pmfio_reevaluate">
-						<button class="button button-small button-link" id="pmfio-reevaluate"><?php esc_html_e( 'Evaluate again', 'payment-matcher-for-fio-bank' ); ?></button>
-					</form>
-				<?php endif; ?>
 			</div>
 			<div class="pmfio-card">
-				<div class="pmfio-card__label"><?php esc_html_e( 'Paid in the last 7 days', 'payment-matcher-for-fio-bank' ); ?></div>
-				<div class="pmfio-card__value"><?php echo wp_kses_post( wc_price( $paid['sum'] ) ); ?></div>
-				<div class="pmfio-card__sub"><?php /* translators: %d: number of payments */ echo esc_html( sprintf( _n( '%d payment', '%d payments', $paid['count'], 'payment-matcher-for-fio-bank' ), $paid['count'] ) ); ?></div>
+				<div class="pmfio-card__label"><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span><?php esc_html_e( 'Paid in the last 7 days', 'payment-matcher-for-fio-bank' ); ?></div>
+				<div class="pmfio-card__value"><?php /* translators: %d: number of payments */ echo esc_html( sprintf( _n( '%d payment', '%d payments', $paid['count'], 'payment-matcher-for-fio-bank' ), $paid['count'] ) ); ?></div>
+				<div class="pmfio-card__sub"><?php echo $paid['count'] ? wp_kses_post( wc_price( $paid['sum'] ) ) : esc_html__( 'none yet', 'payment-matcher-for-fio-bank' ); ?></div>
 			</div>
 			<a class="pmfio-card pmfio-card--link<?php echo $open['count'] ? ' pmfio-card--alert' : ''; ?>" href="<?php echo esc_url( self::page_url( array( 'show' => 'open' ) ) ); ?>">
-				<div class="pmfio-card__label"><?php esc_html_e( 'To review', 'payment-matcher-for-fio-bank' ); ?></div>
+				<div class="pmfio-card__label"><span class="dashicons dashicons-flag" aria-hidden="true"></span><?php esc_html_e( 'To review', 'payment-matcher-for-fio-bank' ); ?></div>
 				<div class="pmfio-card__value"><?php echo (int) $open['count']; ?></div>
-				<div class="pmfio-card__sub"><?php esc_html_e( 'last 30 days', 'payment-matcher-for-fio-bank' ); ?></div>
+				<div class="pmfio-card__sub"><?php echo $open['count'] ? esc_html__( 'last 30 days – open the list', 'payment-matcher-for-fio-bank' ) : esc_html__( 'all fine', 'payment-matcher-for-fio-bank' ); ?></div>
 			</a>
 			<div class="pmfio-card">
-				<div class="pmfio-card__label"><?php esc_html_e( 'Waiting > 3 days', 'payment-matcher-for-fio-bank' ); ?></div>
+				<div class="pmfio-card__label"><span class="dashicons dashicons-hourglass" aria-hidden="true"></span><?php esc_html_e( 'Waiting > 3 days', 'payment-matcher-for-fio-bank' ); ?></div>
 				<div class="pmfio-card__value"><?php echo (int) $waiting; ?></div>
 				<div class="pmfio-card__sub"><?php esc_html_e( 'unpaid bank transfers', 'payment-matcher-for-fio-bank' ); ?></div>
 			</div>
+		</div>
 		</div>
 
 		<?php if ( ! PMFIO_Settings::is_live() ) : ?>

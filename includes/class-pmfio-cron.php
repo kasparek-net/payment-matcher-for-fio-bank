@@ -93,6 +93,10 @@ class PMFIO_Cron {
 	 *     wp pmfio check
 	 */
 	public static function cli_check() {
+		// Fio allows one request per 30 s; on the command line it is friendlier to wait than to fail.
+		for ( $i = 0; $i < 36 && get_transient( PMFIO_Api::LOCK ); $i++ ) {
+			sleep( 1 );
+		}
 		$res = PMFIO_Runner::run();
 		self::maybe_daily();
 		if ( $res['ok'] ) {
