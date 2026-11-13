@@ -43,7 +43,19 @@ class WC_Order {
 	public $notes = array();
 	public $paid_tx = null;
 	public $meta = array();
-	public function __construct( public $id, public $number, public $total, public $status = 'on-hold', public $gateway = 'bacs', public $currency = 'CZK' ) {
+	public $id;
+	public $number;
+	public $total;
+	public $status;
+	public $gateway;
+	public $currency;
+	public function __construct( $id, $number, $total, $status = 'on-hold', $gateway = 'bacs', $currency = 'CZK' ) {
+		$this->id       = $id;
+		$this->number   = $number;
+		$this->total    = $total;
+		$this->status   = $status;
+		$this->gateway  = $gateway;
+		$this->currency = $currency;
 		$this->meta['_order_number'] = (string) $number;
 	}
 	public function get_id() { return $this->id; }

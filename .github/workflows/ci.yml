@@ -13,7 +13,7 @@ jobs:
       matrix:
         php: ["7.4", "8.1", "8.3", "8.4"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -28,7 +28,7 @@ jobs:
     name: Plugin Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build release folder (respects .distignore)
         run: |
           mkdir -p build/payment-matcher-for-fio-bank
