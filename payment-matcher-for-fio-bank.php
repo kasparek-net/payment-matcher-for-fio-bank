@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Payment Matcher for Fio Bank and WooCommerce
+ * Plugin Name: Payment Matcher for Fio Bank
  * Plugin URI: https://github.com/kasparek-net/payment-matcher-for-fio-bank
  * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).
- * Version: 1.7.0
+ * Version: 1.7.1
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PMFIO_VERSION', '1.7.0' );
+define( 'PMFIO_VERSION', '1.7.1' );
 define( 'PMFIO_PLUGIN_FILE', __FILE__ );
 define( 'PMFIO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PMFIO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

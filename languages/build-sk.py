@@ -296,7 +296,7 @@ pot = open(os.path.join(HERE, 'payment-matcher-for-fio-bank.pot'), encoding='utf
 blocks = pot.split('\n\n')
 out = [
     'msgid ""\nmsgstr ""\n'
-    '"Project-Id-Version: Payment Matcher for Fio Bank and WooCommerce\\n"\n'
+    '"Project-Id-Version: Payment Matcher for Fio Bank\\n"\n'
     '"Language: sk_SK\\n"\n'
     '"MIME-Version: 1.0\\n"\n'
     '"Content-Type: text/plain; charset=UTF-8\\n"\n'
@@ -322,7 +322,7 @@ for b in blocks[1:]:
     else:
         tr = T.get(msgid)
         if tr is None:
-            if msgid.startswith('http') or msgid in ('Jakub Kašpárek', 'Payment Matcher for Fio Bank and WooCommerce'):
+            if msgid.startswith('http') or msgid in ('Jakub Kašpárek', 'Payment Matcher for Fio Bank'):
                 continue
             missing.append(msgid)
             continue

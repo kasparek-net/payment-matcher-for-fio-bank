@@ -35,7 +35,7 @@ class PMFIO_Privacy {
 			$text .= esc_html( sprintf( _n( 'We keep these details for %d month and then delete them automatically.', 'We keep these details for %d months and then delete them automatically.', $retention, 'payment-matcher-for-fio-bank' ), $retention ) );
 		}
 		$text .= '</p>';
-		wp_add_privacy_policy_content( __( 'Payment Matcher for Fio Bank and WooCommerce', 'payment-matcher-for-fio-bank' ), wp_kses_post( $text ) );
+		wp_add_privacy_policy_content( __( 'Payment Matcher for Fio Bank', 'payment-matcher-for-fio-bank' ), wp_kses_post( $text ) );
 	}
 
 	public static function register_exporter( $exporters ) {

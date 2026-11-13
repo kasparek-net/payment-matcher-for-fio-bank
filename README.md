@@ -1,4 +1,4 @@
-# Payment Matcher for Fio Bank and WooCommerce
+# Payment Matcher for Fio Bank
 
 Marks WooCommerce bank-transfer orders as paid automatically using the [Fio banka API](https://www.fio.cz/bankovni-sluzby/api-bankovnictvi). See [readme.txt](readme.txt) for the full feature list.
 

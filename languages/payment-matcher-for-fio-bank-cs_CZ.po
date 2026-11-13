@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Payment Matcher for Fio Bank and WooCommerce\n"
+"Project-Id-Version: Payment Matcher for Fio Bank\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"

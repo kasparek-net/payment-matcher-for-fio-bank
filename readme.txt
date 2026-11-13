@@ -1,10 +1,10 @@
-=== Payment Matcher for Fio Bank and WooCommerce ===
+=== Payment Matcher for Fio Bank ===
 Contributors: jakubkasparek
 Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,6 +113,9 @@ No. Only orders created after you switched to live mode get a reminder, and each
 
 == Changelog ==
 
+= 1.7.1 =
+* Plugin name shortened to Payment Matcher for Fio Bank (the slug stays the same).
+
 = 1.7.0 =
 * New: multiple Fio accounts (e.g. CZK and EUR), each with its own token and expiry date.
 * New: PAY by square QR code for EUR orders; the QR code uses the connected Fio account in the order’s currency.
@@ -150,7 +153,7 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * New: privacy policy text, personal data exporter and eraser, automatic deletion of old payments.
 
 = 1.3.0 =
-* Renamed to Payment Matcher for Fio Bank and WooCommerce (slug payment-matcher-for-fio-bank, prefix pmfio).
+* Renamed to Payment Matcher for Fio Bank (slug payment-matcher-for-fio-bank, prefix pmfio).
 * Stricter input sanitizing and output escaping.
 
 = 1.2.0 =
