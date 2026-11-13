@@ -251,7 +251,7 @@ class PMFIO_Runner {
 				'type'           => 'shop_order',
 				'status'         => array( 'wc-on-hold' ),
 				'payment_method' => $gateways,
-				'date_created'   => '<' . ( time() - (int) $days * DAY_IN_SECONDS ),
+				'date_created'   => ( time() - 30 * DAY_IN_SECONDS ) . '...' . ( time() - (int) $days * DAY_IN_SECONDS ),
 				'orderby'        => 'date',
 				'order'          => 'ASC',
 			)

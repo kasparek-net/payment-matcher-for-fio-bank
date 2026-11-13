@@ -192,6 +192,12 @@ check( 'SPD skips non-numeric VS', false === strpos( PMFIO_QR_Payment::spd( 'CZ6
 check( 'QR matrix for SPD', is_array( PMFIO_QR_Code::matrix( $spd ) ) && 0 === strpos( PMFIO_QR_Code::svg( $spd ), '<svg' ) );
 check( 'QR too long -> null', null === PMFIO_QR_Code::matrix( str_repeat( 'x', 300 ) ) );
 
+// Paid by something else (other plugin, by hand)
+$o[1012] = new WC_Order( 1012, 5012, 640.00, 'processing' ); $GLOBALS['orders'] = $o;
+check( 'paid elsewhere -> already_paid, no note', 'already_paid' === PMFIO_Matcher::process( tx( 40, 640, '5012' ), true ) && empty( $o[1012]->notes ) );
+$o[1013] = new WC_Order( 1013, 5013, 640.00, 'processing', 'gpwebpay-crd' ); $GLOBALS['orders'] = $o;
+check( 'transfer to card-paid order -> review', 'review' === PMFIO_Matcher::process( tx( 41, 640, '5013' ), true ) );
+
 // Refunds
 check( 'is_refund within paid', PMFIO_Matcher::is_refund( 1000, 0, -500 ) && PMFIO_Matcher::is_refund( 1000, 500, -500 ) );
 check( 'is_refund over paid -> no', ! PMFIO_Matcher::is_refund( 1000, 600, -500 ) && ! PMFIO_Matcher::is_refund( 0, 0, -100 ) );

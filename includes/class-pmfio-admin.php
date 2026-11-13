@@ -20,6 +20,7 @@ class PMFIO_Admin {
 		add_action( 'admin_post_pmfio_run', array( __CLASS__, 'run_now' ) );
 		add_action( 'admin_post_pmfio_assign', array( __CLASS__, 'assign' ) );
 		add_action( 'admin_post_pmfio_restore', array( __CLASS__, 'restore' ) );
+		add_action( 'admin_post_pmfio_reevaluate', array( __CLASS__, 'reevaluate' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'health_notice' ) );
 		add_action( 'add_meta_boxes', array( __CLASS__, 'meta_box' ) );
 	}
@@ -80,6 +81,8 @@ class PMFIO_Admin {
 			'obs_no_order' => array( __( 'No order (observing)', 'payment-matcher-for-fio-bank' ), 'muted' ),
 			'seen'         => array( __( 'Seen while observing', 'payment-matcher-for-fio-bank' ), 'muted' ),
 			'refund'       => array( __( 'Refunded', 'payment-matcher-for-fio-bank' ), 'info' ),
+			'already_paid'     => array( __( 'Paid earlier', 'payment-matcher-for-fio-bank' ), 'muted' ),
+			'obs_already_paid' => array( __( 'Paid earlier (observing)', 'payment-matcher-for-fio-bank' ), 'muted' ),
 			'obs_refund'   => array( __( 'Refund (observing)', 'payment-matcher-for-fio-bank' ), 'muted' ),
 		);
 	}
@@ -202,6 +205,17 @@ class PMFIO_Admin {
 
 	public static function run_now() {
 		self::guard( 'pmfio_run' );
+		$res = PMFIO_Runner::run();
+		self::back( $res['message'], '', $res['ok'] ? 'success' : 'error' );
+	}
+
+	public static function reevaluate() {
+		self::guard( 'pmfio_reevaluate' );
+		if ( PMFIO_Settings::is_live() ) {
+			self::back( __( 'Re-evaluation is only available while observing.', 'payment-matcher-for-fio-bank' ), '', 'error' );
+		}
+		PMFIO_Store::delete_observed();
+		delete_transient( PMFIO_Api::LOCK );
 		$res = PMFIO_Runner::run();
 		self::back( $res['message'], '', $res['ok'] ? 'success' : 'error' );
 	}
@@ -407,6 +421,13 @@ class PMFIO_Admin {
 					<input type="hidden" name="action" value="pmfio_run">
 					<button class="button button-small" id="pmfio-run"><?php esc_html_e( 'Check now', 'payment-matcher-for-fio-bank' ); ?></button>
 				</form>
+				<?php if ( ! PMFIO_Settings::is_live() ) : ?>
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+						<?php wp_nonce_field( 'pmfio_reevaluate' ); ?>
+						<input type="hidden" name="action" value="pmfio_reevaluate">
+						<button class="button button-small button-link" id="pmfio-reevaluate"><?php esc_html_e( 'Evaluate again', 'payment-matcher-for-fio-bank' ); ?></button>
+					</form>
+				<?php endif; ?>
 			</div>
 			<div class="pmfio-card">
 				<div class="pmfio-card__label"><?php esc_html_e( 'Paid in the last 7 days', 'payment-matcher-for-fio-bank' ); ?></div>

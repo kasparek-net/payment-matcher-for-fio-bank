@@ -91,7 +91,12 @@ class PMFIO_Matcher {
 		if ( ! in_array( $order_info['gateway'], $gateways, true ) ) {
 			return 'review';
 		}
-		if ( ! in_array( $order_info['status'], $statuses, true ) || $order_info['is_paid'] ) {
+		if ( $order_info['is_paid'] ) {
+			// Paid by something else (another plugin, by hand) = this is that payment. If this plugin
+			// already recorded a payment for the order, a second one may be a double payment.
+			return $paid_before > 0 ? 'review' : 'already_paid';
+		}
+		if ( ! in_array( $order_info['status'], $statuses, true ) ) {
 			return 'review';
 		}
 		if ( '' !== $currency && strtoupper( $order_info['currency'] ) !== $currency ) {

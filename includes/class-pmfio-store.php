@@ -110,8 +110,8 @@ class PMFIO_Store {
 	 */
 	public static function groups() {
 		return array(
-			'open'    => array( 'review', 'partial', 'no_order' ),
-			'paid'    => array( 'matched', 'overpaid' ),
+			'open'    => array( 'review', 'partial', 'obs_review', 'obs_partial' ),
+			'paid'    => array( 'matched', 'overpaid', 'already_paid', 'obs_matched', 'obs_overpaid', 'obs_already_paid' ),
 			'nomatch' => array( 'no_order', 'obs_no_order' ),
 		);
 	}
@@ -190,6 +190,12 @@ class PMFIO_Store {
 	 * When switching to live, movements seen while observing were handled by hand
 	 * (or by another plugin), so they must not be processed again.
 	 */
+	/** Observing mode: forget the evaluated rows so the next check evaluates them again. */
+	public static function delete_observed() {
+		global $wpdb;
+		return (int) $wpdb->query( $wpdb->prepare( 'DELETE FROM %i WHERE result LIKE %s', self::table(), $wpdb->esc_like( 'obs_' ) . '%' ) );
+	}
+
 	public static function mark_observed_seen() {
 		global $wpdb;
 		$table = self::table();

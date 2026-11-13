@@ -225,6 +225,10 @@ T = {
     'Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time.': 'Token nikomu neposílejte: kdo ho má, vidí pohyby na účtu. V internetovém bankovnictví ho můžete kdykoli smazat.',
     'Each website needs its own token.': 'Každý web potřebuje vlastní token.',
     'Official Fio guide with a screenshot (PDF, in Czech, pages 4–5)': 'Oficiální návod Fio se screenshotem (PDF, strany 4–5)',
+    'Paid earlier': 'Zaplaceno dříve',
+    'Paid earlier (observing)': 'Zaplaceno dříve (jen sleduje)',
+    'Re-evaluation is only available while observing.': 'Znovu vyhodnotit jde jen v režimu jen sleduje.',
+    'Evaluate again': 'Vyhodnotit znovu',
 }
 
 NBSP = '\u00a0'
