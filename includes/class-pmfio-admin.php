@@ -342,8 +342,9 @@ class PMFIO_Admin {
 		$sug    = $r->suggested_order_id ? wc_get_order( (int) $r->suggested_order_id ) : null;
 		if ( $sug ) {
 			/* translators: %s: order number */
-			$out .= '<form method="post" action="' . $post . '" class="pmfio-act">' . $hidden . '<input type="hidden" name="order_number" value="' . esc_attr( $sug->get_order_number() ) . '">'
-				. '<button class="button button-small button-primary">' . esc_html( sprintf( __( 'Assign to %s', 'payment-matcher-for-fio-bank' ), $sug->get_order_number() ) ) . '</button></form>';
+			$label = sprintf( __( 'Assign to %s', 'payment-matcher-for-fio-bank' ), $sug->get_order_number() );
+			$out  .= '<form method="post" action="' . $post . '" class="pmfio-act">' . $hidden . '<input type="hidden" name="order_number" value="' . esc_attr( $sug->get_order_number() ) . '">'
+				. '<button class="button button-small button-primary">' . esc_html( $label ) . '</button></form>';
 		}
 		$out .= '<details class="pmfio-assign"><summary>' . esc_html( $sug ? __( 'Another order…', 'payment-matcher-for-fio-bank' ) : __( 'Assign…', 'payment-matcher-for-fio-bank' ) ) . '</summary>'
 			. '<form method="post" action="' . $post . '" class="pmfio-act pmfio-act--assign">' . $hidden
