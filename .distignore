@@ -11,3 +11,6 @@
 /languages/build-cs.py
 /.claude
 /languages/build-sk.py
+/languages/*.po
+/languages/*.mo
+/languages/*.l10n.php

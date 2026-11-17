@@ -312,9 +312,10 @@ class PMFIO_Runner {
 		$live_since = (int) get_option( 'pmfio_live_since', 0 );
 		$gateways   = PMFIO_Settings::list_of( 'gateways' );
 		$sent       = 0;
+		$per_run    = max( 1, (int) apply_filters( 'pmfio_reminders_per_run', self::REMINDERS_PER_RUN ) );
 
 		foreach ( self::waiting_orders( $days, 100 ) as $order ) {
-			if ( $sent >= self::REMINDERS_PER_RUN ) {
+			if ( $sent >= $per_run ) {
 				break;
 			}
 			$info = array(

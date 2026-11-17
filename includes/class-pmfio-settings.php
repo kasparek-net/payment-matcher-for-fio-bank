@@ -15,7 +15,6 @@ class PMFIO_Settings {
 	const TOKEN_OPTION = 'pmfio_token';
 	const EXTRA_OPTION = 'pmfio_extra_accounts';
 	const INFO_OPTION  = 'pmfio_account_info';
-	const MAX_EXTRA    = 4;
 
 	public static function defaults() {
 		return array(

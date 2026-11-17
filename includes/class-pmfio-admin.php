@@ -238,7 +238,7 @@ class PMFIO_Admin {
 		}
 		$token = preg_replace( '/[^A-Za-z0-9]/', '', self::post_text( 'extra_token' ) );
 		$known = wp_list_pluck( PMFIO_Settings::accounts(), 'token' );
-		if ( '' !== $token && ! in_array( $token, $known, true ) && count( $list ) < PMFIO_Settings::MAX_EXTRA ) {
+		if ( '' !== $token && ! in_array( $token, $known, true ) ) {
 			$list[] = array( 'token' => $token, 'expires' => wp_date( 'Y-m-d', time() + 180 * DAY_IN_SECONDS ) );
 			update_option( 'pmfio_token_saved', time(), false );
 			delete_option( 'pmfio_last_error' );
@@ -256,11 +256,9 @@ class PMFIO_Admin {
 				. '<label>' . esc_html__( 'valid until', 'payment-matcher-for-fio-bank' ) . ' <input type="date" name="extra_expires[' . (int) $i . ']" value="' . esc_attr( $acc['expires'] ) . '"></label>'
 				. '<label><input type="checkbox" name="extra_delete[]" value="' . (int) $i . '"> ' . esc_html__( 'delete', 'payment-matcher-for-fio-bank' ) . '</label></div>';
 		}
-		if ( count( PMFIO_Settings::extra_accounts() ) < PMFIO_Settings::MAX_EXTRA ) {
-			$out .= '<details class="pmfio-advanced pmfio-add-account"><summary>' . esc_html__( 'Add another Fio account', 'payment-matcher-for-fio-bank' ) . '</summary>'
-				. '<input type="password" id="pmfio-extra-token" name="extra_token" class="regular-text" autocomplete="new-password" placeholder="' . esc_attr__( 'paste the token', 'payment-matcher-for-fio-bank' ) . '">'
-				. '<p class="pmfio-help">' . esc_html__( 'For example a EUR account next to the CZK one. Create a separate read-only token for that account the same way. Payments from all accounts are matched together.', 'payment-matcher-for-fio-bank' ) . '</p></details>';
-		}
+		$out .= '<details class="pmfio-advanced pmfio-add-account"><summary>' . esc_html__( 'Add another Fio account', 'payment-matcher-for-fio-bank' ) . '</summary>'
+			. '<input type="password" id="pmfio-extra-token" name="extra_token" class="regular-text" autocomplete="new-password" placeholder="' . esc_attr__( 'paste the token', 'payment-matcher-for-fio-bank' ) . '">'
+			. '<p class="pmfio-help">' . esc_html__( 'For example a EUR account next to the CZK one. Create a separate read-only token for that account the same way. Payments from all accounts are matched together.', 'payment-matcher-for-fio-bank' ) . '</p></details>';
 		return $out;
 	}
 

@@ -3,7 +3,7 @@
  * Plugin Name: Payment Matcher for Fio Bank
  * Plugin URI: https://github.com/kasparek-net/payment-matcher-for-fio-bank
  * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).
- * Version: 1.7.1
+ * Version: 1.7.2
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PMFIO_VERSION', '1.7.1' );
+define( 'PMFIO_VERSION', '1.7.2' );
 define( 'PMFIO_PLUGIN_FILE', __FILE__ );
 define( 'PMFIO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PMFIO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -51,11 +51,6 @@ add_action( 'before_woocommerce_init', function () {
 	if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
 	}
-} );
-
-add_action( 'init', function () {
-	// Bundled Czech translation until it is approved on translate.wordpress.org.
-	load_plugin_textdomain( 'payment-matcher-for-fio-bank', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- ships a Czech translation.
 } );
 
 add_action( 'plugins_loaded', function () {

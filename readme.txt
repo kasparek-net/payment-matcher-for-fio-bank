@@ -4,7 +4,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ Payment Matcher for Fio Bank downloads incoming payments from your Fio banka acc
 * **Personal data** – privacy policy text, WordPress personal data export and erasure, automatic deletion of old payments (12 months by default).
 * **Multiple Fio accounts** – connect e.g. a CZK and a EUR account, each with its own read-only token. Payments from all of them are matched together, each with its own expiry reminder.
 * **QR payment** – optional QR code on the thank-you page and in order e-mails: QR Platba for CZK orders (Czech banks), PAY by square for EUR orders (Slovak banks). The account in the order’s currency is used automatically. Generated on your server, no external service.
-* **Translations** – English, Czech and Slovak.
+* **Translation-ready** – Czech and Slovak translations are provided through translate.wordpress.org.
 
 = Requirements =
 
@@ -82,7 +82,7 @@ Yes. Create a read-only token for each account and add the second one under Sett
 
 = Does it work with Fio banka in Slovakia? =
 
-It uses the same Fio API, so it should. The PAY by square QR code and the Slovak translation are included. Feedback from Slovak shops is welcome.
+It uses the same Fio API, so it should. The PAY by square QR code is included. Feedback from Slovak shops is welcome.
 
 = Can I share the token with another Fio plugin? =
 
@@ -108,10 +108,15 @@ No. Only orders created after you switched to live mode get a reminder, and each
 
 * `pmfio_payment_matched` ( WC_Order $order, string $result, array $movement ) – an incoming payment was assigned to an order.
 * `pmfio_refund_matched` ( WC_Order $order, float $amount, array $movement ) – an outgoing payment was recorded as a refund.
+* `pmfio_reminders_per_run` – how many payment reminders are sent per check (default 20); the rest are sent on the next check, so a batch of old orders never floods the mail server.
 * `pmfio_status_poll_interval` – how often the thank-you page asks for the status, in milliseconds (default 15000).
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.7.2 =
+* No limit on the number of additional Fio accounts.
+* Translations are no longer bundled; they are delivered from translate.wordpress.org.
 
 = 1.7.1 =
 * Plugin name shortened to Payment Matcher for Fio Bank (the slug stays the same).
