@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Payment Matcher for Fio Bank
- * Plugin URI: https://github.com/kasparek-net/payment-matcher-for-fio-bank
+ * Plugin URI: https://wp.kasparek.app/fio
  * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).
  * Version: 1.7.3
  * Requires at least: 6.4
@@ -27,7 +27,7 @@ define( 'PMFIO_VERSION', '1.7.3' );
 define( 'PMFIO_PLUGIN_FILE', __FILE__ );
 define( 'PMFIO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PMFIO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'PMFIO_DONATE_URL', 'https://kasparek-net.github.io/payment-matcher-for-fio-bank/' );
+define( 'PMFIO_DONATE_URL', 'https://wp.kasparek.app/fio#podpora' );
 
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-settings.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-api.php';

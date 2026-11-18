@@ -1,6 +1,6 @@
 === Payment Matcher for Fio Bank ===
 Contributors: jakubkasparek
-Donate link: https://kasparek-net.github.io/payment-matcher-for-fio-bank/
+Donate link: https://wp.kasparek.app/fio#podpora
 Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
