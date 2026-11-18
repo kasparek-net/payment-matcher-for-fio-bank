@@ -1,9 +1,6 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Payment Matcher for Fio Bank\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/payment-matcher-"
-"for-fio-bank\n"
-"POT-Creation-Date: 2026-11-18T16:39:04+00:00\n"
 "Language: sk_SK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,7 +9,8 @@ msgstr ""
 "X-Domain: payment-matcher-for-fio-bank\n"
 
 #. Plugin Name of the plugin
-#: payment-matcher-for-fio-bank.php includes/class-pmfio-privacy.php:38
+#: payment-matcher-for-fio-bank.php
+#: includes/class-pmfio-privacy.php:38
 msgid "Payment Matcher for Fio Bank"
 msgstr "Payment Matcher for Fio Bank"
 
@@ -23,16 +21,8 @@ msgstr "https://github.com/kasparek-net/payment-matcher-for-fio-bank"
 
 #. Description of the plugin
 #: payment-matcher-for-fio-bank.php
-msgid ""
-"Downloads incoming payments from the Fio banka API and marks bank-transfer "
-"orders as paid by variable symbol. Manual assignment, payment reminders, "
-"daily summary, token health alerts, multiple accounts and an optional QR "
-"payment code (QR Platba, PAY by square)."
-msgstr ""
-"Sťahuje prichádzajúce platby cez API Fio banky a podľa variabilného symbolu "
-"označí objednávky na prevod ako zaplatené. Ručné priradenie, pripomienky "
-"platby, denný prehľad, stráženie tokenu, viac účtov a voliteľný QR kód na "
-"platbu (PAY by square, QR Platba)."
+msgid "Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square)."
+msgstr "Sťahuje prichádzajúce platby cez API Fio banky a podľa variabilného symbolu označí objednávky na prevod ako zaplatené. Ručné priradenie, pripomienky platby, denný prehľad, stráženie tokenu, viac účtov a voliteľný QR kód na platbu (PAY by square, QR Platba)."
 
 #. Author of the plugin
 #: payment-matcher-for-fio-bank.php
@@ -44,12 +34,14 @@ msgstr "Jakub Kašpárek"
 msgid "https://github.com/kasparek-net"
 msgstr "https://github.com/kasparek-net"
 
-#: includes/class-pmfio-admin.php:55 includes/class-pmfio-admin.php:322
+#: includes/class-pmfio-admin.php:55
+#: includes/class-pmfio-admin.php:322
 #: includes/class-pmfio-admin.php:425
 msgid "Fio payments"
 msgstr "Fio platby"
 
-#: includes/class-pmfio-admin.php:72 includes/class-pmfio-admin.php:531
+#: includes/class-pmfio-admin.php:72
+#: includes/class-pmfio-admin.php:532
 msgid "Paid"
 msgstr "Zaplatené"
 
@@ -61,12 +53,15 @@ msgstr "Zaplatené, preplatok"
 msgid "Underpayment"
 msgstr "Nedoplatok"
 
-#: includes/class-pmfio-admin.php:75 includes/class-pmfio-admin.php:511
-#: includes/class-pmfio-admin.php:530 includes/class-pmfio-runner.php:265
+#: includes/class-pmfio-admin.php:75
+#: includes/class-pmfio-admin.php:512
+#: includes/class-pmfio-admin.php:531
+#: includes/class-pmfio-runner.php:265
 msgid "To review"
 msgstr "Na kontrolu"
 
-#: includes/class-pmfio-admin.php:76 includes/class-pmfio-admin.php:532
+#: includes/class-pmfio-admin.php:76
+#: includes/class-pmfio-admin.php:533
 msgid "No order"
 msgstr "Bez objednávky"
 
@@ -118,16 +113,14 @@ msgstr "Na túto akciu nemáte oprávnenie."
 msgid "The IBAN is not valid, nothing was saved."
 msgstr "IBAN nie je platný, nič sa neuložilo."
 
-#: includes/class-pmfio-admin.php:177 includes/class-pmfio-admin.php:224
+#: includes/class-pmfio-admin.php:177
+#: includes/class-pmfio-admin.php:224
 msgid "Saved."
 msgstr "Uložené."
 
 #: includes/class-pmfio-admin.php:193
-msgid ""
-"Choose at least one payment method and one order status, nothing was saved."
-msgstr ""
-"Vyberte aspoň jednu platobnú metódu a jeden stav objednávky, nič sa "
-"neuložilo."
+msgid "Choose at least one payment method and one order status, nothing was saved."
+msgstr "Vyberte aspoň jednu platobnú metódu a jeden stav objednávky, nič sa neuložilo."
 
 #: includes/class-pmfio-admin.php:204
 msgid "A new cron address was created. Update it in your hosting’s cron."
@@ -141,7 +134,8 @@ msgstr "Zatiaľ nestiahnuté"
 msgid "valid until"
 msgstr "platný do"
 
-#: includes/class-pmfio-admin.php:257 includes/class-pmfio-admin.php:663
+#: includes/class-pmfio-admin.php:257
+#: includes/class-pmfio-admin.php:664
 msgid "delete"
 msgstr "zmazať"
 
@@ -149,19 +143,14 @@ msgstr "zmazať"
 msgid "Add another Fio account"
 msgstr "Pridať ďalší účet Fio"
 
-#: includes/class-pmfio-admin.php:260 includes/class-pmfio-admin.php:660
+#: includes/class-pmfio-admin.php:260
+#: includes/class-pmfio-admin.php:661
 msgid "paste the token"
 msgstr "vložte token"
 
 #: includes/class-pmfio-admin.php:261
-msgid ""
-"For example a EUR account next to the CZK one. Create a separate read-only "
-"token for that account the same way. Payments from all accounts are matched "
-"together."
-msgstr ""
-"Napríklad korunový účet vedľa eurového. Pre ten účet vytvorte rovnakým "
-"postupom samostatný token len na čítanie. Platby zo všetkých účtov sa párujú "
-"spolu."
+msgid "For example a EUR account next to the CZK one. Create a separate read-only token for that account the same way. Payments from all accounts are matched together."
+msgstr "Napríklad korunový účet vedľa eurového. Pre ten účet vytvorte rovnakým postupom samostatný token len na čítanie. Platby zo všetkých účtov sa párujú spolu."
 
 #: includes/class-pmfio-admin.php:274
 msgid "Re-evaluation is only available while observing."
@@ -184,14 +173,11 @@ msgid "The Fio API token expires on %s."
 msgstr "Token Fio API vyprší %s."
 
 #: includes/class-pmfio-admin.php:311
-msgid ""
-"Log in to Fio internet banking to extend it (automatic renewal), or create a "
-"new token, then update the date."
-msgstr ""
-"Prihláste sa do internetbankingu Fio, tým sa token predĺži (pri automatickom "
-"predlžovaní), alebo vytvorte nový a potom upravte dátum."
+msgid "Log in to Fio internet banking to extend it (automatic renewal), or create a new token, then update the date."
+msgstr "Prihláste sa do internetbankingu Fio, tým sa token predĺži (pri automatickom predlžovaní), alebo vytvorte nový a potom upravte dátum."
 
-#: includes/class-pmfio-admin.php:311 includes/class-pmfio-admin.php:479
+#: includes/class-pmfio-admin.php:311
+#: includes/class-pmfio-admin.php:480
 #: includes/class-pmfio-runner.php:222
 msgid "Open settings"
 msgstr "Otvoriť nastavenia"
@@ -200,13 +186,15 @@ msgstr "Otvoriť nastavenia"
 msgid "Fio payment matching is not working:"
 msgstr "Párovanie platieb z Fio nefunguje:"
 
-#: includes/class-pmfio-admin.php:317 includes/class-pmfio-runner.php:162
+#: includes/class-pmfio-admin.php:317
+#: includes/class-pmfio-runner.php:162
 #: includes/class-pmfio-runner.php:279
 msgid "Open Fio payments"
 msgstr "Otvoriť Fio platby"
 
 #. translators: %d: number of days
-#: includes/class-pmfio-admin.php:327 includes/class-pmfio-runner.php:275
+#: includes/class-pmfio-admin.php:327
+#: includes/class-pmfio-runner.php:275
 #, php-format
 msgid "%d day"
 msgid_plural "%d days"
@@ -264,19 +252,23 @@ msgstr "Priradiť"
 msgid "Payments"
 msgstr "Platby"
 
-#: includes/class-pmfio-admin.php:413 payment-matcher-for-fio-bank.php:80
+#: includes/class-pmfio-admin.php:413
+#: payment-matcher-for-fio-bank.php:81
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: includes/class-pmfio-admin.php:414 includes/class-pmfio-qr-payment.php:209
+#: includes/class-pmfio-admin.php:414
+#: includes/class-pmfio-qr-payment.php:209
 msgid "QR payment"
 msgstr "QR platba"
 
-#: includes/class-pmfio-admin.php:426 includes/class-pmfio-admin.php:669
+#: includes/class-pmfio-admin.php:426
+#: includes/class-pmfio-admin.php:670
 msgid "Live"
 msgstr "Ostrá prevádzka"
 
-#: includes/class-pmfio-admin.php:426 includes/class-pmfio-admin.php:668
+#: includes/class-pmfio-admin.php:426
+#: includes/class-pmfio-admin.php:669
 msgid "Observing only"
 msgstr "Len sleduje"
 
@@ -288,38 +280,46 @@ msgstr "Vyhodnotiť znova"
 msgid "Check now"
 msgstr "Skontrolovať teraz"
 
-#: includes/class-pmfio-admin.php:479
+#: includes/class-pmfio-admin.php:462
+msgid "This plugin is free. Does it save you time?"
+msgstr "Plugin je zadarmo. Šetrí vám čas?"
+
+#: includes/class-pmfio-admin.php:462
+msgid "Support its development"
+msgstr "Podporte jeho vývoj"
+
+#: includes/class-pmfio-admin.php:480
 msgid "Connect your Fio account"
 msgstr "Pripojte účet vo Fio banke"
 
-#: includes/class-pmfio-admin.php:490
+#: includes/class-pmfio-admin.php:491
 msgid "Last check"
 msgstr "Posledná kontrola"
 
-#: includes/class-pmfio-admin.php:491
+#: includes/class-pmfio-admin.php:492
 msgid "not yet"
 msgstr "zatiaľ nie"
 
-#: includes/class-pmfio-admin.php:495
+#: includes/class-pmfio-admin.php:496
 msgid "Automatic checks are not running – set up cron"
 msgstr "Automatická kontrola nebeží – nastavte cron"
 
-#: includes/class-pmfio-admin.php:497
+#: includes/class-pmfio-admin.php:498
 msgid "runs from the server cron"
 msgstr "beží cez cron servera"
 
 #. translators: %s: time
-#: includes/class-pmfio-admin.php:500
+#: includes/class-pmfio-admin.php:501
 #, php-format
 msgid "next at %s"
 msgstr "ďalšia o %s"
 
-#: includes/class-pmfio-admin.php:506
+#: includes/class-pmfio-admin.php:507
 msgid "Paid in the last 7 days"
 msgstr "Zaplatené za 7 dní"
 
 #. translators: %d: number of payments
-#: includes/class-pmfio-admin.php:507
+#: includes/class-pmfio-admin.php:508
 #, php-format
 msgid "%d payment"
 msgid_plural "%d payments"
@@ -328,513 +328,415 @@ msgstr[1] "%d platby"
 msgstr[2] "%d platieb"
 
 #. translators: %d: number of payments
-#: includes/class-pmfio-admin.php:508
+#: includes/class-pmfio-admin.php:509
 msgid "none yet"
 msgstr "zatiaľ žiadne"
 
-#: includes/class-pmfio-admin.php:513
+#: includes/class-pmfio-admin.php:514
 msgid "last 30 days – open the list"
 msgstr "za 30 dní – otvoriť zoznam"
 
-#: includes/class-pmfio-admin.php:513
+#: includes/class-pmfio-admin.php:514
 msgid "all fine"
 msgstr "všetko v poriadku"
 
-#: includes/class-pmfio-admin.php:516
+#: includes/class-pmfio-admin.php:517
 msgid "Waiting > 3 days"
 msgstr "Čaká dlhšie ako 3 dni"
 
-#: includes/class-pmfio-admin.php:518
+#: includes/class-pmfio-admin.php:519
 msgid "unpaid bank transfers"
 msgstr "nezaplatené prevody"
 
-#: includes/class-pmfio-admin.php:523
-msgid ""
-"Observing only: payments are downloaded and listed below, but orders are not "
-"changed automatically and nothing is sent. Manual “Assign” always applies "
-"for real."
-msgstr ""
-"Režim len sleduje: platby sa sťahujú a zapisujú do tabuľky nižšie, ale "
-"objednávky sa samy nemenia a nič sa neposiela. Ručné „Priradiť“ platí vždy "
-"naostro."
+#: includes/class-pmfio-admin.php:524
+msgid "Observing only: payments are downloaded and listed below, but orders are not changed automatically and nothing is sent. Manual “Assign” always applies for real."
+msgstr "Režim len sleduje: platby sa sťahujú a zapisujú do tabuľky nižšie, ale objednávky sa samy nemenia a nič sa neposiela. Ručné „Priradiť“ platí vždy naostro."
 
-#: includes/class-pmfio-admin.php:529
+#: includes/class-pmfio-admin.php:530
 msgid "All"
 msgstr "Všetko"
 
-#: includes/class-pmfio-admin.php:544 includes/class-pmfio-admin.php:558
+#: includes/class-pmfio-admin.php:545
+#: includes/class-pmfio-admin.php:559
 #: includes/class-pmfio-privacy.php:79
 msgid "Date"
 msgstr "Dátum"
 
-#: includes/class-pmfio-admin.php:545 includes/class-pmfio-admin.php:559
+#: includes/class-pmfio-admin.php:546
+#: includes/class-pmfio-admin.php:560
 #: includes/class-pmfio-privacy.php:80
 msgid "Amount"
 msgstr "Suma"
 
-#: includes/class-pmfio-admin.php:546 includes/class-pmfio-admin.php:560
+#: includes/class-pmfio-admin.php:547
+#: includes/class-pmfio-admin.php:561
 msgid "VS"
 msgstr "VS"
 
-#: includes/class-pmfio-admin.php:547 includes/class-pmfio-admin.php:561
+#: includes/class-pmfio-admin.php:548
+#: includes/class-pmfio-admin.php:562
 msgid "From"
 msgstr "Od"
 
-#: includes/class-pmfio-admin.php:548 includes/class-pmfio-admin.php:566
+#: includes/class-pmfio-admin.php:549
+#: includes/class-pmfio-admin.php:567
 #: includes/class-pmfio-privacy.php:81
 msgid "Order"
 msgstr "Objednávka"
 
-#: includes/class-pmfio-admin.php:549 includes/class-pmfio-admin.php:567
+#: includes/class-pmfio-admin.php:550
+#: includes/class-pmfio-admin.php:568
 msgid "Result"
 msgstr "Výsledok"
 
-#: includes/class-pmfio-admin.php:550
+#: includes/class-pmfio-admin.php:551
 msgid "Actions"
 msgstr "Akcie"
 
-#: includes/class-pmfio-admin.php:554
+#: includes/class-pmfio-admin.php:555
 msgid "No incoming payments yet."
 msgstr "Zatiaľ žiadne prichádzajúce platby."
 
-#: includes/class-pmfio-admin.php:587
+#: includes/class-pmfio-admin.php:588
 msgid "Log in to Fio internet banking (ib.fio.cz)."
 msgstr "Prihláste sa do internetbankingu Fio (ib.fio.sk)."
 
-#: includes/class-pmfio-admin.php:588
+#: includes/class-pmfio-admin.php:589
 msgid "Open Settings → API."
 msgstr "Otvorte Nastavenia → API."
 
-#: includes/class-pmfio-admin.php:589
-msgid ""
-"Choose the account that receives payments for orders and click “Add new "
-"token”. Enter a name, e.g. the website address."
-msgstr ""
-"Vyberte účet, na ktorý chodia platby za objednávky, a kliknite na „Pridať "
-"nový token“. Zadajte názov, napríklad adresu webu."
-
 #: includes/class-pmfio-admin.php:590
-msgid ""
-"Choose the type “Account monitoring only” (read-only). The plugin never "
-"needs to send payments."
-msgstr ""
-"Zvoľte typ „Iba sledovať účet“ (len na čítanie). Plugin nikdy nepotrebuje "
-"platby odosielať."
+msgid "Choose the account that receives payments for orders and click “Add new token”. Enter a name, e.g. the website address."
+msgstr "Vyberte účet, na ktorý chodia platby za objednávky, a kliknite na „Pridať nový token“. Zadajte názov, napríklad adresu webu."
 
 #: includes/class-pmfio-admin.php:591
-msgid ""
-"Set the validity to the maximum (180 days) and turn on automatic renewal – "
-"every login to internet banking then extends it."
-msgstr ""
-"Nastavte platnosť na maximum (180 dní) a zapnite automatické predlžovanie – "
-"každé prihlásenie do internetbankingu ju potom predĺži."
+msgid "Choose the type “Account monitoring only” (read-only). The plugin never needs to send payments."
+msgstr "Zvoľte typ „Iba sledovať účet“ (len na čítanie). Plugin nikdy nepotrebuje platby odosielať."
 
 #: includes/class-pmfio-admin.php:592
-msgid ""
-"Confirm with SMS or the Smartbanking app. The token works about 5 minutes "
-"after confirmation."
-msgstr ""
-"Potvrďte SMS alebo v aplikácii Smartbanking. Token začne fungovať asi "
-"5 minút po potvrdení."
+msgid "Set the validity to the maximum (180 days) and turn on automatic renewal – every login to internet banking then extends it."
+msgstr "Nastavte platnosť na maximum (180 dní) a zapnite automatické predlžovanie – každé prihlásenie do internetbankingu ju potom predĺži."
 
 #: includes/class-pmfio-admin.php:593
-msgid ""
-"Click “Show full token”, copy all 64 characters, paste them in the plugin "
-"settings and save."
-msgstr ""
-"Kliknite na „Zobraziť celý token“, skopírujte všetkých 64 znakov, vložte ich "
-"do nastavení pluginu a uložte."
+msgid "Confirm with SMS or the Smartbanking app. The token works about 5 minutes after confirmation."
+msgstr "Potvrďte SMS alebo v aplikácii Smartbanking. Token začne fungovať asi 5 minút po potvrdení."
 
-#: includes/class-pmfio-admin.php:595
+#: includes/class-pmfio-admin.php:594
+msgid "Click “Show full token”, copy all 64 characters, paste them in the plugin settings and save."
+msgstr "Kliknite na „Zobraziť celý token“, skopírujte všetkých 64 znakov, vložte ich do nastavení pluginu a uložte."
+
+#: includes/class-pmfio-admin.php:596
 msgid "How to get the token"
 msgstr "Ako získať token"
 
-#: includes/class-pmfio-admin.php:599
+#: includes/class-pmfio-admin.php:600
 msgid "Official Fio guide with a screenshot (PDF, in Czech, pages 4–5)"
 msgstr "Oficiálny návod Fio so snímkou obrazovky (PDF v češtine, strany 4–5)"
 
-#: includes/class-pmfio-admin.php:599
-msgid ""
-"Keep the token private: anyone who has it can read the account’s movements. "
-"You can delete it in internet banking at any time."
-msgstr ""
-"Token nikomu neposielajte: kto ho má, vidí pohyby na účte. "
-"V internetbankingu ho môžete kedykoľvek zmazať."
+#: includes/class-pmfio-admin.php:600
+msgid "Keep the token private: anyone who has it can read the account’s movements. You can delete it in internet banking at any time."
+msgstr "Token nikomu neposielajte: kto ho má, vidí pohyby na účte. V internetbankingu ho môžete kedykoľvek zmazať."
 
-#: includes/class-pmfio-admin.php:616
+#: includes/class-pmfio-admin.php:617
 msgid "turned off in WooCommerce"
 msgstr "vo WooCommerce vypnutá"
 
-#: includes/class-pmfio-admin.php:620
+#: includes/class-pmfio-admin.php:621
 msgid "not installed"
 msgstr "nie je nainštalovaná"
 
-#: includes/class-pmfio-admin.php:655
+#: includes/class-pmfio-admin.php:656
 msgid "Connection"
 msgstr "Pripojenie"
 
-#: includes/class-pmfio-admin.php:658 includes/class-pmfio-admin.php:666
+#: includes/class-pmfio-admin.php:659
+#: includes/class-pmfio-admin.php:667
 msgid "Fio API token"
 msgstr "Token Fio API"
 
-#: includes/class-pmfio-admin.php:658
+#: includes/class-pmfio-admin.php:659
 msgid "Set in wp-config.php (constant PMFIO_FIO_TOKEN)."
 msgstr "Nastavené vo wp-config.php (konštanta PMFIO_FIO_TOKEN)."
 
-#: includes/class-pmfio-admin.php:660
+#: includes/class-pmfio-admin.php:661
 msgid "saved – paste a new one to replace it"
 msgstr "uložený – na zmenu vložte nový"
 
-#: includes/class-pmfio-admin.php:663
+#: includes/class-pmfio-admin.php:664
 msgid "Token saved."
 msgstr "Token je uložený."
 
-#: includes/class-pmfio-admin.php:666
+#: includes/class-pmfio-admin.php:667
 msgid "Each website needs its own token."
 msgstr "Každý web potrebuje vlastný token."
 
-#: includes/class-pmfio-admin.php:668
+#: includes/class-pmfio-admin.php:669
 msgid "Downloads and lists payments, changes nothing."
 msgstr "Sťahuje a vypisuje platby, nič nemení."
 
-#: includes/class-pmfio-admin.php:669
-msgid ""
-"Paid orders move to “Processing” and the customer gets the usual e-mail."
-msgstr ""
-"Zaplatené objednávky prejdú do stavu „Spracováva sa“ a zákazník dostane "
-"bežný e-mail."
-
 #: includes/class-pmfio-admin.php:670
+msgid "Paid orders move to “Processing” and the customer gets the usual e-mail."
+msgstr "Zaplatené objednávky prejdú do stavu „Spracováva sa“ a zákazník dostane bežný e-mail."
+
+#: includes/class-pmfio-admin.php:671
 msgid "Mode"
 msgstr "Režim"
 
-#: includes/class-pmfio-admin.php:671
+#: includes/class-pmfio-admin.php:672
 msgid "Token valid until"
 msgstr "Token platí do"
 
-#: includes/class-pmfio-admin.php:671
-msgid ""
-"Shown in Fio internet banking next to the token. Filled in as +180 days when "
-"you save a new token. You get an e-mail and an admin notice 14 days before "
-"it expires."
-msgstr ""
-"Nájdete ho v internetbankingu Fio pri tokene. Pri uložení nového tokenu sa "
-"vyplní +180 dní. 14 dní vopred príde e-mail a upozornenie v administrácii."
+#: includes/class-pmfio-admin.php:672
+msgid "Shown in Fio internet banking next to the token. Filled in as +180 days when you save a new token. You get an e-mail and an admin notice 14 days before it expires."
+msgstr "Nájdete ho v internetbankingu Fio pri tokene. Pri uložení nového tokenu sa vyplní +180 dní. 14 dní vopred príde e-mail a upozornenie v administrácii."
 
-#: includes/class-pmfio-admin.php:673
+#: includes/class-pmfio-admin.php:674
 msgid "Other Fio accounts"
 msgstr "Ďalšie účty Fio"
 
 #. translators: %s: date and time
-#: includes/class-pmfio-admin.php:678
+#: includes/class-pmfio-admin.php:679
 #, php-format
 msgid "Last called by cron: %s"
 msgstr "Cron naposledy zavolal: %s"
 
-#: includes/class-pmfio-admin.php:679
-msgid ""
-"Not called by cron yet. Until then the WordPress scheduler runs the checks."
+#: includes/class-pmfio-admin.php:680
+msgid "Not called by cron yet. Until then the WordPress scheduler runs the checks."
 msgstr "Cron zatiaľ nevolal. Dovtedy kontroly spúšťa plánovač WordPressu."
 
-#: includes/class-pmfio-admin.php:681
+#: includes/class-pmfio-admin.php:682
 msgid "Create a new address"
 msgstr "Vytvoriť novú adresu"
 
-#: includes/class-pmfio-admin.php:682
+#: includes/class-pmfio-admin.php:683
 msgid "Automatic checks"
 msgstr "Automatická kontrola"
 
-#: includes/class-pmfio-admin.php:682
-msgid ""
-"Most reliable: let your hosting’s cron open this address every 15 minutes "
-"(e.g. Blueboard → Cron). The daily summary runs through it too. Without it, "
-"the WordPress scheduler is used, which runs only when someone visits the "
-"site. Keep the address private."
-msgstr ""
-"Najspoľahlivejšie je nechať cron hostingu otvárať túto adresu každých "
-"15 minút (napr. v administrácii hostingu → Cron). Spúšťa aj denný prehľad. "
-"Bez neho sa použije plánovač WordPressu, ktorý beží len pri návšteve webu. "
-"Adresu nikomu neposielajte."
+#: includes/class-pmfio-admin.php:683
+msgid "Most reliable: let your hosting’s cron open this address every 15 minutes (e.g. Blueboard → Cron). The daily summary runs through it too. Without it, the WordPress scheduler is used, which runs only when someone visits the site. Keep the address private."
+msgstr "Najspoľahlivejšie je nechať cron hostingu otvárať túto adresu každých 15 minút (napr. v administrácii hostingu → Cron). Spúšťa aj denný prehľad. Bez neho sa použije plánovač WordPressu, ktorý beží len pri návšteve webu. Adresu nikomu neposielajte."
 
-#: includes/class-pmfio-admin.php:687
+#: includes/class-pmfio-admin.php:688
 msgid "Which orders to match"
 msgstr "Ktoré objednávky párovať"
 
-#: includes/class-pmfio-admin.php:689
+#: includes/class-pmfio-admin.php:690
 msgid "Payment methods"
 msgstr "Platobné metódy"
 
-#: includes/class-pmfio-admin.php:689
-msgid ""
-"Usually only bank transfer. The plugin marks an order as paid only if the "
-"customer chose one of these."
-msgstr ""
-"Zvyčajne len platba prevodom. Plugin označí objednávku ako zaplatenú, len ak "
-"zákazník zvolil jednu z vybraných metód."
-
 #: includes/class-pmfio-admin.php:690
+msgid "Usually only bank transfer. The plugin marks an order as paid only if the customer chose one of these."
+msgstr "Zvyčajne len platba prevodom. Plugin označí objednávku ako zaplatenú, len ak zákazník zvolil jednu z vybraných metód."
+
+#: includes/class-pmfio-admin.php:691
 msgid "Order status"
 msgstr "Stav objednávky"
 
-#: includes/class-pmfio-admin.php:690
+#: includes/class-pmfio-admin.php:691
 msgid "Orders in these statuses are waiting for the money."
 msgstr "Objednávky v týchto stavoch čakajú na peniaze."
 
-#: includes/class-pmfio-admin.php:693
+#: includes/class-pmfio-admin.php:694
 msgid "Advanced settings"
 msgstr "Pokročilé nastavenia"
 
-#: includes/class-pmfio-admin.php:697
+#: includes/class-pmfio-admin.php:698
 msgid "Other statuses"
 msgstr "Ďalšie stavy"
 
-#: includes/class-pmfio-admin.php:697
+#: includes/class-pmfio-admin.php:698
 msgid "Only if your shop uses its own status for orders waiting for payment."
 msgstr "Len ak e-shop používa pre objednávky čakajúce na platbu vlastný stav."
 
 #. translators: %s: meta key
-#: includes/class-pmfio-admin.php:700
+#: includes/class-pmfio-admin.php:701
 msgid "Where the order number is stored"
 msgstr "Kde je uložené číslo objednávky"
 
 #. translators: %s: meta key
-#: includes/class-pmfio-admin.php:700
-#, php-format
-msgid ""
-"Leave as it is. Only for plugins that give orders their own numbers (usually "
-"%s). The variable symbol is also compared with the order ID."
-msgstr ""
-"Nechajte, ako je. Týka sa len pluginov, ktoré objednávkam dávajú vlastné "
-"čísla (zvyčajne %s). Variabilný symbol sa porovnáva aj s ID objednávky."
-
 #: includes/class-pmfio-admin.php:701
+#, php-format
+msgid "Leave as it is. Only for plugins that give orders their own numbers (usually %s). The variable symbol is also compared with the order ID."
+msgstr "Nechajte, ako je. Týka sa len pluginov, ktoré objednávkam dávajú vlastné čísla (zvyčajne %s). Variabilný symbol sa porovnáva aj s ID objednávky."
+
+#: includes/class-pmfio-admin.php:702
 msgid "Look for payments from the last"
 msgstr "Hľadať platby za posledných"
 
-#: includes/class-pmfio-admin.php:701
+#: includes/class-pmfio-admin.php:702
 msgid "days"
 msgstr "dní"
 
-#: includes/class-pmfio-admin.php:701
-msgid ""
-"3 days are enough for everyday use. More only when comparing with older "
-"payments."
-msgstr ""
-"Na bežnú prevádzku stačia 3 dni. Viac len pri porovnávaní so staršími "
-"platbami."
+#: includes/class-pmfio-admin.php:702
+msgid "3 days are enough for everyday use. More only when comparing with older payments."
+msgstr "Na bežnú prevádzku stačia 3 dni. Viac len pri porovnávaní so staršími platbami."
 
-#: includes/class-pmfio-admin.php:707
+#: includes/class-pmfio-admin.php:708
 msgid "Notifications"
 msgstr "Upozornenia"
 
-#: includes/class-pmfio-admin.php:709
+#: includes/class-pmfio-admin.php:710
 msgid "Notification e-mail"
 msgstr "E-mail na upozornenia"
 
-#: includes/class-pmfio-admin.php:709
-msgid ""
-"Gets underpayments, overpayments, payments to review and an alert when "
-"matching stops working."
-msgstr ""
-"Prídu sem nedoplatky, preplatky, platby na kontrolu a upozornenie, keď "
-"párovanie prestane fungovať."
-
 #: includes/class-pmfio-admin.php:710
+msgid "Gets underpayments, overpayments, payments to review and an alert when matching stops working."
+msgstr "Prídu sem nedoplatky, preplatky, platby na kontrolu a upozornenie, keď párovanie prestane fungovať."
+
+#: includes/class-pmfio-admin.php:711
 msgid "Daily summary"
 msgstr "Denný prehľad"
 
-#: includes/class-pmfio-admin.php:710
-msgid ""
-"Every morning at 7:00 send payments from the last 24 hours and orders "
-"waiting for payment for more than 3 days"
-msgstr ""
-"Každé ráno o 7:00 poslať platby za posledných 24 hodín a objednávky, ktoré "
-"čakajú na platbu dlhšie ako 3 dni"
+#: includes/class-pmfio-admin.php:711
+msgid "Every morning at 7:00 send payments from the last 24 hours and orders waiting for payment for more than 3 days"
+msgstr "Každé ráno o 7:00 poslať platby za posledných 24 hodín a objednávky, ktoré čakajú na platbu dlhšie ako 3 dni"
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:712
+#: includes/class-pmfio-admin.php:713
 #: includes/class-pmfio-email-reminder.php:21
 msgid "Payment reminder"
 msgstr "Pripomienka platby"
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:712
+#: includes/class-pmfio-admin.php:713
 msgid "days after the order"
 msgstr "dní po objednávke"
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:712
+#: includes/class-pmfio-admin.php:713
 #, php-format
-msgid ""
-"Live mode only, and only for orders created after switching to live. Turn on "
-"and edit the text in %s."
-msgstr ""
-"Len v ostrej prevádzke a len pri objednávkach vytvorených po jej zapnutí. "
-"Zapnutie a text e-mailu: %s."
+msgid "Live mode only, and only for orders created after switching to live. Turn on and edit the text in %s."
+msgstr "Len v ostrej prevádzke a len pri objednávkach vytvorených po jej zapnutí. Zapnutie a text e-mailu: %s."
 
 #. translators: %s: link to e-mail settings
-#: includes/class-pmfio-admin.php:712
+#: includes/class-pmfio-admin.php:713
 msgid "WooCommerce → Settings → Emails → Payment reminder"
 msgstr "WooCommerce → Nastavenia → E-maily → Pripomienka platby"
 
-#: includes/class-pmfio-admin.php:717
+#: includes/class-pmfio-admin.php:718
 msgid "Personal data"
 msgstr "Osobné údaje"
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:720
+#: includes/class-pmfio-admin.php:721
 #, php-format
-msgid ""
-"Payer name, account and message are stored with each payment. 0 = keep "
-"forever, otherwise at least 3 months. Customers’ requests are handled in "
-"%1$s and %2$s, a suggested text for the privacy policy is in %3$s."
-msgstr ""
-"Pri každej platbe sa ukladá meno platiteľa, účet a správa. 0 = uchovávať "
-"navždy, inak najmenej 3 mesiace. Žiadosti zákazníkov vybavíte v nástrojoch "
-"%1$s a %2$s, návrh textu do zásad ochrany osobných údajov nájdete v %3$s."
+msgid "Payer name, account and message are stored with each payment. 0 = keep forever, otherwise at least 3 months. Customers’ requests are handled in %1$s and %2$s, a suggested text for the privacy policy is in %3$s."
+msgstr "Pri každej platbe sa ukladá meno platiteľa, účet a správa. 0 = uchovávať navždy, inak najmenej 3 mesiace. Žiadosti zákazníkov vybavíte v nástrojoch %1$s a %2$s, návrh textu do zásad ochrany osobných údajov nájdete v %3$s."
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:720
+#: includes/class-pmfio-admin.php:721
 msgid "Export Personal Data"
 msgstr "Export osobných údajov"
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:720
+#: includes/class-pmfio-admin.php:721
 msgid "Erase Personal Data"
 msgstr "Vymazanie osobných údajov"
 
 #. translators: 1: link to Export personal data, 2: link to Erase personal data, 3: link to Privacy policy guide
-#: includes/class-pmfio-admin.php:720
+#: includes/class-pmfio-admin.php:721
 msgid "Privacy Policy Guide"
 msgstr "sprievodcovi zásadami ochrany osobných údajov"
 
-#: includes/class-pmfio-admin.php:721
+#: includes/class-pmfio-admin.php:722
 msgid "Keep payments for"
 msgstr "Uchovávať platby"
 
-#: includes/class-pmfio-admin.php:721
+#: includes/class-pmfio-admin.php:722
 msgid "months"
 msgstr "mesiacov"
 
-#: includes/class-pmfio-admin.php:725
+#: includes/class-pmfio-admin.php:726
 msgid "Save settings"
 msgstr "Uložiť nastavenia"
 
 #. translators: %s: order number placeholder
 #. translators: %s: placeholder
 #. translators: %s: order number
-#: includes/class-pmfio-admin.php:737 includes/class-pmfio-admin.php:768
+#: includes/class-pmfio-admin.php:738
+#: includes/class-pmfio-admin.php:769
 #: includes/class-pmfio-qr-payment.php:137
 #, php-format
 msgid "Order %s"
 msgstr "Objednávka %s"
 
-#: includes/class-pmfio-admin.php:752
+#: includes/class-pmfio-admin.php:753
 msgid "QR payment (QR Platba)"
 msgstr "QR platba"
 
-#: includes/class-pmfio-admin.php:753
-msgid ""
-"A QR code with the account, amount and variable symbol for unpaid bank-"
-"transfer orders. Czech and Slovak banking apps fill in the payment "
-"automatically. Generated on your server, no external service."
-msgstr ""
-"QR kód s účtom, sumou a variabilným symbolom pri nezaplatených objednávkach "
-"na prevod. Slovenské a české bankové aplikácie platbu vyplnia samy. Generuje "
-"sa na vašom serveri, bez cudzej služby."
+#: includes/class-pmfio-admin.php:754
+msgid "A QR code with the account, amount and variable symbol for unpaid bank-transfer orders. Czech and Slovak banking apps fill in the payment automatically. Generated on your server, no external service."
+msgstr "QR kód s účtom, sumou a variabilným symbolom pri nezaplatených objednávkach na prevod. Slovenské a české bankové aplikácie platbu vyplnia samy. Generuje sa na vašom serveri, bez cudzej služby."
 
-#: includes/class-pmfio-admin.php:755
+#: includes/class-pmfio-admin.php:756
 msgid "Thank-you page after the order"
 msgstr "Ďakovná stránka po objednávke"
 
-#: includes/class-pmfio-admin.php:756
+#: includes/class-pmfio-admin.php:757
 msgid "Order e-mails to the customer (including the payment reminder)"
 msgstr "E-maily objednávky zákazníkovi (vrátane pripomienky platby)"
 
-#: includes/class-pmfio-admin.php:757
+#: includes/class-pmfio-admin.php:758
 msgid "Show QR code"
 msgstr "Zobraziť QR kód"
 
-#: includes/class-pmfio-admin.php:757
-msgid ""
-"Turn off if another plugin or your theme already shows a QR code, so "
-"customers do not see two."
-msgstr ""
-"Vypnite, ak QR kód už zobrazuje iný plugin alebo šablóna, aby zákazník "
-"nevidel dva."
+#: includes/class-pmfio-admin.php:758
+msgid "Turn off if another plugin or your theme already shows a QR code, so customers do not see two."
+msgstr "Vypnite, ak QR kód už zobrazuje iný plugin alebo šablóna, aby zákazník nevidel dva."
 
 #. translators: %s: IBAN
-#: includes/class-pmfio-admin.php:760
+#: includes/class-pmfio-admin.php:761
 #, php-format
 msgid "Empty = taken from the bank-transfer account in WooCommerce: %s"
 msgstr "Prázdne = prevezme sa účet na bankový prevod vo WooCommerce: %s"
 
 #. translators: %s: IBAN
-#: includes/class-pmfio-admin.php:760
-msgid ""
-"Empty = taken from the bank-transfer account in WooCommerce (Settings → "
-"Payments → Direct bank transfer)."
-msgstr ""
-"Prázdne = prevezme sa účet na bankový prevod vo WooCommerce (Nastavenia → "
-"Platby → Priamy bankový prevod)."
+#: includes/class-pmfio-admin.php:761
+msgid "Empty = taken from the bank-transfer account in WooCommerce (Settings → Payments → Direct bank transfer)."
+msgstr "Prázdne = prevezme sa účet na bankový prevod vo WooCommerce (Nastavenia → Platby → Priamy bankový prevod)."
 
 #. translators: %s: list of IBANs with currencies
-#: includes/class-pmfio-admin.php:763
+#: includes/class-pmfio-admin.php:764
 #, php-format
-msgid ""
-"Orders are paid to the connected Fio account in the order’s currency: %s. "
-"This field is used only for other currencies."
-msgstr ""
-"Objednávky sa platia na pripojený účet Fio v mene objednávky: %s. Toto pole "
-"sa použije len pre ostatné meny."
+msgid "Orders are paid to the connected Fio account in the order’s currency: %s. This field is used only for other currencies."
+msgstr "Objednávky sa platia na pripojený účet Fio v mene objednávky: %s. Toto pole sa použije len pre ostatné meny."
 
-#: includes/class-pmfio-admin.php:765
+#: includes/class-pmfio-admin.php:766
 msgid "IBAN"
 msgstr "IBAN"
 
-#: includes/class-pmfio-admin.php:766
+#: includes/class-pmfio-admin.php:767
 msgid "QR standard"
 msgstr "Formát QR kódu"
 
-#: includes/class-pmfio-admin.php:766
-msgid ""
-"CZK orders: QR Platba (Czech banks). EUR orders: PAY by square (Slovak "
-"banks). Chosen automatically by the order currency."
-msgstr ""
-"Objednávky v eurách: PAY by square (slovenské banky). Objednávky v korunách: "
-"QR Platba (české banky). Vyberá sa automaticky podľa meny objednávky."
+#: includes/class-pmfio-admin.php:767
+msgid "CZK orders: QR Platba (Czech banks). EUR orders: PAY by square (Slovak banks). Chosen automatically by the order currency."
+msgstr "Objednávky v eurách: PAY by square (slovenské banky). Objednávky v korunách: QR Platba (české banky). Vyberá sa automaticky podľa meny objednávky."
 
 #. translators: %s: placeholder
-#: includes/class-pmfio-admin.php:768
+#: includes/class-pmfio-admin.php:769
 msgid "Message for recipient"
 msgstr "Správa pre príjemcu"
 
 #. translators: %s: placeholder
-#: includes/class-pmfio-admin.php:768
+#: includes/class-pmfio-admin.php:769
 #, php-format
 msgid "Up to 60 characters, without diacritics in the bank. You can use %s."
 msgstr "Najviac 60 znakov, v banke bez diakritiky. Môžete použiť %s."
 
-#: includes/class-pmfio-admin.php:772
+#: includes/class-pmfio-admin.php:773
 msgid "Preview"
 msgstr "Náhľad"
 
-#: includes/class-pmfio-admin.php:776
-msgid ""
-"Sample order. Try scanning it in your banking app, but do not confirm the "
-"payment."
-msgstr ""
-"Ukážková objednávka. Skúste kód naskenovať v bankovej aplikácii, platbu však "
-"nepotvrdzujte."
+#: includes/class-pmfio-admin.php:777
+msgid "Sample order. Try scanning it in your banking app, but do not confirm the payment."
+msgstr "Ukážková objednávka. Skúste kód naskenovať v bankovej aplikácii, platbu však nepotvrdzujte."
 
-#: includes/class-pmfio-admin.php:778
-msgid ""
-"No valid account. Fill in the IBAN or the bank-transfer account in "
-"WooCommerce."
-msgstr ""
-"Chýba platný účet. Vyplňte IBAN alebo účet na bankový prevod vo WooCommerce."
+#: includes/class-pmfio-admin.php:779
+msgid "No valid account. Fill in the IBAN or the bank-transfer account in WooCommerce."
+msgstr "Chýba platný účet. Vyplňte IBAN alebo účet na bankový prevod vo WooCommerce."
 
-#: includes/class-pmfio-admin.php:782
+#: includes/class-pmfio-admin.php:783
 msgid "Save QR settings"
 msgstr "Uložiť nastavenia QR"
 
@@ -857,23 +759,15 @@ msgid "Fio returned an unexpected response."
 msgstr "Fio vrátilo neočakávanú odpoveď."
 
 #: includes/class-pmfio-api.php:79
-msgid ""
-"Fio: requests too frequent (limit is one request per 30 seconds per token)."
-msgstr ""
-"Fio: príliš časté požiadavky (limit je jedna požiadavka za 30 sekúnd na "
-"token)."
+msgid "Fio: requests too frequent (limit is one request per 30 seconds per token)."
+msgstr "Fio: príliš časté požiadavky (limit je jedna požiadavka za 30 sekúnd na token)."
 
 #: includes/class-pmfio-api.php:81
-msgid ""
-"Fio: the token does not exist or has expired. Extend it or create a new one "
-"in Fio internet banking (Settings → API)."
-msgstr ""
-"Fio: token neexistuje alebo vypršal. Predĺžte ho alebo vytvorte nový "
-"v internetbankingu (Nastavenia → API)."
+msgid "Fio: the token does not exist or has expired. Extend it or create a new one in Fio internet banking (Settings → API)."
+msgstr "Fio: token neexistuje alebo vypršal. Predĺžte ho alebo vytvorte nový v internetbankingu (Nastavenia → API)."
 
 #: includes/class-pmfio-api.php:83
-msgid ""
-"Fio: data older than 90 days requires authorisation in internet banking."
+msgid "Fio: data older than 90 days requires authorisation in internet banking."
 msgstr "Fio: údaje staršie ako 90 dní vyžadujú autorizáciu v internetbankingu."
 
 #: includes/class-pmfio-api.php:85
@@ -891,14 +785,8 @@ msgid "Fio: unexpected HTTP status %d."
 msgstr "Fio: neočakávaný HTTP stav %d."
 
 #: includes/class-pmfio-email-reminder.php:22
-msgid ""
-"Sent to the customer when no payment arrives for a bank-transfer order "
-"within the set number of days (Payment Matcher for Fio Bank). The number of "
-"days is set in WooCommerce → Fio payments."
-msgstr ""
-"Posiela sa zákazníkovi, keď k objednávke na prevod do nastaveného počtu dní "
-"nepríde platba (Fio párovanie platieb). Počet dní sa nastavuje vo "
-"WooCommerce → Fio platby."
+msgid "Sent to the customer when no payment arrives for a bank-transfer order within the set number of days (Payment Matcher for Fio Bank). The number of days is set in WooCommerce → Fio payments."
+msgstr "Posiela sa zákazníkovi, keď k objednávke na prevod do nastaveného počtu dní nepríde platba (Fio párovanie platieb). Počet dní sa nastavuje vo WooCommerce → Fio platby."
 
 #: includes/class-pmfio-email-reminder.php:32
 msgid "Payment reminder for order {order_number}"
@@ -909,14 +797,8 @@ msgid "Waiting for your payment"
 msgstr "Čakáme na platbu"
 
 #: includes/class-pmfio-email-reminder.php:44
-msgid ""
-"Hello, we have not received the payment for your order {order_number} yet. "
-"If you have already paid, it may simply not have arrived yet – in that case "
-"please ignore this e-mail. Otherwise you will find the payment details below."
-msgstr ""
-"Dobrý deň, k Vašej objednávke {order_number} sme zatiaľ nedostali platbu. Ak "
-"ste už platili, platba sa možno ešte nepripísala – v tom prípade tento e-"
-"mail prosím ignorujte. Inak nižšie nájdete údaje na platbu."
+msgid "Hello, we have not received the payment for your order {order_number} yet. If you have already paid, it may simply not have arrived yet – in that case please ignore this e-mail. Otherwise you will find the payment details below."
+msgstr "Dobrý deň, k Vašej objednávke {order_number} sme zatiaľ nedostali platbu. Ak ste už platili, platba sa možno ešte nepripísala – v tom prípade tento e-mail prosím ignorujte. Inak nižšie nájdete údaje na platbu."
 
 #: includes/class-pmfio-email-reminder.php:82
 #: includes/class-pmfio-matcher.php:455
@@ -932,12 +814,8 @@ msgid "Introduction"
 msgstr "Úvodný text"
 
 #: includes/class-pmfio-email-reminder.php:98
-msgid ""
-"The order and payment details are always shown below this text. You can use "
-"{order_number}."
-msgstr ""
-"Pod textom sa vždy zobrazí objednávka a údaje na platbu. Môžete použiť "
-"{order_number}."
+msgid "The order and payment details are always shown below this text. You can use {order_number}."
+msgstr "Pod textom sa vždy zobrazí objednávka a údaje na platbu. Môžete použiť {order_number}."
 
 #. translators: 1: amount, 2: Fio movement ID, 3: date, 4: recipient
 #: includes/class-pmfio-matcher.php:232
@@ -973,12 +851,8 @@ msgstr "Objednávka %s je zrušená. Použite „Obnoviť a zaplatiť“."
 #. translators: 1: order number, 2: order status, 3: payment method, 4: currency
 #: includes/class-pmfio-matcher.php:290
 #, php-format
-msgid ""
-"Order %1$s cannot be marked as paid (status “%2$s”, payment method %3$s, "
-"currency %4$s)."
-msgstr ""
-"Objednávku %1$s nie je možné označiť ako zaplatenú (stav „%2$s“, platobná "
-"metóda %3$s, mena %4$s)."
+msgid "Order %1$s cannot be marked as paid (status “%2$s”, payment method %3$s, currency %4$s)."
+msgstr "Objednávku %1$s nie je možné označiť ako zaplatenú (stav „%2$s“, platobná metóda %3$s, mena %4$s)."
 
 #. translators: %s: user name
 #: includes/class-pmfio-matcher.php:294
@@ -1021,7 +895,8 @@ msgid "Fio movement %1$s from %2$s, %3$s."
 msgstr "Fio pohyb %1$s zo dňa %2$s, %3$s."
 
 #. translators: 1: Fio movement ID, 2: date, 3: sender
-#: includes/class-pmfio-matcher.php:414 includes/class-pmfio-runner.php:261
+#: includes/class-pmfio-matcher.php:414
+#: includes/class-pmfio-runner.php:261
 msgid "unknown sender"
 msgstr "neznámy odosielateľ"
 
@@ -1046,9 +921,7 @@ msgstr "Preplatok pri objednávke"
 #: includes/class-pmfio-matcher.php:429
 #, php-format
 msgid "%s more than the order total was received. The order is marked as paid."
-msgstr ""
-"Prišlo o %s viac, ako je cena objednávky. Objednávka je označená ako "
-"zaplatená."
+msgstr "Prišlo o %s viac, ako je cena objednávky. Objednávka je označená ako zaplatená."
 
 #. translators: 1: amount, 2: received so far, 3: order total, 4: movement detail
 #: includes/class-pmfio-matcher.php:435
@@ -1064,27 +937,18 @@ msgstr "Nedoplatok pri objednávke"
 #. translators: 1: received so far, 2: order total
 #: includes/class-pmfio-matcher.php:437
 #, php-format
-msgid ""
-"So far %1$s of %2$s has been received. The order status has not changed."
+msgid "So far %1$s of %2$s has been received. The order status has not changed."
 msgstr "Zatiaľ prišlo %1$s z %2$s. Stav objednávky sa nezmenil."
 
 #. translators: 1: amount, 2: order status, 3: movement detail
 #: includes/class-pmfio-matcher.php:441
 #, php-format
-msgid ""
-"A payment of %1$s arrived, but the order is “%2$s” or uses another payment "
-"method or currency, so nothing was changed. %3$s"
-msgstr ""
-"Prišla platba %1$s, ale objednávka je v stave „%2$s“ alebo má inú platobnú "
-"metódu či menu, preto sa nič nezmenilo. %3$s"
+msgid "A payment of %1$s arrived, but the order is “%2$s” or uses another payment method or currency, so nothing was changed. %3$s"
+msgstr "Prišla platba %1$s, ale objednávka je v stave „%2$s“ alebo má inú platobnú metódu či menu, preto sa nič nezmenilo. %3$s"
 
 #: includes/class-pmfio-matcher.php:442
-msgid ""
-"You can restore the order with “Restore and mark paid” on the Fio payments "
-"page."
-msgstr ""
-"Objednávku môžete obnoviť tlačidlom „Obnoviť a zaplatiť“ na stránke Fio "
-"platby."
+msgid "You can restore the order with “Restore and mark paid” on the Fio payments page."
+msgstr "Objednávku môžete obnoviť tlačidlom „Obnoviť a zaplatiť“ na stránke Fio platby."
 
 #. translators: 1: order status, 2: payment method
 #: includes/class-pmfio-matcher.php:444
@@ -1094,12 +958,8 @@ msgstr "Platba na kontrolu"
 #. translators: 1: order status, 2: payment method
 #: includes/class-pmfio-matcher.php:444
 #, php-format
-msgid ""
-"A payment arrived for an order that cannot be marked as paid automatically "
-"(status “%1$s”, payment method %2$s). Please check it manually."
-msgstr ""
-"Prišla platba k objednávke, ktorú nie je možné automaticky označiť ako "
-"zaplatenú (stav „%1$s“, platobná metóda %2$s). Skontrolujte ju prosím ručne."
+msgid "A payment arrived for an order that cannot be marked as paid automatically (status “%1$s”, payment method %2$s). Please check it manually."
+msgstr "Prišla platba k objednávke, ktorú nie je možné automaticky označiť ako zaplatenú (stav „%1$s“, platobná metóda %2$s). Skontrolujte ju prosím ručne."
 
 #: includes/class-pmfio-matcher.php:456
 msgid "Payment:"
@@ -1118,41 +978,28 @@ msgid "All Fio payments"
 msgstr "Všetky platby z Fio"
 
 #: includes/class-pmfio-privacy.php:29
-msgid ""
-"Suggested text for your privacy policy. Adjust it to how you actually use "
-"the data."
-msgstr ""
-"Navrhovaný text do zásad ochrany osobných údajov. Upravte ho podľa toho, ako "
-"údaje skutočne používate."
+msgid "Suggested text for your privacy policy. Adjust it to how you actually use the data."
+msgstr "Navrhovaný text do zásad ochrany osobných údajov. Upravte ho podľa toho, ako údaje skutočne používate."
 
 #: includes/class-pmfio-privacy.php:30
 msgid "Suggested text:"
 msgstr "Navrhovaný text:"
 
 #: includes/class-pmfio-privacy.php:31
-msgid ""
-"When you pay by bank transfer, we receive from our bank (Fio banka, a.s.) "
-"the details of your payment: the amount, date, variable symbol, the sender’s "
-"name and account number and the message for recipient. We use them only to "
-"match the payment to your order and to deal with underpayments, overpayments "
-"and refunds."
-msgstr ""
-"Pri platbe prevodom nám naša banka (Fio banka, a.s.) odovzdá údaje o platbe: "
-"sumu, dátum, variabilný symbol, meno a číslo účtu odosielateľa a správu pre "
-"príjemcu. Používame ich len na spárovanie platby s objednávkou a na "
-"vybavenie nedoplatkov, preplatkov a vrátenia peňazí."
+msgid "When you pay by bank transfer, we receive from our bank (Fio banka, a.s.) the details of your payment: the amount, date, variable symbol, the sender’s name and account number and the message for recipient. We use them only to match the payment to your order and to deal with underpayments, overpayments and refunds."
+msgstr "Pri platbe prevodom nám naša banka (Fio banka, a.s.) odovzdá údaje o platbe: sumu, dátum, variabilný symbol, meno a číslo účtu odosielateľa a správu pre príjemcu. Používame ich len na spárovanie platby s objednávkou a na vybavenie nedoplatkov, preplatkov a vrátenia peňazí."
 
 #. translators: %d: number of months
 #: includes/class-pmfio-privacy.php:35
 #, php-format
 msgid "We keep these details for %d month and then delete them automatically."
-msgid_plural ""
-"We keep these details for %d months and then delete them automatically."
+msgid_plural "We keep these details for %d months and then delete them automatically."
 msgstr[0] "Tieto údaje uchovávame %d mesiac a potom ich automaticky zmažeme."
 msgstr[1] "Tieto údaje uchovávame %d mesiace a potom ich automaticky zmažeme."
 msgstr[2] "Tieto údaje uchovávame %d mesiacov a potom ich automaticky zmažeme."
 
-#: includes/class-pmfio-privacy.php:43 includes/class-pmfio-privacy.php:51
+#: includes/class-pmfio-privacy.php:43
+#: includes/class-pmfio-privacy.php:51
 #: includes/class-pmfio-privacy.php:76
 msgid "Bank transfers (Fio)"
 msgstr "Platby prevodom (Fio)"
@@ -1170,12 +1017,8 @@ msgid "Message"
 msgstr "Správa"
 
 #: includes/class-pmfio-privacy.php:107
-msgid ""
-"Payer name, account and message were removed from Fio payments. Amounts and "
-"dates are kept for bookkeeping."
-msgstr ""
-"Z platieb Fio bolo odstránené meno platiteľa, účet a správa. Sumy a dátumy "
-"zostávajú kvôli účtovníctvu."
+msgid "Payer name, account and message were removed from Fio payments. Amounts and dates are kept for bookkeeping."
+msgstr "Z platieb Fio bolo odstránené meno platiteľa, účet a správa. Sumy a dátumy zostávajú kvôli účtovníctvu."
 
 #: includes/class-pmfio-qr-payment.php:194
 #: includes/class-pmfio-qr-payment.php:210
@@ -1184,12 +1027,8 @@ msgstr "Zaplaťte QR kódom"
 
 #: includes/class-pmfio-qr-payment.php:195
 #: includes/class-pmfio-qr-payment.php:210
-msgid ""
-"Scan the code in your banking app, the amount and variable symbol will fill "
-"in automatically."
-msgstr ""
-"Naskenujte kód v bankovej aplikácii, suma aj variabilný symbol sa vyplnia "
-"samy."
+msgid "Scan the code in your banking app, the amount and variable symbol will fill in automatically."
+msgstr "Naskenujte kód v bankovej aplikácii, suma aj variabilný symbol sa vyplnia samy."
 
 #. translators: 1: amount, 2: variable symbol
 #: includes/class-pmfio-qr-payment.php:197
@@ -1216,12 +1055,8 @@ msgstr "Odoslané pripomienky: %d."
 #. translators: %s: date and time
 #: includes/class-pmfio-runner.php:142
 #, php-format
-msgid ""
-"No payment check has run since %s. The task scheduler (WP-Cron / Action "
-"Scheduler) is probably not running."
-msgstr ""
-"Kontrola platieb neprebehla od %s. Pravdepodobne nebeží plánovač úloh (WP-"
-"Cron / Action Scheduler)."
+msgid "No payment check has run since %s. The task scheduler (WP-Cron / Action Scheduler) is probably not running."
+msgstr "Kontrola platieb neprebehla od %s. Pravdepodobne nebeží plánovač úloh (WP-Cron / Action Scheduler)."
 
 #: includes/class-pmfio-runner.php:145
 msgid "No payment check has run yet."
@@ -1234,14 +1069,8 @@ msgid "Automatic Fio payment matching on %s is not working right now:"
 msgstr "Automatické párovanie platieb z Fio na webe %s teraz nefunguje:"
 
 #: includes/class-pmfio-runner.php:161
-msgid ""
-"Until this is fixed, paid orders will not be marked automatically. If the "
-"token expired: Fio internet banking → Settings → API → extend the token (or "
-"create a new one and paste it on the Fio payments page)."
-msgstr ""
-"Kým sa to neopraví, zaplatené objednávky sa samy neoznačia. Ak vypršal "
-"token: internetbanking Fio → Nastavenia → API → predĺžiť token (alebo "
-"vytvoriť nový a vložiť ho na stránke Fio platby)."
+msgid "Until this is fixed, paid orders will not be marked automatically. If the token expired: Fio internet banking → Settings → API → extend the token (or create a new one and paste it on the Fio payments page)."
+msgstr "Kým sa to neopraví, zaplatené objednávky sa samy neoznačia. Ak vypršal token: internetbanking Fio → Nastavenia → API → predĺžiť token (alebo vytvoriť nový a vložiť ho na stránke Fio platby)."
 
 #: includes/class-pmfio-runner.php:163
 msgid "Fio payment matching is not working"
@@ -1250,24 +1079,12 @@ msgstr "Párovanie platieb z Fio nefunguje"
 #. translators: 1: site URL, 2: date
 #: includes/class-pmfio-runner.php:220
 #, php-format
-msgid ""
-"The Fio API token used on %1$s expires on %2$s. After that, payments will no "
-"longer be matched automatically."
-msgstr ""
-"Token Fio API používaný na webe %1$s vyprší %2$s. Potom sa platby prestanú "
-"automaticky párovať."
+msgid "The Fio API token used on %1$s expires on %2$s. After that, payments will no longer be matched automatically."
+msgstr "Token Fio API používaný na webe %1$s vyprší %2$s. Potom sa platby prestanú automaticky párovať."
 
 #: includes/class-pmfio-runner.php:221
-msgid ""
-"If the token has automatic renewal, simply log in to Fio internet banking "
-"and it will be extended by 180 days. Otherwise extend it or create a new one "
-"in Settings → API. Then update the expiry date on the Fio payments settings "
-"page."
-msgstr ""
-"Ak má token automatické predlžovanie, stačí sa prihlásiť do internetbankingu "
-"Fio a predĺži sa o 180 dní. Inak ho predĺžte alebo vytvorte nový "
-"v Nastaveniach → API. Potom upravte dátum platnosti v nastaveniach Fio "
-"platieb."
+msgid "If the token has automatic renewal, simply log in to Fio internet banking and it will be extended by 180 days. Otherwise extend it or create a new one in Settings → API. Then update the expiry date on the Fio payments settings page."
+msgstr "Ak má token automatické predlžovanie, stačí sa prihlásiť do internetbankingu Fio a predĺži sa o 180 dní. Inak ho predĺžte alebo vytvorte nový v Nastaveniach → API. Potom upravte dátum platnosti v nastaveniach Fio platieb."
 
 #. translators: %s: date
 #: includes/class-pmfio-runner.php:224
@@ -1323,8 +1140,9 @@ msgid "Payment received, thank you! We are processing your order."
 msgstr "Platba prišla, ďakujeme! Objednávku spracúvame."
 
 #: includes/class-pmfio-status.php:51
-msgid ""
-"Waiting for your bank transfer. This page updates by itself when the payment "
-"arrives."
-msgstr ""
-"Čakáme na Vašu platbu prevodom. Keď príde, stránka sa sama aktualizuje."
+msgid "Waiting for your bank transfer. This page updates by itself when the payment arrives."
+msgstr "Čakáme na Vašu platbu prevodom. Keď príde, stránka sa sama aktualizuje."
+
+#: payment-matcher-for-fio-bank.php:82
+msgid "Support development"
+msgstr "Podporiť vývoj"

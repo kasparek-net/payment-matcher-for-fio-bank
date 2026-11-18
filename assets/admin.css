@@ -260,6 +260,13 @@
 	color: var(--pmfio-muted);
 }
 
+.pmfio-donate {
+	margin: 32px 0 8px;
+	font-size: 13px;
+	color: var(--pmfio-muted);
+	text-align: center;
+}
+
 .pmfio-guide { margin: 10px 0 0; }
 .pmfio-guide summary { cursor: pointer; color: var(--wp-admin-theme-color, #2271b1); }
 .pmfio-guide ol { margin: 8px 0 0 20px; }

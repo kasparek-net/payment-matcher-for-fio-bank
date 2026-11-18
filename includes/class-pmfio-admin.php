@@ -459,6 +459,7 @@ class PMFIO_Admin {
 				self::render_payments();
 			}
 			?>
+			<p class="pmfio-donate"><?php esc_html_e( 'This plugin is free. Does it save you time?', 'payment-matcher-for-fio-bank' ); ?> <a href="<?php echo esc_url( PMFIO_DONATE_URL ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Support its development', 'payment-matcher-for-fio-bank' ); ?></a> &#9829;</p>
 		</div>
 		<?php
 	}

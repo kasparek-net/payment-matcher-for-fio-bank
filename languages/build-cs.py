@@ -8,6 +8,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 T = {
     'Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).':
         'Stahuje příchozí platby přes API Fio banky a podle variabilního symbolu označí objednávky na převod jako zaplacené. Ruční přiřazení, připomínky platby, denní přehled, hlídání tokenu, více účtů a volitelná QR platba (QR Platba, PAY by square).',
+    'Support development': 'Podpořit vývoj',
+    'This plugin is free. Does it save you time?': 'Plugin je zdarma. Šetří vám čas?',
+    'Support its development': 'Podpořte jeho vývoj',
     'Settings': 'Nastavení',
     'Fio payments': 'Fio platby',
     'Paid': 'Zaplaceno',
@@ -317,9 +320,10 @@ for b in blocks[1:]:
         tr = T.get(msgid)
         if tr is None:
             if msgid.startswith('http') or msgid in ('Jakub Kašpárek', 'Payment Matcher for Fio Bank'):
+                tr = msgid
+            else:
+                missing.append(msgid)
                 continue
-            missing.append(msgid)
-            continue
         body = 'msgid "%s"\nmsgstr "%s"' % (esc(msgid), esc(typo(tr)))
     out.append((head + '\n' if head else '') + body)
 
