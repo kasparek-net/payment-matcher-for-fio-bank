@@ -16,8 +16,8 @@ msgstr "Payment Matcher for Fio Bank"
 
 #. Plugin URI of the plugin
 #: payment-matcher-for-fio-bank.php
-msgid "https://github.com/kasparek-net/payment-matcher-for-fio-bank"
-msgstr "https://github.com/kasparek-net/payment-matcher-for-fio-bank"
+msgid "https://wp.kasparek.app/fio"
+msgstr "https://wp.kasparek.app/fio"
 
 #. Description of the plugin
 #: payment-matcher-for-fio-bank.php
@@ -253,7 +253,7 @@ msgid "Payments"
 msgstr "Platby"
 
 #: includes/class-pmfio-admin.php:413
-#: payment-matcher-for-fio-bank.php:81
+#: payment-matcher-for-fio-bank.php:96
 msgid "Settings"
 msgstr "Nastavenia"
 
@@ -1143,6 +1143,6 @@ msgstr "Platba prišla, ďakujeme! Objednávku spracúvame."
 msgid "Waiting for your bank transfer. This page updates by itself when the payment arrives."
 msgstr "Čakáme na Vašu platbu prevodom. Keď príde, stránka sa sama aktualizuje."
 
-#: payment-matcher-for-fio-bank.php:82
+#: payment-matcher-for-fio-bank.php:97
 msgid "Support development"
 msgstr "Podporiť vývoj"

@@ -5,7 +5,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.7.4
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,7 @@ Payment Matcher for Fio Bank downloads incoming payments from your Fio banka acc
 * **Personal data** – privacy policy text, WordPress personal data export and erasure, automatic deletion of old payments (12 months by default).
 * **Multiple Fio accounts** – connect e.g. a CZK and a EUR account, each with its own read-only token. Payments from all of them are matched together, each with its own expiry reminder.
 * **QR payment** – optional QR code on the thank-you page and in order e-mails: QR Platba for CZK orders (Czech banks), PAY by square for EUR orders (Slovak banks). The account in the order’s currency is used automatically. Generated on your server, no external service.
-* **Translation-ready** – Czech and Slovak translations are provided through translate.wordpress.org.
+* **Czech first** – the Fio banka API serves Czech and Slovak accounts, so the plugin always speaks Czech (Slovak on Slovak sites), even on sites in other languages. Both translations are bundled.
 
 = Requirements =
 
@@ -114,6 +114,10 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.8.0 =
+* The plugin is in Czech everywhere (Slovak on Slovak sites), regardless of the site language or missing language packs. Czech and Slovak translations are bundled again.
+* Tested with WooCommerce 11.3.
 
 = 1.7.4 =
 * The plugin page with a Czech guide moved to wp.kasparek.app.

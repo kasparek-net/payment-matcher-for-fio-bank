@@ -3,7 +3,7 @@
  * Plugin Name: Payment Matcher for Fio Bank
  * Plugin URI: https://wp.kasparek.app/fio
  * Description: Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).
- * Version: 1.7.4
+ * Version: 1.8.0
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Requires Plugins: woocommerce
@@ -14,7 +14,7 @@
  * Text Domain: payment-matcher-for-fio-bank
  * Domain Path: /languages
  * WC requires at least: 8.0
- * WC tested up to: 10.9
+ * WC tested up to: 11.3
  *
  * @package PaymentMatcherForFioBank
  */
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PMFIO_VERSION', '1.7.4' );
+define( 'PMFIO_VERSION', '1.8.0' );
 define( 'PMFIO_PLUGIN_FILE', __FILE__ );
 define( 'PMFIO_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PMFIO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -41,6 +41,21 @@ require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-privacy.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-status.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-cron.php';
 require_once PMFIO_PLUGIN_PATH . 'includes/class-pmfio-admin.php';
+
+/**
+ * The Fio banka API serves Czech and Slovak accounts only, so the plugin speaks
+ * Czech everywhere (Slovak on Slovak sites), whatever the site or language packs say.
+ *
+ * @param string $locale Active locale; the translation is stored under it.
+ */
+function pmfio_load_translation( $locale = '' ) {
+	$locale = $locale ? $locale : determine_locale();
+	$lang   = 0 === strpos( $locale, 'sk' ) ? 'sk_SK' : 'cs_CZ';
+	unload_textdomain( 'payment-matcher-for-fio-bank', true );
+	load_textdomain( 'payment-matcher-for-fio-bank', PMFIO_PLUGIN_PATH . 'languages/payment-matcher-for-fio-bank-' . $lang . '.mo', $locale );
+}
+add_action( 'init', 'pmfio_load_translation', 0 );
+add_action( 'change_locale', 'pmfio_load_translation' );
 
 register_activation_hook( __FILE__, array( 'PMFIO_Store', 'install' ) );
 register_deactivation_hook( __FILE__, array( 'PMFIO_Runner', 'unschedule' ) );
