@@ -6,6 +6,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 T = {
+    'Payment Matcher for Fio Bank': 'Párování plateb Fio',
     'Downloads incoming payments from the Fio banka API and marks bank-transfer orders as paid by variable symbol. Manual assignment, payment reminders, daily summary, token health alerts, multiple accounts and an optional QR payment code (QR Platba, PAY by square).':
         'Stahuje příchozí platby přes API Fio banky a podle variabilního symbolu označí objednávky na převod jako zaplacené. Ruční přiřazení, připomínky platby, denní přehled, hlídání tokenu, více účtů a volitelná QR platba (QR Platba, PAY by square).',
     'Support development': 'Podpořit vývoj',
@@ -127,7 +128,7 @@ T = {
     'Fio: malformed request (404).': 'Fio: chybný dotaz (404).',
     'Fio: unexpected HTTP status %d.': 'Fio: neočekávaný HTTP stav %d.',
     'Sent to the customer when no payment arrives for a bank-transfer order within the set number of days (Payment Matcher for Fio Bank). The number of days is set in WooCommerce → Fio payments.':
-        'Posílá se zákazníkovi, když k objednávce na převod do nastaveného počtu dní nedorazí platba (Fio párování plateb). Počet dní se nastavuje ve WooCommerce → Fio platby.',
+        'Posílá se zákazníkovi, když k objednávce na převod do nastaveného počtu dní nedorazí platba (Párování plateb Fio). Počet dní se nastavuje ve WooCommerce → Fio platby.',
     'Payment reminder for order {order_number}': 'Připomínka platby objednávky {order_number}',
     'Waiting for your payment': 'Čekáme na platbu',
     'Hello, we have not received the payment for your order {order_number} yet. If you have already paid, it may simply not have arrived yet – in that case please ignore this e-mail. Otherwise you will find the payment details below.':
@@ -319,7 +320,7 @@ for b in blocks[1:]:
     else:
         tr = T.get(msgid)
         if tr is None:
-            if msgid.startswith('http') or msgid in ('Jakub Kašpárek', 'Payment Matcher for Fio Bank'):
+            if msgid.startswith('http') or msgid in ('Jakub Kašpárek',):
                 tr = msgid
             else:
                 missing.append(msgid)

@@ -5,7 +5,7 @@ Tags: woocommerce, fio, bank transfer, payment, qr
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,9 @@ No. Only orders created after you switched to live mode get a reminder, and each
 * `pmfio_order_number_meta_key`, `pmfio_find_order` – customise how the variable symbol is matched to an order.
 
 == Changelog ==
+
+= 1.8.1 =
+* The plugin name is translated in Czech and Slovak too.
 
 = 1.8.0 =
 * The plugin is in Czech everywhere (Slovak on Slovak sites), regardless of the site language or missing language packs. Czech and Slovak translations are bundled again.

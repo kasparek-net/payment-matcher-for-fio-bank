@@ -12,7 +12,7 @@ msgstr ""
 #: payment-matcher-for-fio-bank.php
 #: includes/class-pmfio-privacy.php:38
 msgid "Payment Matcher for Fio Bank"
-msgstr "Payment Matcher for Fio Bank"
+msgstr "Párovanie platieb Fio"
 
 #. Plugin URI of the plugin
 #: payment-matcher-for-fio-bank.php
@@ -786,7 +786,7 @@ msgstr "Fio: neočakávaný HTTP stav %d."
 
 #: includes/class-pmfio-email-reminder.php:22
 msgid "Sent to the customer when no payment arrives for a bank-transfer order within the set number of days (Payment Matcher for Fio Bank). The number of days is set in WooCommerce → Fio payments."
-msgstr "Posiela sa zákazníkovi, keď k objednávke na prevod do nastaveného počtu dní nepríde platba (Fio párovanie platieb). Počet dní sa nastavuje vo WooCommerce → Fio platby."
+msgstr "Posiela sa zákazníkovi, keď k objednávke na prevod do nastaveného počtu dní nepríde platba (Párovanie platieb Fio). Počet dní sa nastavuje vo WooCommerce → Fio platby."
 
 #: includes/class-pmfio-email-reminder.php:32
 msgid "Payment reminder for order {order_number}"
